@@ -5,7 +5,6 @@ import {
   loginContainer, longConfirmBtn, row
 } from '../utils/common-styles';
 
-import WebApi from './webapi';
 
 export default class Login extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    WebApi.fetchUserName();
   }
 
   render() {
