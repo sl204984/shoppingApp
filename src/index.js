@@ -32,7 +32,7 @@ const navigationOpt = fromJS({
   headerTitleStyle: {
     fontWeight: 'normal',
   }
-})
+});
 
 export default createStackNavigator({
   Login: {
