@@ -14,7 +14,7 @@ export default class About extends Component {
         navigate('ProfileSettings')
       }
     }, {
-      label: '关于书程',
+      label: '关于有售',
       onPress() {}
     }, {
       label: '分享给朋友',
