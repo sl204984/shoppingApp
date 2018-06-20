@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 import HomePage from '../home-page';
 import Category from '../category';
-import Community from '../community';
+import Messages from '../messages';
 import UserCenter from '../user-center';
 import { baseColor } from "./common-styles";
 
@@ -39,10 +39,10 @@ export default pageNavigator = createBottomTabNavigator({
       )
     }
   },
-  Community: {
-    screen: Community,
+  Messages: {
+    screen: Messages,
     navigationOptions: {
-      tabBarLabel: '社区',
+      tabBarLabel: '聊天',
       tabBarIcon: ({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
           source={focused ? iconHomeS : iconHome} />
