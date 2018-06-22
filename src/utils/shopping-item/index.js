@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { gray, colorhot, lightGray, baseColor } from '../common-styles';
+
+const { width } = Dimensions.get('window');
 export default class ShoppingItem extends React.Component {
 
   constructor(props) {
@@ -56,6 +58,7 @@ export default class ShoppingItem extends React.Component {
 
 const styles = StyleSheet.create({
   itemContainer: {
+    width: width,
     marginBottom: 20,
     backgroundColor: 'white',
     paddingTop: 10,
