@@ -56,7 +56,6 @@ export default class ShoppingItem extends React.Component {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flex: 0,
     marginBottom: 20,
     backgroundColor: 'white',
     paddingTop: 10,

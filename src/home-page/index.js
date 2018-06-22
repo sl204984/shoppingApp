@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
-import { container } from "../utils/common-styles";
+import { View, StyleSheet, FlatList } from 'react-native';
 import { iconSpiro, iconCup } from "../imgs";
 
 import ShoppingItem from '../utils/shopping-item';

@@ -1,24 +1,39 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Text, Modal} from 'react-native';
+import React from "react";
+import { View, StyleSheet, FlatList } from 'react-native';
+import { iconSpiro, iconCup } from "../imgs";
 
-import {container} from "../utils/common-styles";
+import MessageItem from '../utils/message-item';
+export default class Messages extends React.Component {
 
-export default class Community extends Component {
-  
-  
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
-    
-    return <View style={styles.container}>
-      <Text>Here community is!</Text>
-      <Text
-          onPress={() => {
-            navigate('MyMap');
-          }}>跳转</Text>
-    </View>
+    const data = [];
+    for(let i = 0; i < 10; i++) {
+      data.push({key: 'index-' + i});
+    }
+    return (
+      <View style={styles.container}>
+        <FlatList data={data} renderItem={() => 
+          <MessageItem avator={iconSpiro} 
+            publisher={'星空下的仰望'} 
+            chartInfo={'里好呀'}
+            shoppingImg={iconCup} />
+        }>
+          
+        </FlatList>
+      </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  container: container.toJS()
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    paddingTop: 22,
+  },
 });

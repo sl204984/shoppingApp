@@ -60,7 +60,7 @@ export default pageNavigator = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Messages',
     tabBarOptions: {
       activeTintColor: baseColor
     },
