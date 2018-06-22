@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { iconSpiro, iconCup } from "../imgs";
 
 import MessageItem from '../utils/message-item';
@@ -10,19 +10,27 @@ export default class Messages extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     const data = [];
     for(let i = 0; i < 10; i++) {
       data.push({key: 'index-' + i});
     }
+    
     return (
       <View style={styles.container}>
         <FlatList data={data} renderItem={() => 
-          <MessageItem avator={iconSpiro} 
-            publisher={'星空下的仰望星空下的仰望星空下的仰望'} 
-            chartInfo={'一二三四五一二三四五一二三四五一二三四五一二三四五'}
-            dateInfo={'5天前'}
-            unread={true}
-            shoppingImg={iconCup} />
+          <TouchableOpacity onPress={() => {
+            navigate('Chat', { user: 'Sybil' });
+          }}>
+            <MessageItem avator={iconSpiro} 
+              publisher={'星空下的仰望星空下的仰望星空下的仰望'} 
+              chartInfo={'一二三四五一二三四五一二三四五一二三四五一二三四五'}
+              dateInfo={'5天前'}
+              unread={true}
+              shoppingImg={iconCup} />
+          </TouchableOpacity>
+          
         }>
           
         </FlatList>
