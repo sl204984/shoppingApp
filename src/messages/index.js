@@ -18,8 +18,10 @@ export default class Messages extends React.Component {
       <View style={styles.container}>
         <FlatList data={data} renderItem={() => 
           <MessageItem avator={iconSpiro} 
-            publisher={'星空下的仰望'} 
-            chartInfo={'里好呀'}
+            publisher={'星空下的仰望星空下的仰望星空下的仰望'} 
+            chartInfo={'一二三四五一二三四五一二三四五一二三四五一二三四五'}
+            dateInfo={'5天前'}
+            unread={true}
             shoppingImg={iconCup} />
         }>
           
