@@ -1,4 +1,5 @@
 import React from "react";
+import Platform from "Platform";
 import { View, StyleSheet, FlatList } from 'react-native';
 import { iconSpiro, iconCup } from "../imgs";
 
@@ -41,12 +42,14 @@ export default class HomePage extends React.Component {
   }
 }
 
+const paddingTop = Platform.OS === 'android' ? 0 : 22;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    paddingTop: 22,
+    paddingTop: paddingTop,
     
   },
 });
