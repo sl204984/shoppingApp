@@ -11,7 +11,6 @@ export default class HomePage extends React.Component {
   }
 
   render() {
-    // const { navigate } = this.props.navigation;
     const data = [];
     for(let i = 0; i < 10; i++) {
       data.push({key: 'index-' + i});
@@ -27,14 +26,6 @@ export default class HomePage extends React.Component {
             point={100} 
             location={'南京南京'} />
         }>
-        {/*
-          <Text style={{ padding: 10 }}>Hello, Navigation!</Text>
-          <Button
-            onPress={() => {
-              navigate('Login', { user: 'Sybil' });
-            }}
-            title="点击跳转" />
-        */}
           
         </FlatList>
       </View>

@@ -5,8 +5,10 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 import HomePage from '../home-page';
 import Category from '../category';
+import Publish from '../publish';
 import Messages from '../messages';
 import UserCenter from '../user-center';
+
 import { baseColor } from "./common-styles";
 
 import { 
@@ -39,6 +41,16 @@ export default pageNavigator = createBottomTabNavigator({
       )
     }
   },
+  Publish: {
+    screen: Publish,
+    navigationOptions: {
+      tabBarLabel: '发布',
+      tabBarIcon: (({ focused }) => (
+        <Image resizeMode='contain' style={styles.image}
+          source={focused ? iconHomeS : iconHome} />
+      ))
+    }
+  },
   Messages: {
     screen: Messages,
     navigationOptions: {
@@ -60,7 +72,7 @@ export default pageNavigator = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Publish',
     tabBarOptions: {
       activeTintColor: baseColor
     },
