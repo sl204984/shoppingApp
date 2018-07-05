@@ -3,10 +3,15 @@ import Platform from "Platform";
 import { View, StyleSheet, FlatList } from 'react-native';
 
 import ShoppingItem from '../utils/shopping-item';
+
+
 export default class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
   }
 
   render() {
@@ -40,6 +45,5 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     paddingTop: paddingTop,
-    
   },
 });

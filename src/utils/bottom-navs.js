@@ -82,7 +82,7 @@ export default pageNavigator = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'Publish',
+    initialRouteName: 'Home',
     tabBarOptions: {
       activeTintColor: baseColor
     },
