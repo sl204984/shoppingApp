@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import { narrowRow, textGrayColor, white } from '../../utils/common-styles';
-import { iconMore } from '../../imgs';
 import CONFIG from '../../utils/config';
 
 const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
+const IconMore = `${IconPrefix}more.png`;
 
 export default class FeatureList extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ export default class FeatureList extends Component {
               </View>
               <View style={styles.iconText}>
                 <Text style={styles.count}>{ item.count }</Text>
-                <Image source={iconMore} style={styles.imageMore} />
+                <Image source={{uri: IconMore}} style={styles.imageMore} />
               </View>
             </TouchableOpacity>
           })

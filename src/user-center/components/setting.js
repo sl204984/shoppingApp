@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native'; 
 
 import { styles } from './feature-list';
-import { iconMore } from '../../imgs';
 
 import CONFIG from '../../utils/config';
 
 const IconSetting = `${CONFIG.IMG_HOST}static/icons/settings.png`;
+const IconMore = `${CONFIG.IMG_HOST}static/icons/more.png`;
 
 export default class Setting extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Setting extends Component {
           <Image source={{uri: IconSetting}} style={styles.imageIcon} />
           <Text>设置</Text>
         </View>
-        <Image source={iconMore} style={styles.imageMore} />
+        <Image source={{uri: IconMore}} style={styles.imageMore} />
 
       </TouchableOpacity>
     </View>

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
 import { baseColor, lightGray, narrowRow, white } from '../utils/common-styles';
-import { iconMore } from '../imgs';
+import CONFIG from '../utils/config';
+
+const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
+const IconMore = `${IconPrefix}more.png`;
 
 export default class MyBalance extends Component {
   constructor(props) {
@@ -23,7 +26,7 @@ export default class MyBalance extends Component {
         <View style={styles.iconText}>
           <Text>充值</Text>
         </View>
-        <Image source={iconMore} style={styles.imageMore} />
+        <Image source={{uri: IconMore}} style={styles.imageMore} />
       </TouchableOpacity>
     </View>
   }
