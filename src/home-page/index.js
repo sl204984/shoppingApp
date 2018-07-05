@@ -1,7 +1,6 @@
 import React from "react";
 import Platform from "Platform";
 import { View, StyleSheet, FlatList } from 'react-native';
-import { iconSpiro } from "../imgs";
 
 import ShoppingItem from '../utils/shopping-item';
 export default class HomePage extends React.Component {

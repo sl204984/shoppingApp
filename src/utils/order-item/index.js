@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Text } from 'react-native';
 import { fromJS } from 'immutable';
 
-import { iconSpiro } from '../../imgs';
 import { colorhot, darkGray, lightGray } from '../common-styles';
+
+import CONFIG from '../config';
 
 export default class OrderItem extends Component {
   constructor(props) {
@@ -12,8 +13,9 @@ export default class OrderItem extends Component {
 
   render() {
     const { imgUrl, method, shoppingName, price } = this.props;
+    const _orderImg = `${CONFIG.IMG_HOST}static/shopping/lipstick`;
     return <View style={styles.container}>
-      <Image style={styles.image} source={iconSpiro} />
+      <Image style={styles.image} source={{uri: _orderImg}} />
       <View style={styles.detailInfo}>
         <Text style={styles.shoppingName}>{ shoppingName }</Text>
         <Text style={styles.price}>￥ { price }</Text>
