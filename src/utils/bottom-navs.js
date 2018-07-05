@@ -11,14 +11,24 @@ import UserCenter from '../user-center';
 
 import { baseColor } from "./common-styles";
 
-import { 
-  iconHome, 
-  iconHomeS, 
-  iconShop, 
-  iconShopS,
-  iconUserCenter,
-  iconUserCenterS 
-} from '../imgs/index';
+import CONFIG from './config';
+
+const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
+
+const IconHome = `${IconPrefix}home.png`;
+const IconHomeS = `${IconPrefix}home-2.png`;
+
+const IconShop = `${IconPrefix}shop.png`;
+const IconShopS = `${IconPrefix}shop-2.png`;
+
+const IconPublish = `${IconPrefix}publish.png`;
+const IconPublishS = `${IconPrefix}publish-2.png`;
+
+const IconChat = `${IconPrefix}chat.png`;
+const IconChatS = `${IconPrefix}chat-2.png`;
+
+const IconUser = `${IconPrefix}user.png`;
+const IconUserS = `${IconPrefix}user-2.png`;
 
 export default pageNavigator = createBottomTabNavigator({
   Home: {
@@ -27,7 +37,7 @@ export default pageNavigator = createBottomTabNavigator({
       tabBarLabel: '首页',
       tabBarIcon: ({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
-          source={focused ? iconHomeS : iconHome} />
+          source={{uri: focused ? IconHomeS : IconHome}} />
       )
     }
   },
@@ -37,7 +47,7 @@ export default pageNavigator = createBottomTabNavigator({
       tabBarLabel: '商品分类',
       tabBarIcon: ({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
-          source={focused ? iconShopS : iconShop} />
+          source={{uri: focused ? IconShopS : IconShop}} />
       )
     }
   },
@@ -47,7 +57,7 @@ export default pageNavigator = createBottomTabNavigator({
       tabBarLabel: '发布',
       tabBarIcon: (({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
-          source={focused ? iconHomeS : iconHome} />
+          source={{uri: focused ? IconPublishS : IconPublish}} />
       ))
     }
   },
@@ -57,7 +67,7 @@ export default pageNavigator = createBottomTabNavigator({
       tabBarLabel: '聊天',
       tabBarIcon: ({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
-          source={focused ? iconHomeS : iconHome} />
+          source={{uri: focused ? IconChatS : IconChat}} />
       )
     }
   },
@@ -67,7 +77,7 @@ export default pageNavigator = createBottomTabNavigator({
       tabBarLabel: '个人中心',
       tabBarIcon: ({ focused }) => (
         <Image resizeMode='contain' style={styles.image}
-          source={focused ? iconUserCenterS : iconUserCenter} />
+          source={{uri: focused ? IconUserS : IconUser}} />
       )
     }
   }

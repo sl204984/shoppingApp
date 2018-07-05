@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 
-import Avator from './avator';
-import Appreciate from './appreciate';
-import FeatureList from './feature-list';
-import Setting from './setting';
+import Avator from './components/avator';
+import Appreciate from './components/appreciate';
+import FeatureList from './components/feature-list';
+import Setting from './components/setting';
 
 export default class UserCenter extends Component {
   constructor(props) {

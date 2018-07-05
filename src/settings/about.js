@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View, ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import { narrowRow, textGrayColor, white } from '../utils/common-styles';
 import { iconMore } from '../imgs';

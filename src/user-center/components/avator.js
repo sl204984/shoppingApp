@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { iconSpiro } from '../imgs';
-import { baseColor, white } from '../utils/common-styles';
+import { iconSpiro } from '../../imgs';
+import { baseColor, white } from '../../utils/common-styles';
 
 export default class Avator extends Component {
   render() {

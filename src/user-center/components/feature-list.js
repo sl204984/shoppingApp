@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Image, View, ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-import { narrowRow, textGrayColor, white } from '../utils/common-styles';
-import { iconMore } from '../imgs';
+import { narrowRow, textGrayColor, white } from '../../utils/common-styles';
+import { iconMore } from '../../imgs';
+import CONFIG from '../../utils/config';
+
+const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
 
 export default class FeatureList extends Component {
   constructor(props) {
@@ -11,48 +14,48 @@ export default class FeatureList extends Component {
     this.featureList = [{
       label: '我发布的',
       count: 1,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}publish.png`,
       onPress: () => {
         navigate('MyPublishList');
       }
     }, {
       label: '我卖出的',
       count: 3,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}sold.png`,
       onPress: () => {
         navigate('MySoldList');
       }
     }, {
       label: '我买到的',
       count: 5,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}buy.png`,
       onPress: () => {
         navigate('MyBoughtList');
       }
     }, {
       label: '我的收藏',
       count: 0,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}collect.png`,
       onPress: () => {
         navigate('MyCollectionList');
       }
     }, {
       label: '我的余额',
-      count: 0,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      count:  1000000000.123,
+      icon: `${IconPrefix}balance.png`,
       onPress: () => {
         navigate('MyBalance', {balance: 1000000000.123});
       }
     }, {
       label: '我的优惠券',
       count: 100,
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}coupon.png`,
       onPress: () => {
         navigate('MyDiscountCoupon')
       }
     }, {
       label: '签到',
-      icon: require('../imgs/icons/pokemonBall.png'),
+      icon: `${IconPrefix}signin.png`,
       onPress: () => {
         navigate('SignIn')
       }
@@ -68,7 +71,7 @@ export default class FeatureList extends Component {
               typeof item.onPress === 'function' && item.onPress();
             }}>
               <View style={styles.iconText}>
-                <Image source={item.icon} style={styles.imageIcon} />
+                <Image source={{uri: item.icon}} style={styles.imageIcon} />
                 <Text>{ item.label }</Text>
               </View>
               <View style={styles.iconText}>

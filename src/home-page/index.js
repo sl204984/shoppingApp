@@ -1,7 +1,7 @@
 import React from "react";
 import Platform from "Platform";
 import { View, StyleSheet, FlatList } from 'react-native';
-import { iconSpiro, iconCup } from "../imgs";
+import { iconSpiro } from "../imgs";
 
 import ShoppingItem from '../utils/shopping-item';
 export default class HomePage extends React.Component {
@@ -18,11 +18,11 @@ export default class HomePage extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList data={data} renderItem={() => 
-          <ShoppingItem avator={iconSpiro} 
+          <ShoppingItem avator={'static/avatar/lovely.jpeg'} 
             price={60} 
             shoppingName={'tank'} 
             publisher={'星空下的仰望'} 
-            imgList={[iconSpiro, iconCup, iconSpiro, iconCup]}
+            imgList={['static/shopping/pen.jpeg', 'static/shopping/fan.jpg', 'static/shopping/book.jpg' ,'static/shopping/lipstick.jpeg']}
             point={100} 
             location={'南京南京'} />
         }>

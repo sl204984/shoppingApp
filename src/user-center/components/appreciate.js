@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-import { textGrayColor, white } from '../utils/common-styles'; 
+import { textGrayColor, white } from '../../utils/common-styles'; 
 
 export default class Appreciate extends Component {
   constructor(props) {

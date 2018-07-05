@@ -1,9 +1,10 @@
 import React from "react";
 import Platform from "Platform";
 import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { iconSpiro, iconCup } from "../imgs";
 
 import MessageItem from '../utils/message-item';
+
+import CONFIG from '../utils/config';
 export default class Messages extends React.Component {
 
   constructor(props) {
@@ -15,22 +16,29 @@ export default class Messages extends React.Component {
 
     const data = [];
     for(let i = 0; i < 10; i++) {
-      data.push({key: 'index-' + i});
+      data.push({
+        key: 'index-' + i, 
+        shoppingImg: `${CONFIG.IMG_HOST}static/shopping/lipstick.jpeg`
+      });
     }
+
+    const _avatar = `${CONFIG.IMG_HOST}static/avatar/lovely.jpeg`;
     
     return (
       <View style={styles.container}>
-        <FlatList data={data} renderItem={() =>
-          <TouchableOpacity onPress={() => {
+        <FlatList data={data} renderItem={({item}) => {
+          return <TouchableOpacity onPress={() => {
             navigate('Chat', { user: 'Sybil' });
           }}>
-            <MessageItem avator={iconSpiro} 
+            <MessageItem avator={{uri: _avatar}} 
               publisher={'星空下的仰望星空下的仰望星空下的仰望'} 
               chartInfo={'一二三四五一二三四五一二三四五一二三四五一二三四五'}
               dateInfo={'5天前'}
               unread={true}
-              shoppingImg={iconCup} />
+              shoppingImg={{uri: item.shoppingImg}} />
           </TouchableOpacity>
+        }
+          
           
         }>
           

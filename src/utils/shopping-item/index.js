@@ -1,8 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { gray, colorhot, lightGray, baseColor } from '../common-styles';
+import CONFIG from '../config';
 
 const { width } = Dimensions.get('window');
+
 export default class ShoppingItem extends React.Component {
 
   constructor(props) {
@@ -19,11 +21,12 @@ export default class ShoppingItem extends React.Component {
       shoppingName,
       location
     } = this.props;
+    const _avatar = CONFIG.IMG_HOST + avator;
     return (
       <View style={styles.itemContainer}>
 
         <View style={styles.headerBox}>
-          <Image source={avator} style={styles.avator}></Image>
+          <Image source={{uri: _avatar}} style={styles.avator}></Image>
           <View style={styles.nameBox}>
             <Text style={styles.publisher}> { publisher } </Text>
             <Text style={styles.point}>信用值：{ point } </Text>
@@ -35,7 +38,10 @@ export default class ShoppingItem extends React.Component {
 
         <ScrollView style={styles.scrollView} horizontal showsHorizontalScrollIndicator={false}>
           {
-            imgList.map((item, index) => <Image key={index} source={item} style={styles.img} />)
+            imgList.map((item, index) => {
+              const imgSrc = CONFIG.IMG_HOST + item;
+              return <Image key={index} source={{uri: imgSrc}} style={styles.img} />
+            })
           }
         </ScrollView>
 
