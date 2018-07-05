@@ -7,7 +7,7 @@ let token = '';
  * @param {JSON} [body=''] body的请求参数，默认为空
  * @return 返回Promise
  */
-const fetchRequest = function ({
+const FetchRequest = function ({
   url,
   method,
   body = ''
@@ -19,7 +19,7 @@ const fetchRequest = function ({
 
   // console.log('request url:', url, body); //打印请求参数
   return new Promise((resolve, reject) => {
-    fetch(CONFIG.HOST + CONFIG.PORT + url, {
+    fetch(CONFIG.HOST + url, {
         method: method,
         headers: header,
         credentials: "include", // 带cookie
@@ -76,7 +76,7 @@ const fetchRequest = function ({
  * @param {JSON} params body的请求参数
  * @return 返回Promise 
  */
-const uploadImage = function (url, params) {
+const uploadFile = function (url, params) {
   return new Promise(function (resolve, reject) {
     let formData = new FormData();
     for (var key in params) {
@@ -88,7 +88,7 @@ const uploadImage = function (url, params) {
       name: 'image.jpg'
     };
     formData.append("file", file);
-    fetch(CONFIG.HOST + CONFIG.PORT + url, {
+    fetch(CONFIG.HOST + url, {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data;charset=utf-8',
@@ -127,4 +127,7 @@ const uploadImage = function (url, params) {
 //     //请求失败
 //   })
 
-export default fetchRequest;
+export default {
+  FetchRequest,
+  uploadFile
+};
