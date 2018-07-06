@@ -6,7 +6,7 @@ import CONFIG from '../../utils/config';
 
 export default class Avator extends Component {
   render() {
-    const _avatar = `${CONFIG.IMG_HOST}/static/avatar/lovely.jpeg`;
+    const _avatar = `${CONFIG.IMG_HOST}static/avatar/lovely.jpeg`;
     return (
       <View style={styles.container}>
         <View style={styles.avatorWrap}>
