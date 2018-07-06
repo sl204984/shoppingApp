@@ -65,5 +65,14 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME)需要您的同意,才能访问相册</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME)需要您的同意,才能访问相机</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME)需要您的同意，才能储存图片</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME)需要您的同意,才能访问麦克风</string>
 </dict>
 </plist>
