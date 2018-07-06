@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { narrowRow, textGrayColor, white } from '../utils/common-styles';
 
 import GenderSelect from './gender-select';
 import BirthSelect from './birth-select';
 import CitySelect from '../utils/city-selector';
-import CONFIG from '../utils/config';
-
-const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
-const IconMore = `${IconPrefix}more.png`;
-
 
 export default class CommonSettings extends Component {
   constructor(props) {
@@ -70,7 +66,7 @@ export default class CommonSettings extends Component {
               <Text>{ item.label }</Text>
               <View style={styles.iconText}>
                 <Text style={styles.value}>{ this.state[item.value] }</Text>
-                <Image source={{uri: IconMore}} style={styles.imageMore} />
+                <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
               </View>
             </TouchableOpacity>
           })

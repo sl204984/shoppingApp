@@ -18,7 +18,7 @@ export default class Setting extends Component {
         navigate('Settings');
       }}>
         <View style={styles.iconText}>
-        <Icon name="gear" size={20} style={styles.sufIcon} color={gray} />
+        <Icon name="gear" size={20} style={styles.preIcon} color={gray} />
           <Text>设置</Text>
         </View>
         <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
