@@ -11,6 +11,7 @@ export const lightGray = '#ebebeb';
 export const gray = '#ababab';
 export const darkGray = '#6b6b6b';
 export const blackGray = '#2b2b2b';
+export const black = '#000';
 
 export const baseColor = '#009797';
 export const titleColor = baseColor;

@@ -1,7 +1,7 @@
 // 底部导航
 import React from 'react';
-import { Image } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomePage from '../home-page';
 import Category from '../category';
@@ -9,26 +9,9 @@ import Publish from '../publish';
 import Messages from '../messages';
 import UserCenter from '../user-center';
 
-import { baseColor } from "./common-styles";
+import { baseColor, blackGray } from "./common-styles";
 
-import CONFIG from './config';
 
-const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
-
-const IconHome = `${IconPrefix}home.png`;
-const IconHomeS = `${IconPrefix}home-2.png`;
-
-const IconShop = `${IconPrefix}shop.png`;
-const IconShopS = `${IconPrefix}shop-2.png`;
-
-const IconPublish = `${IconPrefix}publish.png`;
-const IconPublishS = `${IconPrefix}publish-2.png`;
-
-const IconChat = `${IconPrefix}chat.png`;
-const IconChatS = `${IconPrefix}chat-2.png`;
-
-const IconUser = `${IconPrefix}user.png`;
-const IconUserS = `${IconPrefix}user-2.png`;
 
 export default pageNavigator = createBottomTabNavigator({
   Home: {
@@ -36,8 +19,7 @@ export default pageNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '首页',
       tabBarIcon: ({ focused }) => (
-        <Image resizeMode='contain' style={styles.image}
-          source={{uri: focused ? IconHomeS : IconHome}} />
+        <Icon name="ios-home-outline" size={20} color={focused ? baseColor : blackGray} />
       )
     }
   },
@@ -46,8 +28,7 @@ export default pageNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '商品分类',
       tabBarIcon: ({ focused }) => (
-        <Image resizeMode='contain' style={styles.image}
-          source={{uri: focused ? IconShopS : IconShop}} />
+        <Icon name="ios-cart-outline" size={20} color={focused ? baseColor : blackGray} />
       )
     }
   },
@@ -56,8 +37,7 @@ export default pageNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '发布',
       tabBarIcon: (({ focused }) => (
-        <Image resizeMode='contain' style={styles.image}
-          source={{uri: focused ? IconPublishS : IconPublish}} />
+        <Icon name="ios-add-circle-outline" size={20} color={focused ? baseColor : blackGray} />
       ))
     }
   },
@@ -66,8 +46,7 @@ export default pageNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '聊天',
       tabBarIcon: ({ focused }) => (
-        <Image resizeMode='contain' style={styles.image}
-          source={{uri: focused ? IconChatS : IconChat}} />
+        <Icon name="ios-chatbubbles-outline" size={20} color={focused ? baseColor : blackGray} />
       )
     }
   },
@@ -76,8 +55,7 @@ export default pageNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '个人中心',
       tabBarIcon: ({ focused }) => (
-        <Image resizeMode='contain' style={styles.image}
-          source={{uri: focused ? IconUserS : IconUser}} />
+        <Icon name="ios-person-outline" size={20} color={focused ? baseColor : blackGray} />
       )
     }
   }
@@ -88,7 +66,3 @@ export default pageNavigator = createBottomTabNavigator({
     },
     animated: true
   });
-
-const styles = {
-  image: [{ width: 16, height: 16 }]
-};

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { narrowRow, textGrayColor, white } from '../../utils/common-styles';
-import CONFIG from '../../utils/config';
-
-const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
-const IconMore = `${IconPrefix}more.png`;
+import { narrowRow, textGrayColor, white, gray } from '../../utils/common-styles';
 
 export default class FeatureList extends Component {
   constructor(props) {
@@ -14,48 +11,49 @@ export default class FeatureList extends Component {
     this.featureList = [{
       label: '我发布的',
       count: 1,
-      icon: `${IconPrefix}publish.png`,
+      icon: <Icon name="rocket" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('MyPublishList');
       }
     }, {
       label: '我卖出的',
       count: 3,
-      icon: `${IconPrefix}sold.png`,
+      // arrow-circle-up hand-o-up angle-double-up toggle-up
+      icon: <Icon name="arrow-circle-up" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('MySoldList');
       }
     }, {
       label: '我买到的',
       count: 5,
-      icon: `${IconPrefix}buy.png`,
+      icon: <Icon name="buysellads" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('MyBoughtList');
       }
     }, {
       label: '我的收藏',
       count: 0,
-      icon: `${IconPrefix}collect.png`,
+      icon: <Icon name="star" size={20} style={styles.preIcon} color={gray}/>,
       onPress: () => {
         navigate('MyCollectionList');
       }
     }, {
       label: '我的余额',
       count:  1000000000.123,
-      icon: `${IconPrefix}balance.png`,
+      icon: <Icon name="money" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('MyBalance', {balance: 1000000000.123});
       }
     }, {
       label: '我的优惠券',
       count: 100,
-      icon: `${IconPrefix}coupon.png`,
+      icon: <Icon name="ticket" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('MyDiscountCoupon')
       }
     }, {
       label: '签到',
-      icon: `${IconPrefix}signin.png`,
+      icon: <Icon name="pencil" size={20} style={styles.preIcon} color={gray} />,
       onPress: () => {
         navigate('SignIn')
       }
@@ -71,12 +69,12 @@ export default class FeatureList extends Component {
               typeof item.onPress === 'function' && item.onPress();
             }}>
               <View style={styles.iconText}>
-                <Image source={{uri: item.icon}} style={styles.imageIcon} />
+                { item.icon }
                 <Text>{ item.label }</Text>
               </View>
               <View style={styles.iconText}>
                 <Text style={styles.count}>{ item.count }</Text>
-                <Image source={{uri: IconMore}} style={styles.imageMore} />
+                <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
               </View>
             </TouchableOpacity>
           })
@@ -100,14 +98,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  imageIcon: {
-    width: 15,
-    height: 15,
-    marginRight: 5,
+  preIcon: {
+    marginRight: 10
   },
-  imageMore: {
-    width: 15,
-    height: 15,
-    marginLeft: 15,
+  sufIcon: {
+    marginLeft: 10
   }
 });

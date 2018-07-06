@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { styles } from './feature-list';
 
-import CONFIG from '../../utils/config';
-
-const IconSetting = `${CONFIG.IMG_HOST}static/icons/settings.png`;
-const IconMore = `${CONFIG.IMG_HOST}static/icons/more.png`;
+import { gray } from '../../utils/common-styles';
 
 export default class Setting extends Component {
   constructor(props) {
@@ -20,10 +18,10 @@ export default class Setting extends Component {
         navigate('Settings');
       }}>
         <View style={styles.iconText}>
-          <Image source={{uri: IconSetting}} style={styles.imageIcon} />
+        <Icon name="gear" size={20} style={styles.sufIcon} color={gray} />
           <Text>设置</Text>
         </View>
-        <Image source={{uri: IconMore}} style={styles.imageMore} />
+        <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
 
       </TouchableOpacity>
     </View>
