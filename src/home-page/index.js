@@ -4,7 +4,6 @@ import { View, StyleSheet, FlatList } from 'react-native';
 
 import ShoppingItem from '../utils/shopping-item';
 
-
 export default class HomePage extends React.Component {
 
   constructor(props) {
@@ -12,6 +11,7 @@ export default class HomePage extends React.Component {
   }
 
   componentDidMount() {
+    // this.store.init();
   }
 
   render() {

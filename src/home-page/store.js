@@ -6,19 +6,17 @@ import { fetchList } from './webapi';
 
 
 export default class AppStore extends Store {
-  constructor(props) {
-    super(props);
-  }
 
   bindActor() {
     return [new ListActor()];
   }
 
   init = () => {
-
+    this.fetchBaseInfo();
   }
 
   fetchBaseInfo = async () => {
     const {res, err} = await fetchList();
+    console.log('res', res);
   }
 }
