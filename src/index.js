@@ -2,13 +2,14 @@
  * @author sl204984
  * 导入所有界面
  * */
-import React from 'react';
+import React, { Component } from 'react';
 import {
   createStackNavigator
 } from 'react-navigation';
 import {
   fromJS
 } from 'immutable';
+import { Provider } from 'react-redux';
 
 import BottomNav from './utils/bottom-navs'; // 底部导航
 import Login from './login'; // 登录
@@ -27,6 +28,9 @@ import MyDiscountCoupon from './my-discount-coupon'; // 我的优惠券
 import Chat from './chat'; // 聊天
 import SignIn from './sign-in'; // 签到
 
+import storeProvider from '../store';
+const store = storeProvider();
+
 const navigationOpt = fromJS({
   headerTintColor: '#2b2b2b',
   headerTitleStyle: {
@@ -34,7 +38,7 @@ const navigationOpt = fromJS({
   }
 });
 
-export default createStackNavigator({
+const Navigations = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
@@ -137,3 +141,13 @@ export default createStackNavigator({
   mode: 'card',
   headerMode: 'screen'
 });
+
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigations />
+      </Provider>
+    )
+  }
+}

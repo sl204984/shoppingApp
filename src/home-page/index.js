@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import Platform from "Platform";
 import { View, StyleSheet, FlatList } from 'react-native';
+import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
+import { initDataList } from '../../actions';
 
-export default class HomePage extends React.Component {
+class HomePage extends Component {
 
   constructor(props) {
     super(props);
@@ -15,10 +17,7 @@ export default class HomePage extends React.Component {
   }
 
   render() {
-    const data = [];
-    for(let i = 0; i < 10; i++) {
-      data.push({key: 'index-' + i});
-    }
+    const { data = [], initDataList } = this.props;
     return (
       <View style={styles.container}>
         <FlatList data={data} renderItem={() => 
@@ -47,3 +46,12 @@ const styles = StyleSheet.create({
     paddingTop: paddingTop,
   },
 });
+
+export default connect(
+  (state) => ({
+    data: state.homePageReducer.data,
+  }),
+  (dispatch) => ({
+    initDataList: () => dispatch(initDataList()),
+  })
+)(HomePage);

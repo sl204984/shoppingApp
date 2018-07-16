@@ -1,8 +1,12 @@
-import { HOMEPAGE as types } from '../types';
+import {
+  HOMEPAGE as types
+} from '../types';
 
 const data = [];
-for(let i = 0; i < 2; i++) {
-  data.push({key: 'index-' + i});
+for (let i = 0; i < 2; i++) {
+  data.push({
+    key: 'index-' + i
+  });
 }
 
 const initialState = {
