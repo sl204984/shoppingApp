@@ -1,4 +1,4 @@
-import { FetchRequest } from '../utils/fetch';
+import { FetchRequest } from '../../src/utils/fetch';
 
 export const fetchList = () => {
   return FetchRequest({

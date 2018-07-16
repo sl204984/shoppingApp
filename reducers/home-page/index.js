@@ -1,6 +1,6 @@
 import {
   HOMEPAGE as types
-} from '../types';
+} from '../../types';
 
 const data = [];
 for (let i = 0; i < 2; i++) {
