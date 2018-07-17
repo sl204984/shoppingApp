@@ -13,7 +13,7 @@ export default class ShoppingItem extends React.Component {
 
   render() {
     const { 
-      avator,
+      avatar,
       publisher, 
       point, 
       price,
@@ -21,7 +21,7 @@ export default class ShoppingItem extends React.Component {
       shoppingName,
       location
     } = this.props;
-    const _avatar = CONFIG.IMG_HOST + avator;
+    const _avatar = CONFIG.IMG_HOST + avatar;
     return (
       <View style={styles.itemContainer}>
 

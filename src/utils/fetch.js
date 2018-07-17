@@ -26,10 +26,12 @@ export const FetchRequest = async function ({
   // 添加网络超时机制
   const timeoutId = setTimeout(() => {
     // Alert({ text: '您的网络不给力' });
-    return {
-      res: null,
-      err: 'timeout'
-    };
+    return new Promise((_, reject) => {
+      reject({
+        res: null,
+        err: 'timeout'
+      });
+    });
   }, CONFIG.HTTP_TIME_OUT * 1000);
 
   try {
@@ -37,7 +39,6 @@ export const FetchRequest = async function ({
 
     clearTimeout(timeoutId);
     const responseData = await response.json();
-    console.log('CONFIG.HOST + url, request',  responseData)
 
     const {
       statusInfo,
@@ -48,19 +49,22 @@ export const FetchRequest = async function ({
 
     const _ok = status === 0 && ok;
     
-    return {
-      // 有时会返回0的结果
-      res: _ok ? data : null,
-      err: _ok ? null : statusInfo,
-      suggestion,
-      code
-    };
+    return new Promise(resolve => {
+      resolve({
+        // 有时会返回0的结果
+        res: _ok ? data : null,
+        err: _ok ? null : statusInfo,
+        ok: _ok
+      })
+    });
   } catch (err) {
     clearTimeout(timeoutId);
-    return {
-      res: null,
-      err: err
-    };
+    return new Promise((_, reject) => {
+      reject({
+        res: null,
+        err: err
+      });
+    });
   }
 }
 

@@ -2,15 +2,8 @@ import {
   HOMEPAGE as types
 } from '../../types';
 
-const data = [];
-for (let i = 0; i < 2; i++) {
-  data.push({
-    key: 'index-' + i
-  });
-}
-
 const initialState = {
-  data
+  data: []
 }
 
 export default function initDataList(state = initialState, action) {

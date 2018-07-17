@@ -7,32 +7,35 @@ import ShoppingItem from '../utils/shopping-item';
 import { homePageActions } from '../../actions';
 class HomePage extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     // this.store.init();
   }
 
   render() {
-    const { data = [], initDataList } = this.props;
+    const { data = [] } = this.props;
+    console.log('data', data)
     return (
       <View style={styles.container}>
-        <Text onPress={initDataList}>aaa</Text>
-        <FlatList data={data} renderItem={() => 
-          <ShoppingItem avator={'static/avatar/lovely.jpeg'} 
-            price={60} 
-            shoppingName={'tank'} 
-            publisher={'星空下的仰望'} 
-            imgList={['static/shopping/pen.jpeg', 'static/shopping/fan.jpg', 'static/shopping/book.jpg' ,'static/shopping/lipstick.jpeg']}
-            point={100} 
-            location={'南京南京'} />
+        <Text onPress={this._initDataList}>aaa</Text>
+        <FlatList data={data} renderItem={({item}) => 
+          <ShoppingItem avatar={item.avatar} 
+            price={item.price} 
+            shoppingName={item.shoppingName || []} 
+            publisher={item.publisher} 
+            imgList={item.imgList}
+            point={item.point} 
+            location={item.location || ''} />
         }>
           
         </FlatList>
       </View>
     )
+  }
+
+  _initDataList = async () => {
+    const { initDataList } = this.props;
+    const res = await initDataList();
+    console.log('home-page-res', res);
   }
 }
 
