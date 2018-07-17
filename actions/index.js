@@ -1,17 +1,5 @@
-import {
-  HOMEPAGE as types
-} from '../types';
+import * as homePageActions from './home-page';
 
-const data = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: 'index-' + i
-  });
-}
-
-export function initDataList() {
-  return {
-    data,
-    type: types.INITDATA
-  }
+export {
+  homePageActions
 }

@@ -37,6 +37,7 @@ export const FetchRequest = async function ({
 
     clearTimeout(timeoutId);
     const responseData = await response.json();
+    console.log('CONFIG.HOST + url, request',  responseData)
 
     const {
       statusInfo,

@@ -13,7 +13,7 @@ const initialState = {
   data
 }
 
-export default function counter(state = initialState, action) {
+export default function initDataList(state = initialState, action) {
   switch (action.type) {
     case types.INITDATA:
       return {

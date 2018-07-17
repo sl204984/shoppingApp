@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Platform from "Platform";
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
-import { initDataList } from '../../actions';
-
+import { homePageActions } from '../../actions';
 class HomePage extends Component {
 
   constructor(props) {
@@ -20,6 +19,7 @@ class HomePage extends Component {
     const { data = [], initDataList } = this.props;
     return (
       <View style={styles.container}>
+        <Text onPress={initDataList}>aaa</Text>
         <FlatList data={data} renderItem={() => 
           <ShoppingItem avator={'static/avatar/lovely.jpeg'} 
             price={60} 
@@ -51,7 +51,7 @@ export default connect(
   (state) => ({
     data: state.homePageReducer.data,
   }),
-  (dispatch) => ({
-    initDataList: () => dispatch(initDataList()),
+  dispatch => ({
+    initDataList: () => dispatch(homePageActions.initDataList()),
   })
 )(HomePage);
