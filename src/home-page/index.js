@@ -1,20 +1,22 @@
 import React, { Component } from "react";
-import Platform from "Platform";
 import { View, StyleSheet, FlatList, Dimensions, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
-import { textGrayColor } from '../utils/common-styles';
+import { textGrayColor, paddingTop } from '../utils/common-styles';
 import { homePageActions } from '../../actions';
+import SearchBox from './search-box';
+import ClassifyList from './classify-list';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 class HomePage extends Component {
 
   state = {
     refreshing: false,
     loadingStatus: false,
     pageNum: 0,
-    pageSize: 8
+    pageSize: 8,
+    curTabIndex: 0
   }
 
   componentDidMount() {
@@ -23,10 +25,16 @@ class HomePage extends Component {
 
   render() {
     const { data = [] } = this.props;
-    const { refreshing } = this.state;
+    const { refreshing, curTabIndex } = this.state;
     return (
       <View style={styles.container}>
-        
+        <SearchBox />
+        <ClassifyList 
+          curTabIndex={curTabIndex}  
+          changeTab={curTabIndex => {
+            this.setState({ curTabIndex });
+          }}
+        />
         <FlatList 
           data={data} 
           ListEmptyComponent={this._renderEmpty}
@@ -43,7 +51,7 @@ class HomePage extends Component {
   }
 
 
-  _renderItem = ({item}) => (
+  _renderItem = ({ item }) => (
     <ShoppingItem avatar={item.avatar} 
       price={item.price} 
       shoppingName={item.shoppingName || []} 
@@ -55,9 +63,7 @@ class HomePage extends Component {
 
   _renderEmpty = () => {
     const { refreshing } = this.state;
-    if(refreshing) {
-      return null;
-    }
+    if(refreshing) return null;
     return (
       <View style={styles.emptyBox}>
         <Text style={styles.textGray}>数据不见了？！</Text>
@@ -68,9 +74,7 @@ class HomePage extends Component {
 
   _renderHeader = () => {
     const { refreshing, loadingStatus } = this.state;
-    if(refreshing || loadingStatus) {
-      return null;
-    }
+    if(refreshing || loadingStatus) return null;
     return (
       <View style={styles.footerBox}>
         <View style={styles.footerMidLine} />
@@ -82,9 +86,7 @@ class HomePage extends Component {
 
   _renderFooter = () => {
     const { refreshing, loadingStatus } = this.state;
-    if(refreshing) {
-      return null;
-    } 
+    if(refreshing) return null;
     if(loadingStatus) { // 加载等待页
       return (
         <View style={styles.loadingBox}>
@@ -121,8 +123,6 @@ class HomePage extends Component {
   }
 }
 
-const paddingTop = Platform.OS === 'android' ? 0 : 22;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   emptyBox: {
     width,
-    height,
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import Platform from "Platform";
 
 export const white = 'white';
 export const red = '#ff0000';
@@ -29,13 +30,16 @@ export const titleFont = 30;
 export const textFont = 14;
 export const littleFont = 12;
 
+// padding
+export const paddingTop = Platform.OS === 'android' ? 0 : 22;
+
 // styles
 export const container = fromJS({
   flex: 1,
   width: '100%',
   alignItems: 'center',
   backgroundColor: 'white',
-  paddingTop: 22, // 距离顶部距离
+  paddingTop: paddingTop, // 距离顶部距离
 });
 
 export const loginContainer = container.merge({
