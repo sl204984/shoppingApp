@@ -26,8 +26,8 @@ export const FetchRequest = async function ({
   // 添加网络超时机制
   const timeoutId = setTimeout(() => {
     // Alert({ text: '您的网络不给力' });
-    return new Promise((_, reject) => {
-      reject({
+    return new Promise((resolve) => {
+      resolve({
         res: null,
         err: 'timeout'
       });
@@ -59,8 +59,8 @@ export const FetchRequest = async function ({
     });
   } catch (err) {
     clearTimeout(timeoutId);
-    return new Promise((_, reject) => {
-      reject({
+    return new Promise((resolve) => {
+      resolve({
         res: null,
         err: err
       });
@@ -75,7 +75,7 @@ export const FetchRequest = async function ({
  * @return 返回Promise 
  */
 export const UploadFile = function (url, params) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     let formData = new FormData();
     for (var key in params) {
       formData.append(key, params[key]);
@@ -100,7 +100,10 @@ export const UploadFile = function (url, params) {
       })
       .catch((err) => {
         console.log('err', err);
-        reject(err);
+        resolve({
+          res: null,
+          err: err
+        });
       });
   });
 }

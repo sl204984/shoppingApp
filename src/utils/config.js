@@ -3,5 +3,5 @@ export default {
   // HOST: "http://sl204984.com/",
   IMG_HOST: "http://localhost:3000/",
   // IMG_HOST: "http://sl204984.com/",
-  HTTP_TIME_OUT: 10,
+  HTTP_TIME_OUT: 5,
 }

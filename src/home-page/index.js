@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Platform from "Platform";
-import { View, StyleSheet, FlatList, Dimensions, ActivityIndicator, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Dimensions, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
@@ -24,9 +24,9 @@ class HomePage extends Component {
   render() {
     const { data = [] } = this.props;
     const { refreshing } = this.state;
-    console.log('home-page-res', data);
     return (
       <View style={styles.container}>
+        
         <FlatList 
           data={data} 
           ListEmptyComponent={this._renderEmpty}
@@ -36,7 +36,7 @@ class HomePage extends Component {
           onRefresh={this._initDataList}
           refreshing={refreshing}
           onEndReached={this._addDataList}
-          onEndReachedThreshold={0.1}
+          // onEndReachedThreshold={0.1}
         />
       </View>
     )
@@ -60,7 +60,8 @@ class HomePage extends Component {
     }
     return (
       <View style={styles.emptyBox}>
-        <Text>未能加载到数据，请检查网络设施</Text>
+        <Text style={styles.textGray}>数据不见了？！</Text>
+        <Image source={require('../local-imgs/no-server.png')}></Image>
       </View>
     )
   }
@@ -157,6 +158,9 @@ const styles = StyleSheet.create({
     color: textGrayColor,
     marginLeft: 20,
     marginRight: 20
+  },
+  textGray: {
+    color: textGrayColor
   }
 });
 
