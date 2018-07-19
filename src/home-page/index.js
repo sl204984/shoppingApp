@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { View, StyleSheet, FlatList, Dimensions, ActivityIndicator, Text, Image } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
-import { textGrayColor, paddingTop } from '../utils/common-styles';
 import { homePageActions } from '../../actions';
 import SearchBox from './search-box';
 import ClassifyList from './classify-list';
+import { indexStyles as styles } from './styles';
 
-const { width } = Dimensions.get('window');
 class HomePage extends Component {
 
   state = {
@@ -50,7 +49,6 @@ class HomePage extends Component {
     )
   }
 
-
   _renderItem = ({ item }) => (
     <ShoppingItem avatar={item.avatar} 
       price={item.price} 
@@ -76,17 +74,14 @@ class HomePage extends Component {
     const { refreshing, loadingStatus } = this.state;
     if(refreshing || loadingStatus) return null;
     return (
-      <View style={styles.footerBox}>
-        <View style={styles.footerMidLine} />
-        <Text style={styles.footerText}>其实这是顶部</Text>
-        <View style={styles.footerMidLine} />
-      </View>
+      <View />
     )
   }
 
   _renderFooter = () => {
+    const { data = [] } = this.props;
     const { refreshing, loadingStatus } = this.state;
-    if(refreshing) return null;
+    if(refreshing || data.length === 0) return null;
     if(loadingStatus) { // 加载等待页
       return (
         <View style={styles.loadingBox}>
@@ -101,7 +96,6 @@ class HomePage extends Component {
         <View style={styles.footerMidLine} />
       </View>
     )
-    
   }
 
   _initDataList = async () => {
@@ -122,47 +116,6 @@ class HomePage extends Component {
     this.setState({ loadingStatus: false, pageNum: pageNum + 1 });
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width,
-    alignItems: 'center',
-    paddingTop: paddingTop,
-  },
-  loadingBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  emptyBox: {
-    width,
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  footerBox: {
-    width: '100%',
-    marginBottom: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  footerMidLine: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: textGrayColor
-  },
-  footerText: {
-    color: textGrayColor,
-    marginLeft: 20,
-    marginRight: 20
-  },
-  textGray: {
-    color: textGrayColor
-  }
-});
 
 export default connect(
   (state) => ({

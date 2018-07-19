@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { textGrayColor, lightGray, baseColor, blackGray } from '../utils/common-styles';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { classifyListStyles as styles } from './styles';
 
 export default class ClassifyList extends Component {
   render() {
@@ -66,32 +66,3 @@ const TabList = [{
   label: '玩具乐器',
   value: 10
 }];
-
-const styles = StyleSheet.create({
-  tabBox: {
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: lightGray,
-    backgroundColor: 'white'
-  },
-  tabItem: {
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: 'white',
-  },
-
-  curTab: {
-    borderBottomColor: baseColor,
-    borderBottomWidth: 3,
-  },
-  tabText: {
-    color: textGrayColor
-  },
-  curTabText: {
-    color: blackGray,
-    fontSize: 16
-  }
-});
