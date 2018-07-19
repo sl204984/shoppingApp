@@ -1,3 +1,4 @@
 export default {
-  INITDATA: 'INITDATA'
+  INITDATA: 'INITDATA',
+  ADDDATA: 'ADDDATA'
 };

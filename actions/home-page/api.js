@@ -1,8 +1,12 @@
 import { FetchRequest } from '../../src/utils/fetch';
 
-export const fetchList = () => {
+/**
+ * @param {pageSize number, pageNumber: number} body 
+ */
+export const fetchList = body => {
   return FetchRequest({
     url: 'home',
-    method: 'GET'
+    method: 'POST',
+    body
   })
 }

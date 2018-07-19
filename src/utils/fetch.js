@@ -10,7 +10,7 @@ let token = '';
 export const FetchRequest = async function ({
   url,
   method,
-  body = ''
+  body = {}
 }) {
   const request = {
     method: method || 'GET',

@@ -3,17 +3,35 @@ import {
 } from '../../types';
 import * as webApi from './api';
 
-export const initDataList = () => {
+export const initDataList = (params = {}) => {
   return async dispatch => {
-    try {
-      const { res, err } = await webApi.fetchList();
+    const {
+      res,
+      err
+    } = await webApi.fetchList(params);
+    if (!err) {
       dispatch({
         data: res,
         type: types.INITDATA
       });
       return res;
-    } catch (err) {
-      // 永远不会到达这儿
+    }
+  }
+}
+
+export const addDataList = (params = {}) => {
+  return async dispatch => {
+    const {
+      res,
+      err
+    } = await webApi.fetchList(params);
+    if (!err) {
+      dispatch({
+        data: res,
+        type: types.ADDDATA
+      });
+      return res;
+
     }
   }
 }
