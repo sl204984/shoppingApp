@@ -14,7 +14,7 @@ class HomePage extends Component {
     refreshing: false,
     loadingStatus: false,
     pageNum: 0,
-    pageSize: 8,
+    pageSize: 10,
     curTabIndex: 0
   }
 
@@ -30,8 +30,9 @@ class HomePage extends Component {
         <SearchBox />
         <ClassifyList 
           curTabIndex={curTabIndex}  
-          changeTab={curTabIndex => {
-            this.setState({ curTabIndex });
+          changeTab={async curTabIndex => {
+            await this.setState({ curTabIndex });
+            this._initDataList();
           }}
         />
         <FlatList 
@@ -42,7 +43,7 @@ class HomePage extends Component {
           ListFooterComponent={this._renderFooter}
           onRefresh={this._initDataList}
           refreshing={refreshing}
-          onEndReached={this._addDataList}
+          onEndReached={data.length < 100 && this._addDataList}
           // onEndReachedThreshold={0.1}
         />
       </View>
@@ -100,20 +101,20 @@ class HomePage extends Component {
 
   _initDataList = async () => {
     const { initDataList } = this.props;
-    const { refreshing, pageSize } = this.state;
+    const { refreshing, pageSize, curTabIndex } = this.state;
     if(refreshing) return;
     this.setState({ refreshing: true });
-    await initDataList({ pageSize, pageNum: 0 });
-    this.setState({ refreshing: false, pageNum: 1 });
+    await initDataList({ pageSize, pageNum: 0,  });
+    this.setState({ refreshing: false, pageNum: 1, type: curTabIndex });
   }
 
   _addDataList = async () => {
     const { addDataList } = this.props;
-    const { loadingStatus, pageSize, pageNum } = this.state;
+    const { loadingStatus, pageSize, pageNum, curTabIndex } = this.state;
     if(loadingStatus) return;
     this.setState({ loadingStatus: true });
     await addDataList({ pageSize, pageNum });
-    this.setState({ loadingStatus: false, pageNum: pageNum + 1 });
+    this.setState({ loadingStatus: false, pageNum: pageNum + 1, type: curTabIndex });
   }
 }
 
