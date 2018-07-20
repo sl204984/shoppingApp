@@ -23,11 +23,11 @@ class HomePage extends Component {
   }
 
   render() {
-    const { data = [] } = this.props;
+    const { data = [], navigation } = this.props;
     const { refreshing, curTabIndex } = this.state;
     return (
       <View style={styles.container}>
-        <SearchBox />
+        <SearchBox navigation={navigation} />
         <ClassifyList 
           curTabIndex={curTabIndex}  
           changeTab={async curTabIndex => {

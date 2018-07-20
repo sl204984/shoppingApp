@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Alert} from 'react-native';
 import {
   titleColor, fontBold, darkGray, baseColor, submitTextColor, littleFont,

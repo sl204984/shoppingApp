@@ -75,8 +75,6 @@ export const classifyListStyles = StyleSheet.create({
   }
 });
 
-const paddingTB = 10;
-const paddingLR = 10;
 export const searchBoxStyles = StyleSheet.create({
   header: {
     width,
@@ -84,10 +82,7 @@ export const searchBoxStyles = StyleSheet.create({
     backgroundColor: baseColor,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: paddingLR,
-    paddingRight: paddingLR,
-    paddingTop: paddingTB,
-    paddingBottom: paddingTB
+    padding: 10
   },
   searchBacground: {
     backgroundColor: 'white',

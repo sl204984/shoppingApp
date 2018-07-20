@@ -27,6 +27,7 @@ import MyBalance from './my-balance'; // 我的余额
 import MyDiscountCoupon from './my-discount-coupon'; // 我的优惠券
 import Chat from './chat'; // 聊天
 import SignIn from './sign-in'; // 签到
+import SearchInput from './search-input'; // 搜索界面
 
 import storeProvider from '../store';
 const store = storeProvider();
@@ -132,6 +133,12 @@ const Navigations = createStackNavigator({
   },
   SignIn: {
     screen: SignIn,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SearchInput: {
+    screen: SearchInput,
     navigationOptions: {
       header: null
     }
