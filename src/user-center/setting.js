@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native'; 
+import { View, Text, TouchableOpacity } from 'react-native'; 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { styles } from './feature-list';
 
-import { gray } from '../../utils/common-styles';
+import { gray } from '../utils/common-styles';
 
 export default class Setting extends Component {
   constructor(props) {

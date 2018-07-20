@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { baseColor, white } from '../../utils/common-styles';
+import { baseColor, white } from '../utils/common-styles';
 
-import CONFIG from '../../utils/config';
+import CONFIG from '../utils/config';
 
 export default class Avator extends Component {
   render() {

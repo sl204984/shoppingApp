@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { narrowRow, textGrayColor, white, gray } from '../../utils/common-styles';
+import { narrowRow, textGrayColor, white, gray } from '../utils/common-styles';
 
 export default class FeatureList extends Component {
   constructor(props) {
