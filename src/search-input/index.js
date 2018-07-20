@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { textGrayColor, paddingTop, lightGray, baseColor, blackGray } from '../utils/common-styles';
+import { paddingTop } from '../utils/common-styles';
 import InputHeader from './search-header';
+import SearchHistory from './search-history';
 
 const { width } = Dimensions.get('window');
 
@@ -11,6 +12,7 @@ export default class SearchInput extends Component {
     return (
       <View style={styles.container}>
         <InputHeader navigation={navigation} />
+        <SearchHistory />
       </View>
     )
   }

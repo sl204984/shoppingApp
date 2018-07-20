@@ -6,8 +6,6 @@ import { searchBoxStyles as styles } from './styles';
 export default class SearchBox extends Component {
   render() {
     const { navigation } = this.props;
-    navigation.navigate('SearchInput');
-
     return (
       <View style={styles.header}>
         <View style={styles.searchBacground}>

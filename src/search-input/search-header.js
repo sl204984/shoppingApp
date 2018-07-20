@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { textGrayColor, paddingTop, lightGray, baseColor, blackGray, gray } from '../utils/common-styles';
+import { textGrayColor, gray } from '../utils/common-styles';
 
 export default class InputHeader extends Component {
   render() {
@@ -10,22 +10,28 @@ export default class InputHeader extends Component {
       <View style={styles.searchContainer}>
         <Icon 
           name="angle-left" 
-          size={24} 
+          size={28} 
           style={styles.icon} 
           color={gray} 
-          onPress={() => {navigation.goBack();}} />
-
+          onPress={() => {
+            navigation.goBack();
+          }} 
+        />
           <View style={styles.searchBacground}>
-          <TouchableOpacity 
-            style={styles.searchBox} 
-            onPress={() => {
-              navigation.navigate('SearchInput');
-            }}
-          >
-            <Icon name="search" style={styles.preIcon} size={16} />
-            <Text style={styles.searchText}>搜索</Text>
-          </TouchableOpacity>
+          <Icon name="search" style={styles.preIcon} size={16} />
+          <TextInput
+            onChangeText={text => {}}
+            underlineColorAndroid="transparent"
+            maxLength={12}
+            style={styles.input}
+            placeholder="他密"/>
         </View>
+
+        <TouchableOpacity onPress={() => {
+          navigation.goBack();
+        }}>
+          <Text style={styles.icon}>搜索</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -35,9 +41,10 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     width: '100%',
+    height: 50,
     alignItems: 'center',
     paddingTop: 10,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   icon: {
     marginLeft: 10,
@@ -45,20 +52,20 @@ const styles = StyleSheet.create({
   },
   searchBacground: {
     backgroundColor: 'white',
+    flex: 1,
     height: '100%',
-    width: '100%',
-    borderRadius: 3
-  },
-  searchBox: {
+    borderRadius: 3,
     flexDirection: 'row',
     alignItems: 'center',
-    height: '100%',
-    width: '100%',
-    paddingLeft: 10
+    paddingLeft: 10,
+    paddingRight: 10
   },
   preIcon: {
     marginRight: 10,
     color: textGrayColor
+  },
+  input: {
+    flex: 1
   },
   searchText: {
     color: textGrayColor
