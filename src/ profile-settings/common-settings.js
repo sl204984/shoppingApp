@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { narrowRow, textGrayColor, white } from '../utils/common-styles';
+import { narrowRow, textGrayColor, white, gray } from '../utils/common-styles';
 
 import GenderSelect from './gender-select';
 import BirthSelect from './birth-select';
