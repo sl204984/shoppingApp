@@ -31,7 +31,6 @@ export const addDataList = (params = {}) => {
         type: types.ADDDATA
       });
       return res;
-
     }
   }
 }
