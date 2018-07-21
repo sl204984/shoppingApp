@@ -17,7 +17,7 @@ export default class InputHeader extends Component {
             navigation.goBack();
           }} 
         />
-          <View style={styles.searchBacground}>
+        <View style={styles.searchBacground}>
           <Icon name="search" style={styles.preIcon} size={16} />
           <TextInput
             onChangeText={text => {}}
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     width: '100%',
-    height: 50,
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10
@@ -53,16 +52,17 @@ const styles = StyleSheet.create({
   searchBacground: {
     backgroundColor: 'white',
     flex: 1,
-    height: '100%',
+    height: 30,
     borderRadius: 3,
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingLeft: 10,
     paddingRight: 10
   },
   preIcon: {
     marginRight: 10,
-    color: textGrayColor
+    color: textGrayColor,
+    alignSelf: 'center'
   },
   input: {
     flex: 1

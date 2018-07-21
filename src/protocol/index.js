@@ -16,6 +16,7 @@ export default class Protocol extends Component {
           <Text>
             &nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;
+            首先欢迎各位使用本产品。
             这儿写用户协议。
             这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。
           </Text>
