@@ -51,7 +51,8 @@ export const classifyListStyles = StyleSheet.create({
     height: classifyListHeight,
     borderBottomWidth: 1,
     borderBottomColor: lightGray,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width
   },
   tabItem: {
     height: '100%',

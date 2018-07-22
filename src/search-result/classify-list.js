@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { classifyListStyles as styles } from './styles';
-import { TabList } from '../utils/constant';
-
+import { FilterList } from '../utils/constant';
 export default class ClassifyList extends Component {
   render() {
     const { curTabIndex, changeTab } = this.props;
@@ -10,7 +9,7 @@ export default class ClassifyList extends Component {
       <View style={styles.tabBox}>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {TabList.toJS().map((item, index) => (
+            {FilterList.toJS().map((item, index) => (
               <TouchableOpacity 
                 key={index} 
                 style={[
