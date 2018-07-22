@@ -47,13 +47,16 @@ export default class InputHeader extends Component {
 
   _saveHistory = async () => {
     const { searchText } = this.state;
+    const _searchText = searchText.replace(/(^\s*)|(\s*$)/g, "");
+    if(!_searchText) return;
+
     const { navigation, historyList, loadHistory } = this.props;
-    const searchTextIndex = historyList.indexOf(searchText);
+    const searchTextIndex = historyList.indexOf(_searchText);
     if(searchTextIndex > -1) {
       historyList.splice(searchTextIndex, 1);
-      historyList.unshift(searchText);
+      historyList.unshift(_searchText);
     } else {
-      historyList.unshift(searchText);
+      historyList.unshift(_searchText);
     }
     await Storage.save({
       key: StorageKeys.searchIputList,
