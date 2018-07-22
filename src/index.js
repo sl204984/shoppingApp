@@ -28,6 +28,7 @@ import MyDiscountCoupon from './my-discount-coupon'; // 我的优惠券
 import Chat from './chat'; // 聊天
 import SignIn from './sign-in'; // 签到
 import SearchInput from './search-input'; // 搜索界面
+import SearchResult from './search-result'; // 搜索结果列表
 
 import storeProvider from '../store';
 const store = storeProvider();
@@ -139,6 +140,12 @@ const Navigations = createStackNavigator({
   },
   SearchInput: {
     screen: SearchInput,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SearchResult: {
+    screen: SearchResult,
     navigationOptions: {
       header: null
     }

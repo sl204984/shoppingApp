@@ -28,7 +28,8 @@ export default class InputHeader extends Component {
         </View>
 
         <TouchableOpacity onPress={() => {
-          navigation.goBack();
+          navigation.navigate('SearchResult');
+
         }}>
           <Text style={styles.icon}>搜索</Text>
         </TouchableOpacity>
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   icon: {
-    marginLeft: 10,
-    marginRight: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   searchBacground: {
     backgroundColor: 'white',
