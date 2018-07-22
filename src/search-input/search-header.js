@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { textGrayColor, gray } from '../utils/common-styles';
+import { StorageKeys, Storage } from '../utils/local-store';
 
 export default class InputHeader extends Component {
+  state = {
+    searchText: ''
+  }
+
   render() {
+    const { searchText } = this.state;
     const { navigation } = this.props;
     return (
       <View style={styles.searchContainer}>
@@ -20,7 +26,10 @@ export default class InputHeader extends Component {
         <View style={styles.searchBacground}>
           <Icon name="search" style={styles.preIcon} size={16} />
           <TextInput
-            onChangeText={text => {}}
+            value={searchText}
+            onChangeText={text => this.setState({ 
+              searchText: text 
+            })}
             underlineColorAndroid="transparent"
             maxLength={12}
             style={styles.input}
@@ -28,13 +37,31 @@ export default class InputHeader extends Component {
         </View>
 
         <TouchableOpacity onPress={() => {
-          navigation.navigate('SearchResult');
-
+          this._saveHistory();
         }}>
           <Text style={styles.icon}>搜索</Text>
         </TouchableOpacity>
       </View>
     )
+  }
+
+  _saveHistory = async () => {
+    const { searchText } = this.state;
+    const { navigation, historyList, loadHistory } = this.props;
+    const searchTextIndex = historyList.indexOf(searchText);
+    if(searchTextIndex > -1) {
+      historyList.splice(searchTextIndex, 1);
+      historyList.unshift(searchText);
+    } else {
+      historyList.unshift(searchText);
+    }
+    await Storage.save({
+      key: StorageKeys.searchIputList,
+      data: historyList,
+    });
+    await this.setState({ searchText: '' });
+    loadHistory();
+    navigation.navigate('SearchResult');
   }
 }
 
@@ -66,7 +93,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   input: {
-    flex: 1
+    flex: 1,
   },
   searchText: {
     color: textGrayColor

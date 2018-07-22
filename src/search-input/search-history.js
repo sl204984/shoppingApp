@@ -1,29 +1,69 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { lightGray, textGrayColor } from '../utils/common-styles';
-
-const historyList = [];
+import { StorageKeys, Storage } from '../utils/local-store';
 
 export default class SearchHistory extends Component {
   render() {
+    const { historyList } = this.props;
     return (
       <View style={styles.container}>
         <ScrollView>
           {historyList.map((item, index) => (
-            <View style={styles.historyItem} key={index}>
+            <TouchableOpacity 
+              style={styles.historyItem} 
+              key={index} 
+              onPress={() => {
+                this._saveHistory(item, index)
+              }}
+            >
               <Text>{item}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
-          <View style={styles.bottomLine}>
-            <View style={styles.line} />
-            <Text style={styles.bottomText}>
-              {historyList.length > 0 ? '搜索历史' : '暂无搜索记录'}
-            </Text>
-            <View style={styles.line} />
-          </View>
+          {
+            historyList.length > 0 ? (
+              <TouchableOpacity 
+                style={styles.bottomLine} 
+                onPress={this._clearHistoryList}
+              >
+                <Text style={styles.bottomText}>清空搜索历史</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.bottomLine}>
+                <View style={styles.line} />
+                  <Text style={styles.bottomText}>
+                    暂无搜索记录
+                  </Text>
+                <View style={styles.line} />
+              </View>
+            )
+          }
+          
         </ScrollView>
       </View>
     )
+  }
+
+  _clearHistoryList = async () => {
+    const { loadHistory } = this.props;
+    await Storage.save({
+      key: StorageKeys.searchIputList,
+      data: []
+    });
+    loadHistory();
+  }
+
+  _saveHistory = async (historyItem, historyIndex) => {
+    const { navigation, historyList, loadHistory } = this.props;
+    historyList.splice(historyIndex, 1);
+    historyList.unshift(historyItem);
+    await Storage.save({
+      key: StorageKeys.searchIputList,
+      data: historyList
+    });
+    await this.setState({ searchText: '' });
+    loadHistory();
+    navigation.navigate('SearchResult');
   }
 }
 
