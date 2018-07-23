@@ -17,6 +17,7 @@ export default class Protocol extends Component {
             &nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;
             首先欢迎各位使用本产品。
+            由用户不良操作产生的后果，由用户自己承担。
             这儿写用户协议。
             这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。这儿写用户协议。
           </Text>
