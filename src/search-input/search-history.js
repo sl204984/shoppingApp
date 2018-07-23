@@ -63,7 +63,7 @@ export default class SearchHistory extends Component {
     });
     await this.setState({ searchText: '' });
     loadHistory();
-    navigation.navigate('SearchResult');
+    navigation.replace('SearchResult');
   }
 }
 

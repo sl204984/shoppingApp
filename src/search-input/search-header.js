@@ -66,7 +66,7 @@ export default class InputHeader extends Component {
     });
     await this.setState({ searchText: '' });
     loadHistory();
-    navigation.navigate('SearchResult');
+    navigation.replace('SearchResult');
   }
 }
 

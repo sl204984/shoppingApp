@@ -20,7 +20,7 @@ export default class SearchBox extends Component {
           <TouchableOpacity 
             style={styles.searchBox} 
             onPress={() => {
-              navigation.navigate('SearchInput');
+              navigation.replace('SearchInput');
             }}
           >
             <Icon name="search" style={styles.preIcon} size={16} />
