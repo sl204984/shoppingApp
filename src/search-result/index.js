@@ -3,7 +3,7 @@ import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
-import { homePageActions } from '../../actions';
+import { searchResActions } from '../../actions';
 import SearchBox from './search-box';
 import ClassifyList from './classify-list';
 import { indexStyles as styles } from './styles';
@@ -118,10 +118,10 @@ class SearchResult extends Component {
 
 export default connect(
   (state) => ({
-    data: state.homePageReducer.data,
+    data: state.searchResultReducer.data,
   }),
   dispatch => ({
-    initDataList: params => dispatch(homePageActions.initDataList(params)),
-    addDataList: params => dispatch(homePageActions.addDataList(params)),
+    initDataList: params => dispatch(searchResActions.initDataList(params)),
+    addDataList: params => dispatch(searchResActions.addDataList(params)),
   })
 )(SearchResult);

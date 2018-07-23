@@ -1,12 +1,10 @@
-import {
-  HOMEPAGE as types
-} from '../../types';
+import { SEARCHRESULT as types } from '../../types';
 
 const initialState = {
   data: []
 }
 
-export default function homePageReducer(state = initialState, action) {
+export default function searchResReducer(state = initialState, action) {
   switch (action.type) {
     case types.INITDATA:
       return {

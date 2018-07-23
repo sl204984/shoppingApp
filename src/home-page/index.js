@@ -66,7 +66,7 @@ class HomePage extends Component {
     return (
       <View style={styles.emptyBox}>
         <Text style={styles.textGray}>数据不见了？！</Text>
-        <Image source={require('../local-imgs/no-server.png')}></Image>
+        <Image source={require('../local-imgs/no-server.png')} />
       </View>
     )
   }
