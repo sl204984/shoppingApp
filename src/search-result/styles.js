@@ -2,8 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { textGrayColor, paddingTop, lightGray, baseColor, blackGray } from '../utils/common-styles';
 
 const { width, height } = Dimensions.get('window');
-const classifyListHeight = 50;
-const searchBoxHeight = 50;
+const classifyListHeight = 40;
+const searchBoxHeight = 56;
 
 export const indexStyles = StyleSheet.create({
   container: {
@@ -72,7 +72,7 @@ export const classifyListStyles = StyleSheet.create({
   },
   curTabText: {
     color: blackGray,
-    fontSize: 16
+    fontSize: 15
   }
 });
 
@@ -80,14 +80,13 @@ export const searchBoxStyles = StyleSheet.create({
   header: {
     width,
     height: searchBoxHeight,
-    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10,
   },
   searchBacground: {
-    backgroundColor: lightGray,
+    backgroundColor: 'white',
     height: '100%',
     flex: 1,
     borderRadius: 3,

@@ -102,7 +102,7 @@ class SearchResult extends Component {
     const { refreshing, pageSize, curTabIndex } = this.state;
     if(refreshing) return;
     this.setState({ refreshing: true });
-    await initDataList({ pageSize, pageNum: 0,  });
+    await initDataList({ pageSize, pageNum: 0 });
     this.setState({ refreshing: false, pageNum: 1, type: curTabIndex });
   }
 

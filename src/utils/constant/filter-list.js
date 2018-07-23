@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 export default fromJS([{
-  label: '综合排序',
+  label: '综合',
   value: 0
 }, {
   label: '价格升序',

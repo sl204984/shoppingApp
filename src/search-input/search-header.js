@@ -33,7 +33,9 @@ export default class InputHeader extends Component {
             underlineColorAndroid="transparent"
             maxLength={12}
             style={styles.input}
-            placeholder="他密"/>
+            placeholder="他密" 
+            autoFocus
+          />
         </View>
 
         <TouchableOpacity onPress={() => {
@@ -83,17 +85,16 @@ const styles = StyleSheet.create({
   searchBacground: {
     backgroundColor: 'white',
     flex: 1,
-    height: 30,
+    height: 36,
     borderRadius: 3,
     flexDirection: 'row',
-    // alignItems: 'center',
+    alignItems: 'center',
     paddingLeft: 10,
     paddingRight: 10
   },
   preIcon: {
     marginRight: 10,
     color: textGrayColor,
-    alignSelf: 'center'
   },
   input: {
     flex: 1,
