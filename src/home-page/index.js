@@ -23,7 +23,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { data = [], navigation } = this.props;
+    const { data = [], navigation, end } = this.props;
     const { refreshing, curTabIndex } = this.state;
     return (
       <View style={styles.container}>
@@ -43,7 +43,7 @@ class HomePage extends Component {
           ListFooterComponent={this._renderFooter}
           onRefresh={this._initDataList}
           refreshing={refreshing}
-          onEndReached={data.length < 100 && this._addDataList}
+          onEndReached={data.length < 100 && !end && this._addDataList}
           // onEndReachedThreshold={0.1}
         />
       </View>
@@ -93,7 +93,7 @@ class HomePage extends Component {
     return (
       <View style={styles.footerBox}>
         <View style={styles.footerMidLine} />
-        <Text style={styles.footerText}>emm，其实我也是有底线的</Text>
+        <Text style={styles.footerText}>其实我也是有底线的</Text>
         <View style={styles.footerMidLine} />
       </View>
     )
@@ -121,6 +121,7 @@ class HomePage extends Component {
 export default connect(
   (state) => ({
     data: state.homePageReducer.data,
+    end: state.homePageReducer.end
   }),
   dispatch => ({
     initDataList: params => dispatch(homePageActions.initDataList(params)),

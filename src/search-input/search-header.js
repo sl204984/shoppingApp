@@ -65,7 +65,7 @@ export default class InputHeader extends Component {
       data: historyList,
     });
     await this.setState({ searchText: '' });
-    loadHistory();
+    await loadHistory();
     navigation.replace('SearchResult');
   }
 }

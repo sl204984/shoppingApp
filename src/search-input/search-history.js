@@ -50,7 +50,7 @@ export default class SearchHistory extends Component {
       key: StorageKeys.searchIputList,
       data: []
     });
-    loadHistory();
+    await loadHistory();
   }
 
   _saveHistory = async (historyItem, historyIndex) => {
@@ -62,7 +62,7 @@ export default class SearchHistory extends Component {
       data: historyList
     });
     await this.setState({ searchText: '' });
-    loadHistory();
+    await loadHistory();
     navigation.replace('SearchResult');
   }
 }

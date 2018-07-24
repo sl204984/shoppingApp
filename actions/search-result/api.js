@@ -1,12 +1,16 @@
 import { FetchRequest } from '../../src/utils/fetch';
 
 /**
- * @param {pageSize number, pageNumber: number, type: number} body 
+ * 获取接口数据
+ * @param pageSize number
+ * @param pageNumber number
+ * @param total number
+ * @param type number
  */
 export const fetchList = body => {
   return FetchRequest({
-    url: 'home',
+    url: 'search',
     method: 'POST',
     body
   })
-}
+};

@@ -1,4 +1,6 @@
-import { SEARCHRESULT as types } from '../../types';
+import {
+  SEARCHRESULT as types
+} from '../../types';
 import * as webApi from './api';
 
 export const initDataList = (params = {}) => {
@@ -9,7 +11,8 @@ export const initDataList = (params = {}) => {
     } = await webApi.fetchList(params);
     if (!err) {
       dispatch({
-        data: res,
+        data: res.data,
+        end: res.end,
         type: types.INITDATA
       });
       return res;
@@ -25,7 +28,10 @@ export const addDataList = (params = {}) => {
     } = await webApi.fetchList(params);
     if (!err) {
       dispatch({
-        data: res,
+        data: res.data,
+        end: res.end,
+        pageNum: res.pageNum,
+        pageSize: res.pageSize,
         type: types.ADDDATA
       });
       return res;

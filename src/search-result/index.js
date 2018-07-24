@@ -23,7 +23,7 @@ class SearchResult extends Component {
   }
 
   render() {
-    const { data = [], navigation } = this.props;
+    const { data = [], navigation, end } = this.props;
     const { refreshing, curTabIndex } = this.state;
     return (
       <View style={styles.container}>
@@ -42,7 +42,7 @@ class SearchResult extends Component {
           ListFooterComponent={this._renderFooter}
           onRefresh={this._initDataList}
           refreshing={refreshing}
-          onEndReached={data.length < 100 && this._addDataList}
+          onEndReached={data.length < 100 && !end && this._addDataList}
         />
       </View>
     )
@@ -118,7 +118,8 @@ class SearchResult extends Component {
 
 export default connect(
   (state) => ({
-    data: state.searchResultReducer.data,
+    data: state.searchResReducer.data,
+    end: state.searchResReducer.end
   }),
   dispatch => ({
     initDataList: params => dispatch(searchResActions.initDataList(params)),

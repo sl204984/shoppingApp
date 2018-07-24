@@ -46,7 +46,7 @@ export default class SearchInput extends Component {
       // 设置为false的话，则等待sync方法提供的最新数据(当然会需要更多时间)。
       syncInBackground: true
     });
-    this.setState({ historyList: res || [] });
+    return this.setState({ historyList: res || [] });
   }
 }
 

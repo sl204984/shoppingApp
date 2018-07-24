@@ -11,7 +11,8 @@ export const initDataList = (params = {}) => {
     } = await webApi.fetchList(params);
     if (!err) {
       dispatch({
-        data: res,
+        data: res.data,
+        end: res.end,
         type: types.INITDATA
       });
       return res;
@@ -27,7 +28,8 @@ export const addDataList = (params = {}) => {
     } = await webApi.fetchList(params);
     if (!err) {
       dispatch({
-        data: res,
+        data: res.data,
+        end: res.end,
         type: types.ADDDATA
       });
       return res;
