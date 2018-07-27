@@ -33,6 +33,7 @@ import SearchResult from './search-result'; // 搜索结果列表
 import storeProvider from '../store';
 const store = storeProvider();
 
+
 const navigationOpt = fromJS({
   headerTintColor: '#2b2b2b',
   headerTitleStyle: {

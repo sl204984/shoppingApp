@@ -3,7 +3,7 @@ import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
-import { homePageActions } from '../../actions';
+import { homePageActions, loginActions } from '../../actions';
 import SearchBox from './search-box';
 import ClassifyList from './classify-list';
 import { indexStyles as styles } from './styles';
@@ -121,10 +121,12 @@ class HomePage extends Component {
 export default connect(
   (state) => ({
     data: state.homePageReducer.data,
-    end: state.homePageReducer.end
+    end: state.homePageReducer.end,
+    loginInfo: state.loginReducer.loginInfo
   }),
   dispatch => ({
     initDataList: params => dispatch(homePageActions.initDataList(params)),
     addDataList: params => dispatch(homePageActions.addDataList(params)),
+    fetchLoginInfo: () => dispatch(loginActions.initLoginInfo())
   })
 )(HomePage);

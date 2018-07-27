@@ -21,8 +21,6 @@ export default class Category extends Component {
   }
 
   render() {
-    
-    
     return <View style={styles.container}>
       <Text onPress={this._selectImg}>Here category is!</Text>
     </View>

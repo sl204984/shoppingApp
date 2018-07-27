@@ -56,5 +56,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: paddingTop,
   },
-  
 })

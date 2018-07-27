@@ -11,8 +11,6 @@ import UserCenter from '../user-center';
 
 import { baseColor, blackGray } from "./common-styles";
 
-
-
 export default pageNavigator = createBottomTabNavigator({
   Home: {
     screen: HomePage,
@@ -60,9 +58,9 @@ export default pageNavigator = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'Home',
-    tabBarOptions: {
-      activeTintColor: baseColor
-    },
-    animated: true
-  });
+  initialRouteName: 'Home',
+  tabBarOptions: {
+    activeTintColor: baseColor
+  },
+  animated: true
+});

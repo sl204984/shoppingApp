@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Alert} from 'react-native';
 import {
-  titleColor, fontBold, darkGray, baseColor, submitTextColor, littleFont,
-  loginContainer, longConfirmBtn, row
+  titleColor, 
+  fontBold, 
+  darkGray, 
+  baseColor, 
+  submitTextColor, 
+  littleFont,
+  loginContainer, 
+  longConfirmBtn, 
+  row
 } from '../utils/common-styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 export default class Login extends Component {
@@ -11,7 +19,8 @@ export default class Login extends Component {
     super(props);
     this.state = {
       userName: '',
-      password: ''
+      password: '',
+      showPwd: false
     }
   }
 
@@ -19,6 +28,7 @@ export default class Login extends Component {
   }
 
   render() {
+    const { showPwd } = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>有&nbsp;&nbsp;售</Text>
@@ -29,7 +39,7 @@ export default class Login extends Component {
             onChangeText={text => this.setState({userName: text})}
             underlineColorAndroid="transparent"
             defaultValue={this.state.userName}
-            maxLength={12}
+            maxLength={16}
             style={styles.input}
             placeholder="请输入用户名"/>
         </View>
@@ -40,10 +50,15 @@ export default class Login extends Component {
             onChangeText={text => this.setState({password: text})}
             underlineColorAndroid="transparent"
             maxLength={20}
-            password={true}
+            secureTextEntry={!showPwd}
             defaultValue={this.state.password}
             style={styles.input}
             placeholder="请输入密码"/>
+            <Icon 
+              style="icon"
+              name={ showPwd ? 'eye-off' : 'eye' } 
+              size={20} 
+              onPress={() => this.setState({ showPwd: !showPwd })} />
         </View>
 
         <TouchableOpacity style={styles.loginBox} onPress={() => {
@@ -115,5 +130,9 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1
+  },
+  icon: {
+    marginLeft: 5,
+    marginRight: 5
   }
 });
