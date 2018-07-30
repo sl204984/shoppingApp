@@ -10,13 +10,15 @@ export default class Price extends Component {
   }
 
   render() {
-    return <TouchableOpacity style={styles.row}>
-    <Text>价格</Text>
-    <View style={styles.iconText}>
-      <Text style={styles.count}>99</Text>
-      <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
-    </View>
-  </TouchableOpacity>
+    return (
+      <TouchableOpacity style={styles.row}>
+        <Text>价格</Text>
+        <View style={styles.iconText}>
+          <Text style={styles.count}>99</Text>
+          <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
+        </View>
+      </TouchableOpacity>
+    )
   } 
 }
 

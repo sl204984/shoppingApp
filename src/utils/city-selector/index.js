@@ -8,7 +8,7 @@ import { Areas } from './areas';
 // 
 import TabItem from './tab-item';
 
-export default class CitySelect extends Component {
+export default class CitySelector extends Component {
   constructor(props) {
     super(props);
     this.state = {

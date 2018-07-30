@@ -24,6 +24,6 @@ export default class Detail extends Component {
 const styles = StyleSheet.create({
   details: {
     width: width,
-    marginBottom: 5,
+    marginBottom: 10
   }
 });

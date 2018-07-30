@@ -4,7 +4,6 @@ import {
   View, 
   StyleSheet, 
   Text, 
-  TextInput, 
   TouchableOpacity, 
   Dimensions 
 } from 'react-native';
@@ -20,9 +19,9 @@ import Detail from './detail';
 import ImgsDemo from './imgs-demo';
 import Price from './price';
 import Count from './count';
+import Store from './store';
 import Classification from './ classification';
-
-const { width } = Dimensions.get('window');
+import Location from './location';
 
 export default class PublishDemo extends Component {
   state = {
@@ -31,7 +30,7 @@ export default class PublishDemo extends Component {
 
   render() {
     const {
-      imgList = []
+      imgList,
     } = this.state;
     return (
       <View style={styles.container}>
@@ -41,6 +40,8 @@ export default class PublishDemo extends Component {
         <Price />
         <Count />
         <Classification />
+        <Store />
+        <Location />
 
         <TouchableOpacity style={styles.loginBox} onPress={() => {
         }}>

@@ -18,5 +18,5 @@ export default class Classification extends Component {
       <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
     </View>
   </TouchableOpacity>
-  } 
+  }
 }

@@ -36,16 +36,18 @@ export default class ImgsDemo extends Component {
     const {
       imgList = []
     } = this.props;
-    return <View style={styles.scrowView} >
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {
-        imgList.map((item, index) => <Image key={index} source={item} style={styles.img} />)
-      }
-      <TouchableOpacity style={styles.addImg} onPress={this._selectImg} >
-        <Icon name="md-add" size={36} color={baseColor} />
-      </TouchableOpacity>
-    </ScrollView>
-  </View>
+    return (
+      <View style={styles.scrowView} >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {
+            imgList.map((item, index) => <Image key={index} source={item} style={styles.img} />)
+          }
+          <TouchableOpacity style={styles.addImg} onPress={this._selectImg} >
+            <Icon name="md-add" size={36} color={baseColor} />
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
+    )
   }
 
   _selectImg = () => {
