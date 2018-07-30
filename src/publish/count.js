@@ -5,16 +5,16 @@ import { styles } from './price';
 import { gray } from '../utils/common-styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class Classification extends Component {
+export default class Count extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return <TouchableOpacity style={styles.row}>
-    <Text>分类</Text>
+    <Text>数量</Text>
     <View style={styles.iconText}>
-      <Text style={styles.count}>99</Text>
+      <Text style={styles.count}>1</Text>
       <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
     </View>
   </TouchableOpacity>

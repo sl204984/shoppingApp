@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View,  StyleSheet } from 'react-native';
 
-import { narrowRow, textGrayColor } from '../utils/common-styles';
+import { narrowRow, textGrayColor, gray } from '../utils/common-styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Price extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class Price extends Component {
     <Text>价格</Text>
     <View style={styles.iconText}>
       <Text style={styles.count}>99</Text>
+      <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
     </View>
   </TouchableOpacity>
   } 
@@ -39,4 +41,7 @@ export const styles = StyleSheet.create({
     height: 15,
     marginLeft: 15,
   },
+  sufIcon: {
+    marginLeft: 10
+  }
 });

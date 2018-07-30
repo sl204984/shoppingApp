@@ -19,6 +19,7 @@ import HeaderTitle from './header-title';
 import Detail from './detail';
 import ImgsDemo from './imgs-demo';
 import Price from './price';
+import Count from './count';
 import Classification from './ classification';
 
 const { width } = Dimensions.get('window');
@@ -38,6 +39,7 @@ export default class PublishDemo extends Component {
         <Detail />
         <ImgsDemo />
         <Price />
+        <Count />
         <Classification />
 
         <TouchableOpacity style={styles.loginBox} onPress={() => {
