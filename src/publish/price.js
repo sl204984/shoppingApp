@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, Image,  StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View,  StyleSheet } from 'react-native';
 
 import { narrowRow, textGrayColor } from '../utils/common-styles';
-import CONFIG from '../utils/config';
-
-const IconPrefix = `${CONFIG.IMG_HOST}static/icons/`;
-const IconMore = `${IconPrefix}more.png`;
-
 
 export default class Price extends Component {
   constructor(props) {
@@ -18,7 +13,6 @@ export default class Price extends Component {
     <Text>价格</Text>
     <View style={styles.iconText}>
       <Text style={styles.count}>99</Text>
-      <Image source={{uri: IconMore}} style={styles.imageMore} />
     </View>
   </TouchableOpacity>
   } 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 
-import Avator from './avator';
+import Avatar from './avatar';
 import Appreciate from './appreciate';
 import FeatureList from './feature-list';
 import Setting from './setting';
@@ -16,7 +16,7 @@ export default class UserCenter extends Component {
     
     return (
       <ScrollView style={styles.container}>
-        <Avator navigate={navigate} />
+        <Avatar navigate={navigate} />
         <Appreciate navigate={navigate} />
         <FeatureList navigate={navigate} />
         <Setting navigate={navigate} />
