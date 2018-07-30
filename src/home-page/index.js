@@ -9,7 +9,6 @@ import ClassifyList from './classify-list';
 import { indexStyles as styles } from './styles';
 
 class HomePage extends Component {
-
   state = {
     refreshing: false,
     loadingStatus: false,
@@ -20,6 +19,8 @@ class HomePage extends Component {
 
   componentDidMount() {
     this._initDataList();
+    const { loginInfo } = this.props;
+    
   }
 
   render() {
