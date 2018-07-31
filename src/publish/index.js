@@ -24,12 +24,22 @@ import Location from './location';
 
 export default class PublishDemo extends Component {
   state = {
-    imgList: []
+    shoppingName: '',
+    userId: '',
+    shoppingId: '',
+    price: '',
+    count: '',
+    store: '',
+    desc: '',
+    imgList: [],
+    location: '',
+    type: 0
   }
 
   render() {
     const {
       imgList,
+      type
     } = this.state;
     return (
       <View style={styles.container}>
@@ -38,7 +48,7 @@ export default class PublishDemo extends Component {
         <ImgsDemo />
         <Price />
         <Count />
-        <Classification />
+        <Classification type={type} />
         <Store />
         <Location />
 

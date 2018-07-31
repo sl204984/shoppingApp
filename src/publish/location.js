@@ -25,9 +25,10 @@ export default class Location extends Component {
           <Text style={styles.count}>{permanetAddress}</Text>
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
+
         <CitySelector 
           showCitySelect={showCitySelect} 
-          onOk={area => this.setState({ 
+          onOk={area => this.setState({
             permanetAddress: area, 
             showCitySelect: false
           })}
