@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: modalOpacityColor,
     width,
-    height
+    height,
+    flexDirection: 'row'
   }
 })

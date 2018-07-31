@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 
 import {rowStyles as styles } from './styles';
 import { gray } from '../utils/common-styles';
-import Icon from 'FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CitySelector from '../utils/city-selector';
 

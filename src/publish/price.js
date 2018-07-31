@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { rowStyles as styles } from './styles';
 import { gray } from '../utils/common-styles';
-// import Modal from '../utils/modal/modal-base';
+import { Popup } from '../utils/modal';
 
 export default class Price extends Component {
   state = {
@@ -23,7 +23,15 @@ export default class Price extends Component {
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
 
+        <Popup 
+          visible={visible} 
+          title="请输入价格"
+          onCancel={() => this.setState({
+            visible: false
+          })}
+        >
         
+        </Popup>
       </TouchableOpacity>
     )
   } 

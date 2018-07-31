@@ -1,30 +1,63 @@
 import React, { Component } from 'react';
-import { StyleSheet, Modal, View, Dimensions } from 'react-native';
-import { modalOpacityColor } from '../common-styles';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { white, lightGray, gray } from '../common-styles';
+import BaseModal from './modal-base';
 
 const { width, height } = Dimensions.get('window');
 
-export default class BaseModal extends Component {
+export default class Popup extends Component {
   render() {
-    const { visible, children } = this.props;
+    const { visible, children, onCancel, title } = this.props;
     return (
-      <Modal 
-        visible={visible}
-        animationType="slide"
-        transparent
-      >
+      <BaseModal visible={visible}>
         <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.dismiss} />
+
+            <View style={styles.headerTextBox}>
+              <Text style={styles.headerText}>{title || "头部"}</Text>
+            </View>
+            
+            <TouchableOpacity style={styles.dismiss} onPress={onCancel}>
+              <Text style={styles.dismissText}>取消</Text>
+            </TouchableOpacity>
+          </View>
           { children }
         </View>
-      </Modal>
+      </BaseModal>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: modalOpacityColor,
     width,
-    height
+    height: height * 0.6,
+    backgroundColor: white,
+    alignSelf: 'flex-end',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5
+  },
+  header: {
+    width,
+    flexDirection: 'row',
+    height: 50,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: lightGray
+  },
+  dismiss: {
+    width: 40
+  },
+  dismissText: {
+    color: gray
+  },
+  headerTextBox: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerText: {
+    fontSize: 15
   }
 })
