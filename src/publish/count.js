@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 
-import { styles } from './price';
+import { rowStyles as styles } from './style';
 import { gray } from '../utils/common-styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
