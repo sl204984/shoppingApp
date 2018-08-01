@@ -24,5 +24,21 @@ export const rowStyles = StyleSheet.create({
   },
   sufIcon: {
     marginLeft: 10
+  }, 
+  dialogContainer: {
+    flex: 1,
+  },
+  dialogRow: {
+    height: 44,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  label: {
+    width: 60
+  },
+  input: {
+    flex: 1
   }
 });

@@ -32,7 +32,7 @@ export default class Popup extends Component {
 const styles = StyleSheet.create({
   container: {
     width,
-    height: height * 0.6,
+    height: 400,
     backgroundColor: white,
     alignSelf: 'flex-end',
     borderTopLeftRadius: 5,

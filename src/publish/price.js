@@ -4,14 +4,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { rowStyles as styles } from './styles';
 import { gray } from '../utils/common-styles';
 import { Popup } from '../utils/modal';
-
+import InputText from '../utils/input';
+import CheckBox from '../utils/check-box';
+import { NumberKeyboard } from '../utils/keyboard';
 export default class Price extends Component {
   state = {
-    visible: false
+    visible: false,
+    isShipping: false
   }
 
   render() {
-    const { visible } = this.state;
+    const { visible, isShipping } = this.state;
     return (
       <TouchableOpacity 
         style={styles.row} 
@@ -30,9 +33,32 @@ export default class Price extends Component {
             visible: false
           })}
         >
-        
+          <View style={styles.dialogContainer}>
+            <View style={{flex: 1}}>
+              <View style={styles.dialogRow}>
+                <View style={styles.label}>
+                  <Text>价格：</Text>
+                </View>
+                <InputText focused />
+              </View>
+
+              <View style={styles.dialogRow}>
+                <View style={styles.label}>
+                  <Text>运费：</Text>
+                </View>
+                <CheckBox value={isShipping} onValueChange={({ target }) => {
+                  this.setState({ isShipping: target.value });
+                }}>
+                  <Text>包邮</Text>
+                </CheckBox>
+              </View>
+            </View>
+
+            <NumberKeyboard />
+            
+          </View>
         </Popup>
       </TouchableOpacity>
     )
-  } 
+  }
 }

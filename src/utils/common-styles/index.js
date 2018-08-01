@@ -44,7 +44,7 @@ export const container = fromJS({
 
 export const loginContainer = container.merge({
   justifyContent: 'center',
-  padding: 20,
+  padding: 20
 });
 
 export const longConfirmBtn = fromJS({
@@ -86,3 +86,4 @@ export const modalBg = fromJS({
   height: '100%',
   backgroundColor: modalOpacityColor
 });
+
