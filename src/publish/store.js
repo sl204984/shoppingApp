@@ -70,10 +70,11 @@ export default class Count extends Component {
 
   _onNumPress = num => {
     const { storeInput } = this.state;
-
-    storeInput.length < 4 ?
-      this.setState({ storeInput: storeInput + num }) :
-      this.refs.toast.show('剩余数量最多999件');;
+    const _store = storeInput + num;
+    if(_store.indexOf('.') > -1) return;
+    _store < 9999 ?
+      this.setState({ storeInput: _store }) :
+      this.refs.toast.show('剩余数量最大值为 9,999');;
   }
 
   _onReply = () => {
