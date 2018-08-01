@@ -7,7 +7,7 @@ import { Popup } from '../utils/modal';
 import InputText from '../utils/input';
 import CheckBox from '../utils/check-box';
 import { NumberKeyboard } from '../utils/keyboard';
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast from 'react-native-easy-toast';
 
 export default class Price extends Component {
   state = {
@@ -19,7 +19,7 @@ export default class Price extends Component {
   }
 
   render() {
-    const { price } = this.props;
+    const { price, shipFee } = this.props;
     const { visible, isShipping, focusedInput, priceInput, shipInput } = this.state;
     return (
       <TouchableOpacity 
@@ -29,6 +29,9 @@ export default class Price extends Component {
         <Text>价格</Text>
         <View style={styles.iconText}>
           <Text style={styles.count}>{ price }</Text>
+          {shipFee > 0 && (
+            <Text style={styles.count}>{ ` + 邮费${shipFee}` }</Text>
+          )}
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
 
@@ -63,10 +66,12 @@ export default class Price extends Component {
                   focused={focusedInput} 
                   value={shipInput}
                   setFocus={(focused) => {
-                    this.setState({ focusedInput: focused });
+                    this.setState({ focusedInput: focused, isShipping: false });
                   }} />
                 <CheckBox value={isShipping} onValueChange={({ target }) => {
-                  this.setState({ isShipping: target.value });
+                  target.value ? 
+                    this.setState({ isShipping: target.value, shipInput: '', focusedInput: '' }) : 
+                    this.setState({ isShipping: target.value });
                 }}>
                   <Text>包邮</Text>
                 </CheckBox>
@@ -82,20 +87,12 @@ export default class Price extends Component {
           </View>
 
           <Toast ref="toast" position='top' />
-          
+
         </Popup>
 
       </TouchableOpacity>
     )
   }
-
-  _init = () => this.setState({
-    visible: false,
-    isShipping: false,
-    focusedInput: 'price',
-    priceInput: '',
-    shipInput: '' 
-  });
 
   _onNumPress = num => {
     const { focusedInput, priceInput, shipInput } = this.state;
@@ -133,6 +130,9 @@ export default class Price extends Component {
       return;
     }
     changePrice({ price: priceInput, shipFee: shipInput });
-    await this._init();
+    await this.setState({
+      visible: false,
+      focusedInput: 'price'
+    });
   }
 }

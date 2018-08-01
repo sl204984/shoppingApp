@@ -41,6 +41,7 @@ export default class PublishDemo extends Component {
     const {
       imgList,
       price,
+      count,
       shipFee,
       type
     } = this.state;
@@ -54,8 +55,12 @@ export default class PublishDemo extends Component {
           shipFee={shipFee}
           changePrice={({price, shipFee}) => this.setState({ 
             price, shipFee 
-          })} />
-        <Count />
+          })} 
+        />
+        <Count
+          count={count}
+          changeCount={({count}) => this.setState({ count })} 
+        />
         <Classification type={type} />
         <Store />
         <Location />

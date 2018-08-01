@@ -28,7 +28,7 @@ export default class CheckBox extends Component {
   }
 }
 
-const radiusWidth = 20;
+const radiusWidth = 18;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
