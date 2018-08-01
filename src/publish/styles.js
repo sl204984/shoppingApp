@@ -39,7 +39,7 @@ export const rowStyles = StyleSheet.create({
     alignItems: 'center'
   },
   label: {
-    width: 80
+    width: 75
   },
   input: {
     flex: 1

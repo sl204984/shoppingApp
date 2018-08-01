@@ -98,12 +98,14 @@ export default class Price extends Component {
     const { focusedInput, priceInput, shipInput } = this.state;
     switch(focusedInput) {
       case 'price':
-        priceInput.length < 8 &&
-          this.setState({ priceInput: priceInput + num });
+        priceInput.length < 8 ?
+          this.setState({ priceInput: priceInput + num }) :
+          this.refs.toast.show('我的天，平台商品价格不能超过一亿的~');
         break;
       case 'ship':
-        shipInput.length < 4 &&
-          this.setState({ shipInput: shipInput + num });
+        shipInput.length < 3 ?
+          this.setState({ shipInput: shipInput + num }) :
+          this.refs.toast.show('运费最多999元！');
         break;
     }
   }

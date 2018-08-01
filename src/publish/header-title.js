@@ -4,13 +4,12 @@ const { width } = Dimensions.get('window');
 
 export default class HeaderTitle extends Component {
   render() {
+    const { value, changeValue } = this.props;
     return (
       <View style={styles.headerTitle}>
         <TextInput
-          onChangeText={text => {
-            
-          }}
-          defaultValue=""
+          onChangeText={text => changeValue(text)}
+          value={value}
           maxLength={10}
           underlineColorAndroid="transparent"
           style={styles.input}
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     width: width,
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

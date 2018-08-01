@@ -71,8 +71,9 @@ export default class Count extends Component {
   _onNumPress = num => {
     const { storeInput } = this.state;
 
-    storeInput.length < 8 &&
-      this.setState({ storeInput: storeInput + num });
+    storeInput.length < 4 ?
+      this.setState({ storeInput: storeInput + num }) :
+      this.refs.toast.show('剩余数量最多999件');;
   }
 
   _onReply = () => {

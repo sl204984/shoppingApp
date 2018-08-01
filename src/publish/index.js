@@ -39,6 +39,8 @@ export default class PublishDemo extends Component {
 
   render() {
     const {
+      shoppingName,
+      desc,
       imgList,
       price,
       shipFee,
@@ -48,9 +50,21 @@ export default class PublishDemo extends Component {
     } = this.state;
     return (
       <View style={styles.container}>
-        <HeaderTitle />
-        <Detail />
+        <HeaderTitle 
+          value={shoppingName}
+          changeValue={val => {
+            this.setState({ shoppingName: val });
+          }}
+        />
+
+        <Detail
+          value={desc}
+          changeValue={val => {
+            this.setState({ desc: val });
+          }} />
+
         <ImgsDemo />
+
         <Price 
           price={price} 
           shipFee={shipFee}
@@ -58,11 +72,14 @@ export default class PublishDemo extends Component {
             price, shipFee 
           })} 
         />
+
         <Count
           count={count}
           changeCount={({ count }) => this.setState({ count })} 
         />
+
         <Classification type={type} />
+        
         <Store 
           store={store} 
           changeStore={({ store }) => this.setState({ store })}
