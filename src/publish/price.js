@@ -28,7 +28,7 @@ export default class Price extends Component {
       >
         <Text>价格</Text>
         <View style={styles.iconText}>
-          <Text style={styles.count}>{ price }</Text>
+          <Text style={styles.iconTextValue}>{ price }</Text>
           {shipFee > 0 && (
             <Text style={styles.count}>{ ` + 邮费${shipFee}` }</Text>
           )}

@@ -14,7 +14,7 @@ export default class Classification extends Component {
     return <TouchableOpacity style={styles.row}>
     <Text>分类</Text>
     <View style={styles.iconText}>
-      <Text style={styles.count}>99</Text>
+      <Text style={styles.iconTextValue}>99</Text>
       <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
     </View>
   </TouchableOpacity>

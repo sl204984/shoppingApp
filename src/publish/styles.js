@@ -8,7 +8,7 @@ export const rowStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  count: {
+  iconTextValue: {
     color: textGrayColor
   },
 
@@ -39,7 +39,7 @@ export const rowStyles = StyleSheet.create({
     alignItems: 'center'
   },
   label: {
-    width: 60
+    width: 80
   },
   input: {
     flex: 1

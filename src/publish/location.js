@@ -22,7 +22,7 @@ export default class Location extends Component {
       }}>
         <Text>发布地点</Text>
         <View style={styles.iconText}>
-          <Text style={styles.count}>{permanetAddress}</Text>
+          <Text style={styles.iconTextValue}>{permanetAddress}</Text>
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
 

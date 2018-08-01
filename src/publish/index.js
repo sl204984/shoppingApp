@@ -41,8 +41,9 @@ export default class PublishDemo extends Component {
     const {
       imgList,
       price,
-      count,
       shipFee,
+      count,
+      store,
       type
     } = this.state;
     return (
@@ -53,16 +54,19 @@ export default class PublishDemo extends Component {
         <Price 
           price={price} 
           shipFee={shipFee}
-          changePrice={({price, shipFee}) => this.setState({ 
+          changePrice={({ price, shipFee }) => this.setState({ 
             price, shipFee 
           })} 
         />
         <Count
           count={count}
-          changeCount={({count}) => this.setState({ count })} 
+          changeCount={({ count }) => this.setState({ count })} 
         />
         <Classification type={type} />
-        <Store />
+        <Store 
+          store={store} 
+          changeStore={({ store }) => this.setState({ store })}
+        />
         <Location />
 
         <TouchableOpacity style={styles.loginBox} onPress={() => {
@@ -73,8 +77,6 @@ export default class PublishDemo extends Component {
     )
   }
 }
-
-
 
 const styles = StyleSheet.create({
   container: container.toJS(),

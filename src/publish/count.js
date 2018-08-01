@@ -25,13 +25,13 @@ export default class Count extends Component {
       >
         <Text>数量</Text>
         <View style={styles.iconText}>
-          <Text style={styles.count}>{ count }</Text>
+          <Text style={styles.iconTextValue}>{ count }</Text>
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
 
         <Popup
           visible={visible} 
-          title="请输入价格"
+          title="请输入数量"
           onCancel={() => this.setState({
             visible: false
           })}
