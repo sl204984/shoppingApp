@@ -9,13 +9,15 @@ const { width } = Dimensions.get('window');
 export default class NumberKeyboard extends Component {
 
   render() {
-    const { onCancel, onOk } = this.props;
+    const { onCancel, onOk, onNumPress, onReply } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.numberContainer}>
           {numbers.map(item => (
             <View style={[styles.numberBox, styles.borderTop, styles.borderRight]} key={item}>
-              <TouchableOpacity style={styles.flexCenter}>
+              <TouchableOpacity style={styles.flexCenter} onPress={() => {
+                typeof onNumPress === 'function' && onNumPress(item);
+              }}>
                 <Text style={styles.number}>{ item }</Text>
               </TouchableOpacity>
             </View>
@@ -31,7 +33,7 @@ export default class NumberKeyboard extends Component {
 
         <View style={styles.operatesContanier}>
           <View style={[styles.operatesBox, styles.borderTop]}>
-            <TouchableOpacity style={styles.flexCenter}>
+            <TouchableOpacity style={styles.flexCenter} onPress={onReply}>
               <Icon name="reply" size={20} />
             </TouchableOpacity>
           </View>

@@ -28,6 +28,9 @@ export const rowStyles = StyleSheet.create({
   dialogContainer: {
     flex: 1,
   },
+  inputContainer: {
+    flex: 1
+  },
   dialogRow: {
     height: 44,
     paddingLeft: 10,

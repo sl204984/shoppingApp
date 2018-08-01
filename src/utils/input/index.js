@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Animated, StyleSheet, Easing } from 'react-native';
+import { View, TouchableWithoutFeedback, Text, Animated, StyleSheet, Easing } from 'react-native';
 import { baseColor } from '../common-styles';
 const AnimatedView = Animated.View;
 
@@ -8,17 +8,29 @@ export default class InputText extends Component {
     blinkAnim: new Animated.Value(0)
   }
 
+  componentWillUnmount() {
+    if(Animated.stop) {
+      Animated.stop();
+      this.setState({ blinkAnim: new Animated.Value(0) });
+    }
+  }
+
   render() {
-    const { value, focused } = this.props;
+    const { value, focused, setFocus, name } = this.props;
     const { blinkAnim } = this.state;
-    focused ? this.startAnimate() : this.stopAnimate();
+    const isFocused = focused === name;
+    isFocused ? this.startAnimate() : this.stopAnimate();
     return (
-      <View style={styles.container}>
-        <Text>{ value }</Text>
-        {focused ? (
-          <AnimatedView style={[styles.inputCursor, { opacity: blinkAnim }]} />
-        ) : null}
-      </View>
+      <TouchableWithoutFeedback onPress={() => {
+        typeof setFocus === 'function' && setFocus(name);
+      }}>
+        <View style={styles.container}>
+          <Text>{ value }</Text>
+          {isFocused ? (
+            <AnimatedView style={[styles.inputCursor, { opacity: blinkAnim }]} />
+          ) : null}
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 
@@ -35,8 +47,10 @@ export default class InputText extends Component {
   }
 
   stopAnimate = () => {
-    Animated.stop();
-    this.setState({ blinkAnim: new Animated.value(0) });
+    if(Animated.stop) {
+      Animated.stop();
+      this.setState({ blinkAnim: new Animated.Value(0) });
+    }
   }
 }
 
@@ -46,9 +60,10 @@ const styles = StyleSheet.create({
     height: inputH,
     alignItems: 'center',
     flexDirection: 'row',
+    flex: 1
   },
   inputCursor: {
-    width: 1, 
+    width: 2, 
     height: inputH, 
     backgroundColor: baseColor
   }

@@ -7,14 +7,20 @@ import { Popup } from '../utils/modal';
 import InputText from '../utils/input';
 import CheckBox from '../utils/check-box';
 import { NumberKeyboard } from '../utils/keyboard';
+import Toast, { DURATION } from 'react-native-easy-toast'
+
 export default class Price extends Component {
   state = {
     visible: false,
-    isShipping: false
+    isShipping: false,
+    focusedInput: 'price',
+    priceInput: '',
+    shipInput: ''
   }
 
   render() {
-    const { visible, isShipping } = this.state;
+    const { price } = this.props;
+    const { visible, isShipping, focusedInput, priceInput, shipInput } = this.state;
     return (
       <TouchableOpacity 
         style={styles.row} 
@@ -22,7 +28,7 @@ export default class Price extends Component {
       >
         <Text>价格</Text>
         <View style={styles.iconText}>
-          <Text style={styles.count}>99</Text>
+          <Text style={styles.count}>{ price }</Text>
           <Icon name="angle-right" size={20} style={styles.sufIcon} color={gray} />
         </View>
 
@@ -34,18 +40,31 @@ export default class Price extends Component {
           })}
         >
           <View style={styles.dialogContainer}>
-            <View style={{flex: 1}}>
+            <View style={styles.inputContainer}>
               <View style={styles.dialogRow}>
                 <View style={styles.label}>
                   <Text>价格：</Text>
                 </View>
-                <InputText focused />
+                <InputText
+                  name="price"
+                  focused={focusedInput}
+                  value={priceInput}
+                  setFocus={(focused) => {
+                    this.setState({ focusedInput: focused });
+                  }} />
               </View>
 
               <View style={styles.dialogRow}>
                 <View style={styles.label}>
                   <Text>运费：</Text>
                 </View>
+                <InputText 
+                  name="ship" 
+                  focused={focusedInput} 
+                  value={shipInput}
+                  setFocus={(focused) => {
+                    this.setState({ focusedInput: focused });
+                  }} />
                 <CheckBox value={isShipping} onValueChange={({ target }) => {
                   this.setState({ isShipping: target.value });
                 }}>
@@ -54,11 +73,66 @@ export default class Price extends Component {
               </View>
             </View>
 
-            <NumberKeyboard />
-            
+            <NumberKeyboard 
+              onCancel={() => this.setState({ visible: false })}
+              onOk={this._onOk}
+              onNumPress={this._onNumPress}
+              onReply={this._onReply}
+            />
           </View>
+
+          <Toast ref="toast" position='top' />
+          
         </Popup>
+
       </TouchableOpacity>
     )
+  }
+
+  _init = () => this.setState({
+    visible: false,
+    isShipping: false,
+    focusedInput: 'price',
+    priceInput: '',
+    shipInput: '' 
+  });
+
+  _onNumPress = num => {
+    const { focusedInput, priceInput, shipInput } = this.state;
+    switch(focusedInput) {
+      case 'price':
+        priceInput.length < 8 &&
+          this.setState({ priceInput: priceInput + num });
+        break;
+      case 'ship':
+        shipInput.length < 4 &&
+          this.setState({ shipInput: shipInput + num });
+        break;
+    }
+  }
+
+  _onReply = () => {
+    const { focusedInput, priceInput, shipInput } = this.state;
+    switch(focusedInput) {
+      case 'price':
+        priceInput.length > 0 &&
+          this.setState({ priceInput: priceInput.substr(0, priceInput.length - 1) });
+        break;
+      case 'ship':
+        shipInput.length > 0 &&
+          this.setState({ shipInput: shipInput.substr(0, shipInput.length - 1) });
+        break;
+    }
+  }
+
+  _onOk = async () => {
+    const { changePrice } = this.props;
+    const { priceInput, shipInput } = this.state;
+    if(!priceInput) {
+      this.refs.toast.show('请输入价格');
+      return;
+    }
+    changePrice({ price: priceInput, shipFee: shipInput });
+    await this._init();
   }
 }

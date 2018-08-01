@@ -28,6 +28,7 @@ export default class PublishDemo extends Component {
     userId: '',
     shoppingId: '',
     price: '',
+    shipFee: '', // 邮费
     count: '',
     store: '',
     desc: '',
@@ -39,6 +40,8 @@ export default class PublishDemo extends Component {
   render() {
     const {
       imgList,
+      price,
+      shipFee,
       type
     } = this.state;
     return (
@@ -46,7 +49,12 @@ export default class PublishDemo extends Component {
         <HeaderTitle />
         <Detail />
         <ImgsDemo />
-        <Price />
+        <Price 
+          price={price} 
+          shipFee={shipFee}
+          changePrice={({price, shipFee}) => this.setState({ 
+            price, shipFee 
+          })} />
         <Count />
         <Classification type={type} />
         <Store />
