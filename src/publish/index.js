@@ -78,8 +78,11 @@ export default class PublishDemo extends Component {
           changeCount={({ count }) => this.setState({ count })} 
         />
 
-        <Classification type={type} />
-        
+        <Classification 
+          value={type} 
+          changeType={({ type }) => this.setState({ type })} 
+        />
+
         <Store 
           store={store} 
           changeStore={({ store }) => this.setState({ store })}

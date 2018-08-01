@@ -5,13 +5,13 @@ const AnimatedView = Animated.View;
 
 export default class InputText extends Component {
   state = {
-    blinkAnim: new Animated.Value(0)
+    blinkAnim: new Animated.Value(1)
   }
 
   componentWillUnmount() {
     if(Animated.stop) {
       Animated.stop();
-      this.setState({ blinkAnim: new Animated.Value(0) });
+      this.setState({ blinkAnim: new Animated.Value(1) });
     }
   }
 
@@ -38,7 +38,7 @@ export default class InputText extends Component {
     Animated.loop(
       Animated.timing(
         this.state.blinkAnim, {
-          toValue: 1,
+          toValue: 0,
           easing: Easing.back(),
           duration: 1000
         }
@@ -49,15 +49,22 @@ export default class InputText extends Component {
   stopAnimate = () => {
     if(Animated.stop) {
       Animated.stop();
-      this.setState({ blinkAnim: new Animated.Value(0) });
+      this.setState({ blinkAnim: new Animated.Value(1) });
     }
   }
+}
+
+export const CheckNum = function({curval, newInput, decimalsL = 2}) {
+  const _numArr = (curval + newInput).split('.');
+  if(_numArr.length > 2) return false;
+  if(_numArr[1] && _numArr[1].length > 2) return false;
+  return true;
 }
 
 const inputH = 18;
 const styles = StyleSheet.create({
   container: {
-    height: inputH,
+    height: inputH + 4,
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1

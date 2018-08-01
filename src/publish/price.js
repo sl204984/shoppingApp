@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { rowStyles as styles } from './styles';
 import { gray } from '../utils/common-styles';
 import { Popup } from '../utils/modal';
-import InputText from '../utils/input';
+import InputText, { CheckNum } from '../utils/input';
 import CheckBox from '../utils/check-box';
 import { NumberKeyboard } from '../utils/keyboard';
 import Toast from 'react-native-easy-toast';
@@ -98,12 +98,14 @@ export default class Price extends Component {
     const { focusedInput, priceInput, shipInput } = this.state;
     switch(focusedInput) {
       case 'price':
-        priceInput.length < 8 ?
+        if(!CheckNum({curval: priceInput, newInput: num})) return;
+        priceInput + num <= 99999999 ?
           this.setState({ priceInput: priceInput + num }) :
-          this.refs.toast.show('我的天，平台商品价格不能超过一亿的~');
+          this.refs.toast.show('平台商品价格不能超过 99,999,999 元！');
         break;
       case 'ship':
-        shipInput.length < 3 ?
+        if(!CheckNum({curval: shipInput, newInput: num})) return;
+        shipInput + num <= 999 ?
           this.setState({ shipInput: shipInput + num }) :
           this.refs.toast.show('运费最多999元！');
         break;

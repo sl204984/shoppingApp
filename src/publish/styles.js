@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { narrowRow, textGrayColor } from '../utils/common-styles';
+import { narrowRow, textGrayColor, lightGray } from '../utils/common-styles';
 
 export const rowStyles = StyleSheet.create({
   row: narrowRow.toJS(),
@@ -43,5 +43,14 @@ export const rowStyles = StyleSheet.create({
   },
   input: {
     flex: 1
+  },
+  tabList: {
+    flex: 1,
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });
