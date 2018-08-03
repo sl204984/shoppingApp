@@ -63,7 +63,7 @@ export default class PublishDemo extends Component {
             this.setState({ desc: val });
           }} />
 
-        <ImgsDemo />
+        <ImgsDemo imgList={imgList} changeImgs={imgList => this.setState({ imgList })} />
 
         <Price 
           price={price} 
