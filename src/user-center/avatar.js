@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { baseColor, white } from '../utils/common-styles';
 import ImagePicker from "react-native-image-picker";
+import Toast from 'react-native-root-toast';
 
 const AvatarImg = require('../local-imgs/lovely.jpeg');
 
@@ -43,11 +44,11 @@ export default class Avatar extends Component {
     // launchImageLibrary ===> 弹出相册
     // ImagePicker.launchCamera 弹出相机
     ImagePicker.showImagePicker(ImagePickerOpt, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
+      if (response.error) {
+        Toast.show('选择图片失败，请重新选择', {
+          position: Toast.positions.CENTER
+        });
+      } else if (!response.didCancel) {
         if (Platform.OS === 'android') {
           this.setState({ avatar: response.uri, isStatic: true });
         } else {
