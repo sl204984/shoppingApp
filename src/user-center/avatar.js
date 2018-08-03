@@ -1,20 +1,62 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { baseColor, white } from '../utils/common-styles';
+import ImagePicker from "react-native-image-picker";
 
-import CONFIG from '../utils/config';
+const AvatarImg = require('../local-imgs/lovely.jpeg');
+
+// 选择图片配置项
+const ImagePickerOpt = {
+  title: '选择图片',
+  cancelButtonTitle: '取消',
+  takePhotoButtonTitle: '拍照',
+  chooseFromLibraryButtonTitle: '从图库选择',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
 
 export default class Avatar extends Component {
+  state = {
+    avatar: '',
+    isStatic: false
+  }
+
   render() {
-    const _avatar = `${CONFIG.IMG_HOST}static/avatar/lovely.jpeg`;
+    const { avatar, isStatic } = this.state;
+    const _avatar = avatar ? { uri: avatar, isStatic } : AvatarImg;
     return (
       <View style={styles.container}>
         <View style={styles.avatarWrap}>
-          <Image style={styles.avatarImg} source={{uri: _avatar}} />
+          <TouchableOpacity  onPress={this._selectImg} >
+            <Image style={styles.avatarImg} source={_avatar}/>
+          </TouchableOpacity>
           <Text style={styles.avatarText}>王宝弱</Text>
         </View>
       </View>
     );
+  }
+
+  _selectImg = () => {
+    // showImagePicker ===> 弹出选择相机、相册框
+    // launchImageLibrary ===> 弹出相册
+    // ImagePicker.launchCamera 弹出相机
+    ImagePicker.showImagePicker(ImagePickerOpt, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        if (Platform.OS === 'android') {
+          this.setState({ avatar: response.uri, isStatic: true });
+        } else {
+          this.setState({ avatar: response.uri.replace('file://', ''), isStatic: true });
+        }
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      }
+    });
   }
 }
 
