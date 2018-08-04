@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomePage from '../home-page';
-import Category from '../category';
+import ShoppingMall from '../category';
 import Publish from '../publish';
 import Messages from '../messages';
 import UserCenter from '../user-center';
@@ -21,12 +21,12 @@ export default pageNavigator = createBottomTabNavigator({
       )
     }
   },
-  Category: {
-    screen: Category,
+  ShoppingMall: {
+    screen: ShoppingMall,
     navigationOptions: {
-      tabBarLabel: '商品分类',
+      tabBarLabel: '商城',
       tabBarIcon: ({ focused }) => (
-        <Icon name="ios-cart-outline" size={20} color={focused ? baseColor : blackGray} />
+        <Icon name="ios-paw-outline" size={20} color={focused ? baseColor : blackGray} />
       )
     }
   },
