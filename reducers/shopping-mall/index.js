@@ -4,8 +4,8 @@ import {
 
 const initialState = {
   data: [{
-    avatar: '头像',
-    nickname: '大浪浪',
+    avatar: '',
+    publisher: '大浪浪',
     desc: '一家什么也没有的店铺',
     point: 100, // 信用值
     imgList: []

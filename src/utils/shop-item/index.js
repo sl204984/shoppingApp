@@ -11,10 +11,6 @@ const { width } = Dimensions.get('window');
 
 export default class ShoppingItem extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { 
       avatar,
@@ -68,12 +64,13 @@ export default class ShoppingItem extends React.Component {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: width,
+    width: width - 10,
     marginBottom: 20,
     backgroundColor: 'white',
     paddingTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
+    borderRadius: 10
   },
 
   headerBox: {

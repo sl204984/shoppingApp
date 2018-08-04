@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
-import ShoppingItem from '../utils/shopping-item';
+import ShopItem from '../utils/shop-item';
 import Header from './header';
 import SearchBox from './search-box';
 
@@ -47,7 +47,7 @@ class HomePage extends Component {
   }
 
   _renderItem = ({ item }) => (
-    <ShoppingItem avatar={item.avatar} 
+    <ShopItem avatar={item.avatar} 
       price={item.price} 
       shoppingName={item.shoppingName || []} 
       publisher={item.publisher} 

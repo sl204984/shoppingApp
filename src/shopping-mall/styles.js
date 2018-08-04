@@ -53,7 +53,8 @@ export const searchBoxStyles = StyleSheet.create({
     backgroundColor: white,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10
+    padding: 10,
+    marginBottom: 5
   },
   searchBacground: {
     backgroundColor: lightGray,
