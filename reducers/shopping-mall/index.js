@@ -9,6 +9,12 @@ const initialState = {
     desc: '一家什么也没有的店铺',
     point: 100, // 信用值
     imgList: []
+  }, {
+    avatar: '',
+    publisher: '大浪浪',
+    desc: '一家什么也没有的店铺',
+    point: 100, // 信用值
+    imgList: []
   }],
   end: false
 }
