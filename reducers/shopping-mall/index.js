@@ -5,16 +5,36 @@ import {
 const initialState = {
   data: [{
     avatar: '',
+    key: 1,
     publisher: '大浪浪',
-    desc: '一家什么也没有的店铺',
+    desc: '一家什么都有的店铺',
     point: 100, // 信用值
-    imgList: []
+    imgList: ['pen.jpeg', 'lipstick.jpeg', 'fan.jpg'],
+    location: '江苏南京雨花台区'
   }, {
     avatar: '',
+    key: 2,
+    publisher: '大浪浪',
+    desc: '该账户充钱了',
+    point: 100, // 信用值
+    imgList: ['lipstick.jpeg', 'fan.jpg', 'download.jpg', 'book.jpg'],
+    location: '江苏南京雨花台区'
+  }, {
+    avatar: '',
+    key: 3,
     publisher: '大浪浪',
     desc: '一家什么也没有的店铺',
     point: 100, // 信用值
-    imgList: []
+    imgList: ['lipstick.jpeg', 'book.jpg', 'fan.jpg', 'download.jpg'],
+    location: '江苏南京雨花台区'
+  }, {
+    avatar: '',
+    key: 4,
+    publisher: '大浪浪',
+    desc: '该账户是vip玩家',
+    point: 100, // 信用值
+    imgList: ['fan.jpg', 'download.jpg', 'lipstick.jpeg', 'book.jpg'],
+    location: '江苏南京雨花台区'
   }],
   end: false
 }

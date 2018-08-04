@@ -2,8 +2,8 @@
  * 商铺 @author sl204984
  * */ 
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import { gray, colorhot, lightGray, baseColor } from '../common-styles';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { gray, darkGray, baseColor, lightGray } from '../common-styles';
 import CONFIG from '../config';
 const AvatarImg = require('../../local-imgs/lovely.jpeg');
 
@@ -16,10 +16,9 @@ export default class ShoppingItem extends React.Component {
       avatar,
       publisher, 
       point, 
-      price,
       imgList,
-      shoppingName,
-      location
+      location,
+      desc
     } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
@@ -31,45 +30,47 @@ export default class ShoppingItem extends React.Component {
             <Text style={styles.publisher}> { publisher } </Text>
             <Text style={styles.point}>信用值：{ point } </Text>
           </View>
-          <View>
-            <Text style={styles.price}> ￥{ price } </Text>
-          </View>
         </View>
 
-        <ScrollView style={styles.scrollView} horizontal showsHorizontalScrollIndicator={false}>
-          {
-            imgList.map((item, index) => {
-              const imgSrc = CONFIG.IMG_HOST + item;
-              return <Image key={index} source={{uri: imgSrc}} style={styles.img} />
-            })
-          }
-        </ScrollView>
+        {desc && (
+          <Text style={styles.desc}>{ desc }</Text>
+        )}
 
-        <View style={styles.shoppingName} >
-          <Text> { shoppingName } </Text>
+        <View style={styles.imageListBox}>
+          {imgList.map((item, index) => {
+            const imgSrc = CONFIG.IMG_HOST + item;
+            return <Image key={index} source={{ uri: imgSrc }} style={styles.img} />
+          })}
         </View>
 
         <View style={styles.locationBox}>
-          <Text style={styles.locationLabel} >发布于: </Text>
-          <Text style={styles.locationText}> { 
-            location.length > 16 ?
+          <Text style={styles.locationLabel} >店铺地址: </Text>
+          <Text style={styles.locationText}> 
+            {location.length > 16 ?
               location.substring(0, 16) + '...' :
-              location
-          } </Text>
+              location } 
+          </Text>
         </View>
       </View>
     )
   }
 }
 
+const outerWidth = width - 20;
+const outerPadding = 10;
+const imgCounts = 4;
+const imgInterval = 10;
+const imgBoxPadding = 5;
+const imgWidth = ~~(( outerWidth - outerPadding * 2 - imgCounts * imgInterval ) / imgCounts);
+
 const styles = StyleSheet.create({
   itemContainer: {
-    width: width - 10,
+    width: outerWidth,
     marginBottom: 20,
     backgroundColor: 'white',
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingTop: outerPadding,
+    paddingLeft: outerPadding,
+    paddingRight: outerPadding,
     borderRadius: 10
   },
 
@@ -96,27 +97,25 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     color: gray
   },
-  price: {
-    paddingRight: 5,
-    color: colorhot,
-    fontSize: 18
+
+  desc: {
+    marginBottom: 10,
+    color: darkGray
   },
-
-  scrollView: {
-
+  imageListBox: {
+    flexDirection: 'row',
+    height: imgWidth + imgBoxPadding * 2,
+    paddingTop: imgBoxPadding,
+    paddingBottom: imgBoxPadding,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: lightGray
   },
   img: {
-    width: 120,
-    height: 120,
-    margin: 5
+    width: imgWidth,
+    height: imgWidth,
+    marginLeft: imgInterval,
   },
-  shoppingName: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: lightGray
-  },
-
   locationBox: {
     paddingTop: 10,
     paddingBottom: 10,

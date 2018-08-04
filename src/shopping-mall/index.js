@@ -47,13 +47,14 @@ class HomePage extends Component {
   }
 
   _renderItem = ({ item }) => (
-    <ShopItem avatar={item.avatar} 
-      price={item.price} 
-      shoppingName={item.shoppingName || []} 
+    <ShopItem 
+      avatar={item.avatar} 
       publisher={item.publisher} 
       imgList={item.imgList}
       point={item.point} 
-      location={item.location || ''} />
+      location={item.location || ''} 
+      desc={item.desc} 
+    />
   )
 
   _renderEmpty = () => {
@@ -100,7 +101,7 @@ class HomePage extends Component {
     const { refreshing, pageSize } = this.state;
     if(refreshing) return;
     this.setState({ refreshing: true });
-    await initDataList({ pageSize, pageNum: 0,  });
+    await initDataList({ pageSize, pageNum: 0 });
     this.setState({ refreshing: false, pageNum: 1 });
   }
 
