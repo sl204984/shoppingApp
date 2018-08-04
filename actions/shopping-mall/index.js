@@ -1,5 +1,5 @@
 import {
-  HOMEPAGE as types
+  SHOPPINGMALL as types
 } from '../../types';
 import * as webApi from './api';
 

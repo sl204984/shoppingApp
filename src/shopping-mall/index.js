@@ -16,18 +16,15 @@ class HomePage extends Component {
     loadingStatus: false,
     pageNum: 0,
     pageSize: 10,
-    curTabIndex: 0
   }
 
   componentDidMount() {
     this._initDataList();
-    const { loginInfo } = this.props;
-    
   }
 
   render() {
     const { data = [], navigation, end } = this.props;
-    const { refreshing, curTabIndex } = this.state;
+    const { refreshing } = this.state;
     return (
       <View style={styles.container}>
         <Header />
@@ -100,32 +97,30 @@ class HomePage extends Component {
 
   _initDataList = async () => {
     const { initDataList } = this.props;
-    const { refreshing, pageSize, curTabIndex } = this.state;
+    const { refreshing, pageSize } = this.state;
     if(refreshing) return;
     this.setState({ refreshing: true });
     await initDataList({ pageSize, pageNum: 0,  });
-    this.setState({ refreshing: false, pageNum: 1, type: curTabIndex });
+    this.setState({ refreshing: false, pageNum: 1 });
   }
 
   _addDataList = async () => {
     const { addDataList } = this.props;
-    const { loadingStatus, pageSize, pageNum, curTabIndex } = this.state;
+    const { loadingStatus, pageSize, pageNum } = this.state;
     if(loadingStatus) return;
     this.setState({ loadingStatus: true });
     await addDataList({ pageSize, pageNum });
-    this.setState({ loadingStatus: false, pageNum: pageNum + 1, type: curTabIndex });
+    this.setState({ loadingStatus: false, pageNum: pageNum + 1 });
   }
 }
 
 export default connect(
   (state) => ({
-    data: state.homePageReducer.data,
-    end: state.homePageReducer.end,
-    loginInfo: state.loginReducer.loginInfo
+    data: state.shoppingMallReducer.data,
+    end: state.shoppingMallReducer.end,
   }),
   dispatch => ({
     initDataList: params => dispatch(homePageActions.initDataList(params)),
     addDataList: params => dispatch(homePageActions.addDataList(params)),
-    fetchLoginInfo: () => dispatch(loginActions.initLoginInfo())
   })
 )(HomePage);

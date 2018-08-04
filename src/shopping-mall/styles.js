@@ -80,14 +80,13 @@ export const searchBoxStyles = StyleSheet.create({
 export const headerStyles = StyleSheet.create({
   headerBox: {
     width,
-    height: headerHeight - 1,
+    height: headerHeight,
     backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 1
   },
   headerText: {
     fontSize: 16,
     color: blackGray
   }
-})
+});
