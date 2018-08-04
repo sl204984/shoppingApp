@@ -1,8 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { textGrayColor, paddingTop, baseColor } from '../utils/common-styles';
+import { textGrayColor, paddingTop, white, lightGray, blackGray, baseColor } from '../utils/common-styles';
 
 const { width, height } = Dimensions.get('window');
 const searchBoxHeight = 56;
+const headerHeight = 40;
 
 export const indexStyles = StyleSheet.create({
   container: {
@@ -49,13 +50,13 @@ export const searchBoxStyles = StyleSheet.create({
   header: {
     width,
     height: searchBoxHeight,
-    backgroundColor: baseColor,
+    backgroundColor: white,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10
   },
   searchBacground: {
-    backgroundColor: 'white',
+    backgroundColor: lightGray,
     height: '100%',
     width: '100%',
     borderRadius: 3
@@ -75,3 +76,18 @@ export const searchBoxStyles = StyleSheet.create({
     color: textGrayColor
   }
 });
+
+export const headerStyles = StyleSheet.create({
+  headerBox: {
+    width,
+    height: headerHeight - 1,
+    backgroundColor: white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 1
+  },
+  headerText: {
+    fontSize: 16,
+    color: blackGray
+  }
+})
