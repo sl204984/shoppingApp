@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomePage from '../home-page';
-import ShoppingMall from '../category';
+import ShoppingMall from '../shopping-mall';
 import Publish from '../publish';
 import Messages from '../messages';
 import UserCenter from '../user-center';
