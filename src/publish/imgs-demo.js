@@ -6,25 +6,26 @@ import {
   ScrollView, 
   Image, 
   Dimensions,
-  TouchableOpacity,
-  Platform
+  TouchableOpacity
 } from 'react-native';
 
-import ImagePicker from "react-native-image-picker";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { lightGray, baseColor } from "../utils/common-styles";
 
-// 选择图片配置项
-const ImagePickerOpt = {
-  title: '选择图片',
-  cancelButtonTitle: '取消',
-  takePhotoButtonTitle: '拍照',
-  chooseFromLibraryButtonTitle: '从图库选择',
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
+// import SyanImagePicker from 'react-native-syan-image-picker';
+
+const options = {
+  imageCount: 9,          // 最大选择图片数目，默认6
+  isCamera: true,         // 是否允许用户在内部拍照，默认true
+  isCrop: false,          // 是否允许裁剪，默认false
+  CropW: ~~(width * 0.6), // 裁剪宽度，默认屏幕宽度60%
+  CropH: ~~(width * 0.6), // 裁剪高度，默认屏幕宽度60%
+  isGif: false,           // 是否允许选择GIF，默认false，暂无回调GIF数据
+  showCropCircle: false,  // 是否显示圆形裁剪区域，默认false
+  showCropFrame: true,    // 是否显示裁剪区域，默认true
+  showCropGrid: false,     // 是否隐藏裁剪区域网格，默认false
+  isRecordSelected: true   // 记录当前已选中的图片
 };
 
 export default class ImgsDemo extends Component {
@@ -40,7 +41,7 @@ export default class ImgsDemo extends Component {
       <View style={styles.scrowView} >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {
-            imgList.map((item, index) => <Image key={index} source={item} style={styles.img} />)
+            imgList.map((item, index) => <Image key={index} source={{ uri: item.uri }} style={styles.img} />)
           }
           <TouchableOpacity style={styles.addImg} onPress={this._selectImg} >
             <Icon name="md-add" size={36} color={baseColor} />
@@ -50,47 +51,18 @@ export default class ImgsDemo extends Component {
     )
   }
 
-  _selectImg = () => {
-    // showImagePicker ===> 弹出选择相机、相册框
-    // launchImageLibrary ===> 弹出相册
-    // ImagePicker.launchCamera 弹出相机
-    ImagePicker.showImagePicker(ImagePickerOpt, (response) => {
-      console.log('Response = ', response);
+  _selectImg = async () => {
+    const { changeImgs } = this.props;
     
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-
-        let source;
-
-        if (Platform.OS === 'android') {
-          source = {uri: response.uri, isStatic: true}
-        } else {
-          source = {uri: response.uri.replace('file://', ''), isStatic: true}
-        }
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-        this.setState({
-          avatarSource: source
-        });
-      }
-    });
-  }
-
-  _launchCamera = () => {
-    ImagePicker.launchCamera(ImagePickerOpt, (response)  => {
-      // Same code as in above section!
-      console.log('Response = ', response);
-    });
-  }
-
-  _launchImageLibrary = () => {
-    ImagePicker.launchImageLibrary(ImagePickerOpt, (response)  => {
-      // Same code as in above section!
-      console.log('Response = ', response);
-    });
+    // try {
+    //   const photos = await SyanImagePicker.asyncShowImagePicker(options);
+    //   console.log('photos', photos);
+    //   changeImgs(photos);
+    //   // 选择成功
+    // } catch (err) {
+    //   // 取消选择，err.message为"取消"
+    //   // changeImgs([]);
+    // }
   }
 }
 
