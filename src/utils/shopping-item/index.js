@@ -2,7 +2,7 @@
  * 商铺 @author sl204984
  * */ 
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { gray, colorhot, lightGray, baseColor } from '../common-styles';
 import CONFIG from '../config';
 const AvatarImg = require('../../local-imgs/lovely.jpeg');
@@ -11,8 +11,8 @@ const { width } = Dimensions.get('window');
 
 export default class ShoppingItem extends React.Component {
 
-  constructor(props) {
-    super(props);
+  state = {
+    dealTouchEvent: true
   }
 
   render() {
@@ -23,11 +23,15 @@ export default class ShoppingItem extends React.Component {
       price,
       imgList,
       shoppingName,
-      location
+      location,
+      onPress,
+      onLongPress
     } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
-      <View style={styles.itemContainer}>
+      <View 
+        style={styles.itemContainer}
+      >
 
         <View style={styles.headerBox}>
           <Image source={_avatar} style={styles.avator}></Image>
@@ -40,13 +44,17 @@ export default class ShoppingItem extends React.Component {
           </View>
         </View>
 
-        <ScrollView style={styles.scrollView} horizontal showsHorizontalScrollIndicator={false}>
-          {
-            imgList.map((item, index) => {
-              const imgSrc = CONFIG.IMG_HOST + item;
-              return <Image key={index} source={{uri: imgSrc}} style={styles.img} />
-            })
-          }
+        <ScrollView 
+          style={styles.scrollView} 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          onTouchMove={this._onTouchMove}
+          onTouchEnd={this._onTouchEnd}
+        >
+          {imgList.map((item, index) => {
+            const imgSrc = CONFIG.IMG_HOST + item;
+            return <Image key={index} source={{uri: imgSrc}} style={styles.img} />
+          })}
         </ScrollView>
 
         <View style={styles.shoppingName} >
@@ -63,6 +71,23 @@ export default class ShoppingItem extends React.Component {
         </View>
       </View>
     )
+  }
+
+  _onTouchMove = () => {
+    const { dealTouchEvent } = this.state;
+    dealTouchEvent && 
+      this.setState({ dealTouchEvent: false });
+  }
+
+  _onTouchEnd = () => {
+    const { dealTouchEvent } = this.state;
+    console.log('onTouchEnd');
+    if(dealTouchEvent) {
+      // todo 路由跳转
+      console.log('路由跳转');
+    } else {
+      this.setState({ dealTouchEvent: true })
+    }
   }
 }
 

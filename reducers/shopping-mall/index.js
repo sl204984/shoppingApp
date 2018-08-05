@@ -5,7 +5,7 @@ import {
 const initialState = {
   data: [{
     avatar: '',
-    key: 1,
+    key: '1',
     publisher: '大浪浪',
     desc: '一家什么都有的店铺',
     point: 100, // 信用值
@@ -13,7 +13,7 @@ const initialState = {
     location: '江苏南京雨花台区'
   }, {
     avatar: '',
-    key: 2,
+    key: '2',
     publisher: '大浪浪',
     desc: '该账户充钱了',
     point: 100, // 信用值
@@ -21,7 +21,7 @@ const initialState = {
     location: '江苏南京雨花台区'
   }, {
     avatar: '',
-    key: 3,
+    key: '3',
     publisher: '大浪浪',
     desc: '一家什么也没有的店铺',
     point: 100, // 信用值
@@ -29,7 +29,7 @@ const initialState = {
     location: '江苏南京雨花台区'
   }, {
     avatar: '',
-    key: 4,
+    key: '4',
     publisher: '大浪浪',
     desc: '该账户是vip玩家',
     point: 100, // 信用值

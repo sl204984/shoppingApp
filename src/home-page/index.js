@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShoppingItem from '../utils/shopping-item';
@@ -58,7 +58,10 @@ class HomePage extends Component {
       publisher={item.publisher} 
       imgList={item.imgList}
       point={item.point} 
-      location={item.location || ''} />
+      location={item.location || ''} 
+      onPress={() => {console.log(123)}}
+      onLongPress={() => {console.log(1234)}}
+    />
   )
 
   _renderEmpty = () => {
