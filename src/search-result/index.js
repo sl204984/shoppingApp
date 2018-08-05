@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
-import ShoppingItem from '../utils/shopping-item';
+import ShoppingItem from '../utils/goods-item';
 import { searchResActions } from '../../actions';
 import SearchBox from './search-box';
 import ClassifyList from './classify-list';
