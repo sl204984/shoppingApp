@@ -29,6 +29,7 @@ import Chat from './chat'; // 聊天
 import SignIn from './sign-in'; // 签到
 import SearchInput from './search-input'; // 搜索界面
 import SearchResult from './search-result'; // 搜索结果列表
+import GoodsDetail from './goods-detail'; // 商品详情
 
 import storeProvider from '../store';
 const store = storeProvider();
@@ -150,6 +151,12 @@ const Navigations = createStackNavigator({
     navigationOptions: {
       header: null
     }
+  },
+  GoodsDetail: {
+    screen: GoodsDetail,
+    navigationOptions: Object.assign(navigationOpt.toJS(), {
+      headerTitle: '商品详情'
+    })
   }
 }, {
   initialRouteName: 'BottomNav',

@@ -23,9 +23,7 @@ export default class ShoppingItem extends React.Component {
       price,
       imgList,
       shoppingName,
-      location,
-      onPress,
-      onLongPress
+      location
     } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
@@ -83,9 +81,9 @@ export default class ShoppingItem extends React.Component {
     const { dealTouchEvent } = this.state;
     if(dealTouchEvent) {
       // todo 路由跳转
-      console.log('路由跳转');
+      typeof this.props.onPress === 'function' 
+        && this.props.onPress();
     } else {
-      console.log('onTouchEnd');
       this.setState({ dealTouchEvent: true })
     }
   }

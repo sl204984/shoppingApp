@@ -19,13 +19,13 @@ class HomePage extends Component {
 
   componentDidMount() {
     this._initDataList();
-    const { loginInfo } = this.props;
     
   }
 
   render() {
     const { data = [], navigation, end } = this.props;
     const { refreshing, curTabIndex } = this.state;
+
     return (
       <View style={styles.container}>
         <SearchBox navigation={navigation} />
@@ -59,7 +59,7 @@ class HomePage extends Component {
       imgList={item.imgList}
       point={item.point} 
       location={item.location || ''} 
-      onPress={() => {console.log(123)}}
+      onPress={this._navigateToDetail}
       onLongPress={() => {console.log(1234)}}
     />
   )
@@ -119,6 +119,11 @@ class HomePage extends Component {
     this.setState({ loadingStatus: true });
     await addDataList({ pageSize, pageNum });
     this.setState({ loadingStatus: false, pageNum: pageNum + 1, type: curTabIndex });
+  }
+
+  _navigateToDetail = () => {
+    const { navigation } = this.props;
+    navigation.navigate('GoodsDetail');
   }
 }
 
