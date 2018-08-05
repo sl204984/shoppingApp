@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { textGrayColor, paddingTop, lightGray, baseColor, blackGray, gray, white } from '../utils/common-styles';
+import { textGrayColor, paddingTop, lightGray, baseColor, blackGray, white } from '../utils/common-styles';
 
 const { width, height } = Dimensions.get('window');
 const classifyListHeight = 40;

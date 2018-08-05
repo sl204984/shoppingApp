@@ -9,7 +9,7 @@ const AvatarImg = require('../../local-imgs/lovely.jpeg');
 
 const { width } = Dimensions.get('window');
 
-export default class ShoppingItem extends React.Component {
+export default class GoodsItem extends React.Component {
 
   state = {
     dealTouchEvent: true

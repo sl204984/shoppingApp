@@ -33,6 +33,9 @@ export const littleFont = 12;
 // padding
 export const paddingTop = Platform.OS === 'android' ? 0 : 22;
 
+// height
+export const footerHeight = 48;
+
 // styles
 export const container = fromJS({
   flex: 1,
