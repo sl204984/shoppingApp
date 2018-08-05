@@ -8,6 +8,7 @@ const ImageLovely = require('../local-imgs/lovely.jpeg');
 
 export default class GoodsDetail extends Component {
   render() {
+    const { navigation } = this.props;
     const imgSrc = CONFIG.IMG_HOST + 'static/shopping/pen.jpeg';
     console.log('imgSrc', imgSrc);
     return (
@@ -15,7 +16,9 @@ export default class GoodsDetail extends Component {
         <ScrollView>
           
         </ScrollView>
-        <Footer />
+        <Footer 
+          navigation={navigation} 
+        />
       </View>
     )
   }
