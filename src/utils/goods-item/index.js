@@ -79,12 +79,12 @@ export default class ShoppingItem extends React.Component {
 
   _onTouchEnd = () => {
     const { dealTouchEvent } = this.state;
-    if(dealTouchEvent) {
+    if(!dealTouchEvent) {
+      this.setState({ dealTouchEvent: true });
+    } else {
       // todo 路由跳转
       typeof this.props.onPress === 'function' 
         && this.props.onPress();
-    } else {
-      this.setState({ dealTouchEvent: true })
     }
   }
 }
