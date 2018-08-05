@@ -81,11 +81,11 @@ export default class ShoppingItem extends React.Component {
 
   _onTouchEnd = () => {
     const { dealTouchEvent } = this.state;
-    console.log('onTouchEnd');
     if(dealTouchEvent) {
       // todo 路由跳转
       console.log('路由跳转');
     } else {
+      console.log('onTouchEnd');
       this.setState({ dealTouchEvent: true })
     }
   }
