@@ -8,8 +8,9 @@ import CONFIG from '../config';
 const AvatarImg = require('../../local-imgs/lovely.jpeg');
 
 const { width } = Dimensions.get('window');
+const imgCounts = 4;
 
-export default class ShoppingItem extends React.Component {
+export default class ShopItem extends React.Component {
 
   render() {
     const { 
@@ -56,9 +57,9 @@ export default class ShoppingItem extends React.Component {
   }
 }
 
-const outerWidth = width - 20;
+const outerMargin = 10;
+const outerWidth = width - outerMargin * 2;
 const outerPadding = 10;
-const imgCounts = 4;
 const imgInterval = 10;
 const imgBoxPadding = 5;
 const imgWidth = ~~(( outerWidth - outerPadding * 2 - imgCounts * imgInterval ) / imgCounts);
@@ -66,6 +67,8 @@ const imgWidth = ~~(( outerWidth - outerPadding * 2 - imgCounts * imgInterval ) 
 const styles = StyleSheet.create({
   itemContainer: {
     width: outerWidth,
+    marginLeft: outerMargin,
+    marginRight: outerMargin,
     marginBottom: 20,
     backgroundColor: 'white',
     paddingTop: outerPadding,

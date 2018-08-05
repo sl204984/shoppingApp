@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { textGrayColor, paddingTop, lightGray, baseColor, blackGray } from '../utils/common-styles';
+import { textGrayColor, paddingTop, lightGray, baseColor, blackGray, gray, white } from '../utils/common-styles';
 
 const { width, height } = Dimensions.get('window');
 const classifyListHeight = 40;
@@ -80,13 +80,14 @@ export const searchBoxStyles = StyleSheet.create({
   header: {
     width,
     height: searchBoxHeight,
-    backgroundColor: baseColor,
+    backgroundColor: white,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10
+    padding: 10,
+    marginBottom: 1
   },
   searchBacground: {
-    backgroundColor: 'white',
+    backgroundColor: lightGray,
     height: '100%',
     width: '100%',
     borderRadius: 3

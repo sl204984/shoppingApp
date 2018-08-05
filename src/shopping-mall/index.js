@@ -3,10 +3,10 @@ import { View, FlatList, ActivityIndicator, Text, Image } from 'react-native';
 import { connect } from 'react-redux'; // 引入connect函数
 
 import ShopItem from '../utils/shop-item';
-import Header from './header';
+// import Header from './header';
 import SearchBox from './search-box';
 
-import { homePageActions, loginActions } from '../../actions';
+import { homePageActions } from '../../actions';
 
 import { indexStyles as styles } from './styles';
 
@@ -27,7 +27,6 @@ class HomePage extends Component {
     const { refreshing } = this.state;
     return (
       <View style={styles.container}>
-        <Header />
 
         <SearchBox navigation={navigation} />
         
