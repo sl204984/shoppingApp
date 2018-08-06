@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { 
+  StyleSheet, 
+  View, 
+  Text, 
+  Dimensions, 
+  TouchableOpacity, 
+  Platform, 
+  BackHandler 
+} from 'react-native';
 import { white, lightGray, gray } from '../common-styles';
 import BaseModal from './modal-base';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default class Popup extends Component {
+  
+  componentDidMount() {
+    const { onCancel } = this.props;
+    if(Platform.OS === 'android') {
+      BackHandler.addEventListener('hardwareBackPress', () => {
+        onCancel();
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    const { onCancel } = this.props;
+    if(Platform.OS === 'android') {
+      BackHandler.removeEventListener('hardwareBackPress', () => {
+        onCancel();
+      });
+    }
+  }
+
   render() {
     const { visible, children, onCancel, title } = this.props;
     return (
@@ -27,6 +54,7 @@ export default class Popup extends Component {
       </BaseModal>
     )
   }
+
 }
 
 const styles = StyleSheet.create({
