@@ -6,8 +6,9 @@ import { UploadFile } from '../../src/utils/fetch';
  */
 export const uploadImages = body => {
   return UploadFile({
-    url: 'upload/files',
+    url: 'upload/shopping',
     body,
-    multi: true
+    multi: true,
+    name: 'shopping'
   })
 };

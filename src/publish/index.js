@@ -19,7 +19,7 @@ import ImgsDemo from './imgs-demo';
 import Price from './price';
 import Count from './count';
 import Store from './store';
-import Classification from './ classification';
+import Classification from './classification';
 import Location from './location';
 
 import { uploadImages } from './api';
@@ -98,20 +98,25 @@ export default class PublishDemo extends Component {
         <Location />
 
         <TouchableOpacity style={styles.loginBox} onPress={ async () => {
-          if(imgList.length === 0) {
+          if (imgList.length === 0) {
             Toast.show('请选择商品图片~', {
               position: Toast.positions.CENTER
             });
             return;
-          } else if(imgList.length > maxFiles) {
+          } else if (imgList.length > maxFiles) {
             Toast.show(`最多可上传${maxFiles}张图片`, {
               position: Toast.positions.CENTER
             });
             return;
           }
-          const files = imgList.map(item => item.path);
+          const files = imgList.map((item, index) => {
+            const imgType = item.mime && item.mime.split('/')[1];
+            return {
+              path: item.path,
+              filename: 'sl204984_' + index + '.' + (imgType || 'jpeg') // 命名规则：订单号 + 索引 + 文件类型
+            }
+          });
           const res = await uploadImages({ files });
-          console.log('res', res);
         }}>
           <Text style={styles.loginText}>确定发布</Text>
         </TouchableOpacity>

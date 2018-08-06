@@ -77,7 +77,8 @@ export const FetchRequest = async function({
 export const UploadFile = async function ({
   url, 
   body = {},
-  multi = false
+  multi = false,
+  name = 'files'
 }) {
   let formData = new FormData();
   for (let key in body) {
@@ -85,11 +86,11 @@ export const UploadFile = async function ({
   }
   if(multi) {
     // 多文件上传
-    for(let uri of body.files) {
+    for(let item of body.files) {
       let file = {
-        uri: uri,
+        uri: item.path,
         type: 'multipart/form-data',
-        name: 'image.jpg'
+        name: item.filename
       };
       formData.append("files", file);
     }
@@ -98,7 +99,7 @@ export const UploadFile = async function ({
     let file = {
       uri: body.path,
       type: 'multipart/form-data',
-      name: 'files'
+      name: name
     };
     formData.append("file", file);
   }
