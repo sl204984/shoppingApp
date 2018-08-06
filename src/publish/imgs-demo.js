@@ -24,12 +24,12 @@ export default class ImgsDemo extends Component {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {imgList.map((item, index) => (
             <View style={styles.imgBox} key={index}>
+              <Image source={{ uri: item.path }} style={styles.img} />
               <TouchableOpacity style={styles.delImg} onPress={() => {
                 this._delImage(index);
               }}>
                 <Icon name="md-close" size={delImgWidth - 2} color={white} />
               </TouchableOpacity>
-              <Image source={{ uri: item.path }} style={styles.img} />
             </View>
           ))}
           <TouchableOpacity style={styles.addImg} onPress={this._selectImage} >
