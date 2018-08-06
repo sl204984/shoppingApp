@@ -39,13 +39,13 @@ export default class ImgsDemo extends Component {
       <View style={styles.scrowView} >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {imgList.map((item, index) => (
-            <View style={styles.imgBox}>
+            <View style={styles.imgBox} key={index}>
               <TouchableOpacity style={styles.delImg} onPress={() => {
                 this._delImage(index);
               }}>
                 <Icon name="md-close" size={delImgWidth - 2} color={white} />
               </TouchableOpacity>
-              <Image key={index} source={{ uri: item.path }} style={styles.img} />
+              <Image source={{ uri: item.path }} style={styles.img} />
             </View>
           ))}
           <TouchableOpacity style={styles.addImg} onPress={this._selectImage} >
