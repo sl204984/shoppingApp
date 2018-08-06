@@ -22,6 +22,8 @@ import Store from './store';
 import Classification from './ classification';
 import Location from './location';
 
+const maxFiles = 5;
+
 export default class PublishDemo extends Component {
   state = {
     shoppingName: '',
@@ -63,7 +65,11 @@ export default class PublishDemo extends Component {
             this.setState({ desc: val });
           }} />
 
-        <ImgsDemo imgList={imgList} changeImgs={imgList => this.setState({ imgList })} />
+        <ImgsDemo 
+          imgList={imgList} 
+          changeImgs={imgList => this.setState({ imgList })} 
+          maxFiles={maxFiles}
+        />
 
         <Price 
           price={price} 

@@ -6,12 +6,13 @@ import {
   ScrollView, 
   Image, 
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
-
+import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { lightGray, baseColor } from "../utils/common-styles";
+import { lightGray, baseColor, white } from "../utils/common-styles";
 
 // import SyanImagePicker from 'react-native-syan-image-picker';
 
@@ -29,9 +30,6 @@ const options = {
 };
 
 export default class ImgsDemo extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {
@@ -40,10 +38,17 @@ export default class ImgsDemo extends Component {
     return (
       <View style={styles.scrowView} >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {
-            imgList.map((item, index) => <Image key={index} source={{ uri: item.uri }} style={styles.img} />)
-          }
-          <TouchableOpacity style={styles.addImg} onPress={this._selectImg} >
+          {imgList.map((item, index) => (
+            <View style={styles.imgBox}>
+              <TouchableOpacity style={styles.delImg} onPress={() => {
+                this._delImage(index);
+              }}>
+                <Icon name="md-close" size={delImgWidth - 2} color={white} />
+              </TouchableOpacity>
+              <Image key={index} source={{ uri: item.path }} style={styles.img} />
+            </View>
+          ))}
+          <TouchableOpacity style={styles.addImg} onPress={this._selectImage} >
             <Icon name="md-add" size={36} color={baseColor} />
           </TouchableOpacity>
         </ScrollView>
@@ -51,18 +56,22 @@ export default class ImgsDemo extends Component {
     )
   }
 
-  _selectImg = async () => {
-    const { changeImgs } = this.props;
-    
-    // try {
-    //   const photos = await SyanImagePicker.asyncShowImagePicker(options);
-    //   console.log('photos', photos);
-    //   changeImgs(photos);
-    //   // 选择成功
-    // } catch (err) {
-    //   // 取消选择，err.message为"取消"
-    //   // changeImgs([]);
-    // }
+  _selectImage = () => {
+    const { changeImgs, maxFiles } = this.props;
+    ImagePicker.openPicker({
+      multiple: true,
+      mediaType: 'photo',
+      minFiles: 1,
+      maxFiles: maxFiles
+    }).then(images => {
+      changeImgs(images);
+    });
+  }
+
+  _delImage = index => {
+    const { imgList = [], changeImgs } = this.props;
+    imgList.splice(index, 1);
+    changeImgs(imgList);
   }
 }
 
@@ -70,6 +79,7 @@ const { width } = Dimensions.get('window');
 
 const imgWidth = 60;
 const imgMargin = 5;
+const delImgWidth = 20;
 
 const styles = StyleSheet.create({
  
@@ -77,10 +87,25 @@ const styles = StyleSheet.create({
     width: width,
     height: imgWidth + imgMargin * 2
   },
+  imgBox: {
+    position: 'relative'
+  },
   img: {
     width: imgWidth,
     height: imgWidth,
     margin: imgMargin
+  },
+  delImg: {
+    width: delImgWidth,
+    height: delImgWidth,
+    borderRadius: delImgWidth / 2,
+    backgroundColor: baseColor,
+    position: 'absolute',
+    zIndex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: white
   },
   addImg: {
     width: imgWidth,
