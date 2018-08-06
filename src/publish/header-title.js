@@ -10,7 +10,7 @@ export default class HeaderTitle extends Component {
         <TextInput
           onChangeText={text => changeValue(text)}
           value={value}
-          maxLength={10}
+          maxLength={15}
           underlineColorAndroid="transparent"
           style={styles.input}
           placeholder="标题，不超过10个字"/>

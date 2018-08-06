@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
 import { 
   View, 
   StyleSheet, 
   Text, 
   TouchableOpacity
 } from 'react-native';
+import Toast from 'react-native-root-toast';
 
 import { 
   container, 
@@ -21,6 +21,8 @@ import Count from './count';
 import Store from './store';
 import Classification from './ classification';
 import Location from './location';
+
+import { uploadImages } from './api';
 
 const maxFiles = 5;
 
@@ -95,7 +97,21 @@ export default class PublishDemo extends Component {
         />
         <Location />
 
-        <TouchableOpacity style={styles.loginBox} onPress={() => {
+        <TouchableOpacity style={styles.loginBox} onPress={ async () => {
+          if(imgList.length === 0) {
+            Toast.show('请选择商品图片~', {
+              position: Toast.positions.CENTER
+            });
+            return;
+          } else if(imgList.length > maxFiles) {
+            Toast.show(`最多可上传${maxFiles}张图片`, {
+              position: Toast.positions.CENTER
+            });
+            return;
+          }
+          const files = imgList.map(item => item.path);
+          const res = await uploadImages({ files });
+          console.log('res', res);
         }}>
           <Text style={styles.loginText}>确定发布</Text>
         </TouchableOpacity>

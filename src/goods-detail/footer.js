@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Toast from 'react-native-root-toast';
-import { darkGray, footerHeight, white, paddingTop, colorhot } from '../utils/common-styles';
+import { darkGray, footerHeight, white, colorhot } from '../utils/common-styles';
 
 const { width } = Dimensions.get('window');
 const IconSize = 18;

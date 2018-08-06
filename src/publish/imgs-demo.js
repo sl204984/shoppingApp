@@ -6,28 +6,12 @@ import {
   ScrollView, 
   Image, 
   Dimensions,
-  TouchableOpacity,
-  Platform
+  TouchableOpacity
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { lightGray, baseColor, white } from "../utils/common-styles";
-
-// import SyanImagePicker from 'react-native-syan-image-picker';
-
-const options = {
-  imageCount: 9,          // 最大选择图片数目，默认6
-  isCamera: true,         // 是否允许用户在内部拍照，默认true
-  isCrop: false,          // 是否允许裁剪，默认false
-  CropW: ~~(width * 0.6), // 裁剪宽度，默认屏幕宽度60%
-  CropH: ~~(width * 0.6), // 裁剪高度，默认屏幕宽度60%
-  isGif: false,           // 是否允许选择GIF，默认false，暂无回调GIF数据
-  showCropCircle: false,  // 是否显示圆形裁剪区域，默认false
-  showCropFrame: true,    // 是否显示裁剪区域，默认true
-  showCropGrid: false,     // 是否隐藏裁剪区域网格，默认false
-  isRecordSelected: true   // 记录当前已选中的图片
-};
 
 export default class ImgsDemo extends Component {
 
@@ -82,7 +66,6 @@ const imgMargin = 5;
 const delImgWidth = 20;
 
 const styles = StyleSheet.create({
- 
   scrowView: {
     width: width,
     height: imgWidth + imgMargin * 2
@@ -116,6 +99,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-
+  }
 });

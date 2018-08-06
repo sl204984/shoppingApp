@@ -13,7 +13,7 @@ export default class Detail extends Component {
           defaultValue=""
           multiline={true}
           underlineColorAndroid="transparent"
-          maxLength={100}
+          maxLength={200}
           style={styles.input}
           placeholder="请写下宝贝的故事吧~"/>
       </View>
