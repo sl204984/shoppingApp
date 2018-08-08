@@ -22,6 +22,7 @@ import Count from './count';
 import Store from './store';
 import Classification from './classification';
 import Location from './location';
+import LocationDetail from './location-detail';
 
 import { uploadImages } from './api';
 
@@ -39,6 +40,7 @@ export default class PublishDemo extends Component {
     desc: '',
     imgList: [],
     location: '',
+    locationDetail: '',
     type: 0
   }
 
@@ -51,7 +53,8 @@ export default class PublishDemo extends Component {
       shipFee,
       count,
       store,
-      type
+      type,
+      locationDetail
     } = this.state;
     return (
       <ScrollView>
@@ -98,6 +101,10 @@ export default class PublishDemo extends Component {
             changeStore={({ store }) => this.setState({ store })}
           />
           <Location />
+
+          <LocationDetail 
+            value={locationDetail} 
+            changeValue={val => this.setState({ locationDetail: val })} />
 
           <TouchableOpacity style={styles.loginBox} onPress={ async () => {
             if (imgList.length === 0) {

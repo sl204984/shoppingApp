@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import { View, TextInput, StyleSheet, Dimensions } from 'react-native';
+2
 const { width } = Dimensions.get('window');
-
-export default class HeaderTitle extends Component {
+export default class LocationDetail extends Component {
   render() {
     const { value, changeValue } = this.props;
     return (
-      <View style={styles.headerTitle}>
+      <View style={styles.container}>
         <TextInput
           onChangeText={text => changeValue(text)}
           value={value}
-          maxLength={20}
+          maxLength={50}
+          multiline
           underlineColorAndroid="transparent"
-          placeholder="标题，不超过20个字"/>
+          placeholder="请输入详细街道地址，不超过50个字"/>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  headerTitle: {
+  container: {
+    paddingLeft: 20,
+    paddingRight: 20,
     width: width,
     height: 40,
     justifyContent: 'center'
