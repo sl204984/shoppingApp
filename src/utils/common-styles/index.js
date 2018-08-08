@@ -6,6 +6,7 @@ export const red = '#ff0000';
 export const yellow = '#ffff00';
 export const orange = '#FFA500';
 export const colorhot = red;
+export const colorLigthHot = '#ff3300';
 export const colorGold = yellow;
 export const colorOrange = orange;
 export const lightGray = '#ebebeb'; 
