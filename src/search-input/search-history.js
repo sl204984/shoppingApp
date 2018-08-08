@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   },
   line: {
     flex: 1,
-    width: 50,
     margin: 15,
     borderBottomWidth: 1,
     borderBottomColor: lightGray

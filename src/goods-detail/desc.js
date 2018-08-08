@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { white } from '../utils/common-styles';
+import { white, blackGray } from '../utils/common-styles';
 
 const { width } = Dimensions.get('window');
 
@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     alignSelf: 'center',
-    fontSize: 18
+    fontSize: 18,
+    color: blackGray
   },
   desc: {
-    fontSize: 14
+    fontSize: 14,
+    color: blackGray
   }
 });
