@@ -3,8 +3,9 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import Footer from './footer';
 import CONFIG from '../utils/config';
 import ImageSwiper from './swiper';
+import PublishInfo from './publish-info';
 import Price from './price';
-
+import Desc from './desc';
 export default class GoodsDetail extends Component {
   render() {
     const { navigation } = this.props;
@@ -15,7 +16,17 @@ export default class GoodsDetail extends Component {
           <ImageSwiper 
             imgList={[imgSrc, imgSrc, imgSrc, imgSrc, imgSrc, imgSrc]}
           />
-          <Price price={28} shipFee={0} />
+          <PublishInfo 
+            publisher={'sl204984'} 
+            avatar={'static/avatar/lovely.jpeg'}
+            location={'江苏南京'}
+            point={100}
+          />
+          <Price price={28} shipFee={3} />
+          <Desc 
+            shoppingName={'学习用品学习用品学习用品学习用品学习用品'}
+            desc={'学习用的感觉到咖喱圣诞节阿里gas来的高科技啊路过看见了斯柯达跟进啊独孤伽罗大公鸡爱丽丝开关机拉科技'}
+          />
         </ScrollView>
         <Footer 
           navigation={navigation} 

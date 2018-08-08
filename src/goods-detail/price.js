@@ -25,7 +25,9 @@ export default class Price extends Component {
 const styles = StyleSheet.create({
   container: {
     width,
-    padding: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
     backgroundColor: white
   },
   priceBox: {
