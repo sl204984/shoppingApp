@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, TouchableWithoutFeedback, Text, Animated, StyleSheet, Easing } from 'react-native';
-import { baseColor } from '../common-styles';
+import { baseColor, lightGray, black } from '../common-styles';
 const AnimatedView = Animated.View;
 
 export default class InputText extends Component {
@@ -16,7 +16,7 @@ export default class InputText extends Component {
   }
 
   render() {
-    const { value, focused, setFocus, name } = this.props;
+    const { value, focused, setFocus, name, isPrice = false } = this.props;
     const { blinkAnim } = this.state;
     const isFocused = focused === name;
     isFocused ? this.startAnimate() : this.stopAnimate();
@@ -25,10 +25,21 @@ export default class InputText extends Component {
         typeof setFocus === 'function' && setFocus(name);
       }}>
         <View style={styles.container}>
-          <Text>{ value }</Text>
+          {isPrice ? 
+            <Text style={ value ? styles.input : styles.emptyInput }> ￥ </Text> : 
+            null
+          }
+          {value ? 
+            <Text>{ value }</Text> : 
+            null
+          }
           {isFocused ? (
             <AnimatedView style={[styles.inputCursor, { opacity: blinkAnim }]} />
           ) : null}
+          {!value ? 
+            <Text style={styles.emptyInput}>{ isPrice ? '0.00' : '0' }</Text> : 
+            null
+          }
         </View>
       </TouchableWithoutFeedback>
     )
@@ -73,5 +84,11 @@ const styles = StyleSheet.create({
     width: 2, 
     height: inputH, 
     backgroundColor: baseColor
+  },
+  input: {
+    color: black
+  },
+  emptyInput: {
+    color: lightGray
   }
 });

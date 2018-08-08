@@ -50,6 +50,7 @@ export default class Price extends Component {
                 </View>
                 <InputText
                   name="price"
+                  isPrice
                   focused={focusedInput}
                   value={priceInput}
                   setFocus={(focused) => {
@@ -63,6 +64,7 @@ export default class Price extends Component {
                 </View>
                 <InputText 
                   name="ship" 
+                  isPrice
                   focused={focusedInput} 
                   value={shipInput}
                   setFocus={(focused) => {
