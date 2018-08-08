@@ -19,6 +19,7 @@ export default class ImgSwiper extends Component {
           height={height} 
           showsButtons={false}
           autoplay={false}
+          loop={false}
           showsPagination={false}
           onIndexChanged={index => {
             this.setState({ curIndex: index });

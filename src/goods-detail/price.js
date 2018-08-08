@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
   },
   labelText: {
     color: white,
-    fontSize: 12
+    fontSize: 12,
+    lineHeight: 12
   },
   shipFeeText: {
     marginTop: 5,
