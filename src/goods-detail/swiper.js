@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { baseColor, modalOpacityColor, white } from '../utils/common-styles';
+import CONFIG from '../utils/config';
+import { modalOpacityColor, white } from '../utils/common-styles';
 const { width } = Dimensions.get('window');
 
 export default class ImgSwiper extends Component {
@@ -24,7 +25,7 @@ export default class ImgSwiper extends Component {
           }}
         >
           {imgList.map((item, index) => (
-            <Image source={{ uri: item }} key={index} style={styles.imageWrap} resizeMode="stretch" />
+            <Image source={{ uri: CONFIG.IMG_HOST + item }} key={index} style={styles.imageWrap} resizeMode="stretch" />
           ))}
         </Swiper>
         <View style={styles.pagination}>

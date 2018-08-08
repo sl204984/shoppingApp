@@ -59,8 +59,8 @@ class HomePage extends Component {
       imgList={item.imgList}
       point={item.point} 
       location={item.location || ''} 
-      onPress={this._navigateToDetail}
-      onLongPress={() => {console.log(1234)}}
+      onPress={() => { this._navigateToDetail(item); }}
+      onLongPress={() => {}}
     />
   )
 
@@ -121,9 +121,11 @@ class HomePage extends Component {
     this.setState({ loadingStatus: false, pageNum: pageNum + 1, type: curTabIndex });
   }
 
-  _navigateToDetail = () => {
+  _navigateToDetail = item => {
     const { navigation } = this.props;
-    navigation.navigate('GoodsDetail');
+    navigation.navigate('GoodsDetail', {
+      goodsDetail: item
+    });
   }
 }
 

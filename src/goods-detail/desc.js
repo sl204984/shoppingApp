@@ -11,9 +11,9 @@ export default class Desc extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.shoppingNameBox}>
-          <Text style={styles.shoppingName}>{shoppingName}</Text>
+          <Text style={styles.shoppingName}>{ shoppingName }</Text>
         </View>
-        <Text style={styles.desc}>{desc}</Text>
+        <Text style={styles.desc}>{ desc }</Text>
       </View>
     )
   }
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     width,
     paddingRight: 10,
-    paddingBottom: 10,
+    paddingBottom: 20,
     paddingLeft: 10,
     backgroundColor: white
   },
@@ -32,10 +32,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
     fontSize: 18,
-    color: blackGray
+    color: blackGray,
+    lineHeight: 25
   },
   desc: {
     fontSize: 14,
-    color: blackGray
+    color: blackGray,
+    lineHeight: 21
   }
 });

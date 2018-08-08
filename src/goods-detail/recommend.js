@@ -6,7 +6,7 @@ const { width } = Dimensions.get('window');
 
 export default class Recommend extends Component {
   render() {
-    const { recommendList, navigation } = this.props;
+    const { recommendList } = this.props;
     return (
       <View style={styles.container}>
 
@@ -126,13 +126,9 @@ export default class Recommend extends Component {
         imgSrc={item.imgList[0]}
         width={itemWidth}
         onPress={() => {
-          console.log('item')
           navigation.push('GoodsDetail', {
             goodsDetail: item
           });
-          // navigation.navigate('HomePage', {
-          //   goodsDetail: item 
-          // })
         }}
       />
     </View>
@@ -146,7 +142,8 @@ const itemWidth = ~~((width - padding * 3) / 2);
 const styles = StyleSheet.create({
   container: {
     width,
-    paddingLeft: padding
+    paddingLeft: padding,
+    marginBottom: 10
   },
   topLine: {
     width: '100%',
