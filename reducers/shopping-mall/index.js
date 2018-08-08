@@ -10,7 +10,8 @@ const initialState = {
     desc: '一家什么都有的店铺',
     point: 100, // 信用值
     imgList: ['static/shopping/pen.jpeg', 'static/shopping/lipstick.jpeg', 'static/shopping/fan.jpg'],
-    location: '江苏南京雨花台区'
+    location: '江苏南京雨花台区',
+    vipType: 0
   }, {
     avatar: '',
     key: '2',

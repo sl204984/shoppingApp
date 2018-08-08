@@ -5,6 +5,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { gray, darkGray, baseColor, lightGray } from '../common-styles';
 import CONFIG from '../config';
+
 const AvatarImg = require('../../local-imgs/lovely.jpeg');
 
 const { width } = Dimensions.get('window');
@@ -19,7 +20,8 @@ export default class ShopItem extends React.Component {
       point, 
       imgList,
       location,
-      desc
+      desc,
+      vipType
     } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
@@ -28,7 +30,9 @@ export default class ShopItem extends React.Component {
         <View style={styles.headerBox}>
           <Image source={_avatar} style={styles.avator}></Image>
           <View style={styles.nameBox}>
-            <Text style={styles.publisher}> { publisher } </Text>
+            <Text style={styles.publisher}> 
+              { publisher } 
+            </Text>
             <Text style={styles.point}>信用值：{ point } </Text>
           </View>
         </View>

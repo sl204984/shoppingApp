@@ -52,7 +52,8 @@ class HomePage extends Component {
       imgList={item.imgList}
       point={item.point} 
       location={item.location || ''} 
-      desc={item.desc} 
+      desc={item.desc}
+      vipType={item.vipType}
     />
   )
 
