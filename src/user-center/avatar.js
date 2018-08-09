@@ -33,7 +33,7 @@ export default class Avatar extends Component {
           <TouchableOpacity  onPress={this._selectImg} >
             <Image style={styles.avatarImg} source={_avatar}/>
           </TouchableOpacity>
-          <Text style={styles.avatarText}>王宝弱</Text>
+          <Text style={styles.avatarText}>大浪浪</Text>
         </View>
       </View>
     );

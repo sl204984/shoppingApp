@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CONFIG from '../utils/config';
 import { white, gray } from '../utils/common-styles';
@@ -31,14 +31,14 @@ export default class Header extends Component {
         </View>
         
         <View style={styles.bottomRow}>
-          <View style={styles.searchBox}>
+          <TouchableOpacity style={styles.btnBox}>
             <Icon name="search" style={styles.preIcon} size={16} />
             <Text style={styles.searchText}>店铺内搜索</Text>
-          </View>
+          </TouchableOpacity>
           
-          <View style={styles.searchBox}>
+          <TouchableOpacity style={styles.btnBox}>
             <Text style={styles.searchText}>赞该店铺</Text>
-          </View>
+          </TouchableOpacity>
 
         </View>
 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
-  searchBox: {
+  btnBox: {
     flex: 0,
     flexDirection: 'row',
     backgroundColor: gray,
