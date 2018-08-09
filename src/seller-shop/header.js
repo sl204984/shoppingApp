@@ -7,16 +7,20 @@ const AvatarImg = require('../local-imgs/lovely.jpeg');
 
 const { width } = Dimensions.get('window');
 
-
+// md-return-left arrow-left
 export default class Header extends Component {
   render() {
     const { owner, avatar, point, navigation } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
       <View style={styles.container}>
+
         <Text style={styles.back} onPress={() => {
           navigation.goBack();
-        }}>点此返回</Text>
+        }}>
+          <Icon name="angle-left" size={18} />
+          点此返回
+        </Text>
 
         <View style={styles.topRow}>
           <View>
@@ -47,7 +51,8 @@ const searchBoxHeight = 32;
 const styles = StyleSheet.create({
   back: {
     color: white,
-    marginBottom: 10
+    marginBottom: 10,
+    lineHeight: 20
   },
   container: {
     width,
