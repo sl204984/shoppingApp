@@ -21,11 +21,18 @@ export default class ShopItem extends React.Component {
       imgList,
       location,
       desc,
-      vipType
+      vipType,
+      onPress
     } = this.props;
     const _avatar = avatar ? { uri: CONFIG.IMG_HOST + avatar } : AvatarImg;
     return (
-      <View style={styles.itemContainer}>
+      <View 
+        style={styles.itemContainer} 
+        onStartShouldSetResponder={() => true}
+        onResponderRelease={() => {
+          typeof onPress === 'function' && onPress();
+        }}
+      >
 
         <View style={styles.headerBox}>
           <Image source={_avatar} style={styles.avator}></Image>

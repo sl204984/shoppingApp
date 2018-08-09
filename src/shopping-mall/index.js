@@ -54,6 +54,12 @@ class HomePage extends Component {
       location={item.location || ''} 
       desc={item.desc}
       vipType={item.vipType}
+      onPress={() => {
+        const { navigation } = this.props;
+        navigation.navigate('SellerShop', {
+          shopInfo: item
+        });
+      }}
     />
   )
 
