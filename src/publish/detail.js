@@ -5,16 +5,17 @@ const { width } = Dimensions.get('window');
 export default class Detail extends Component {
   render() {
     return (
-      <View style={styles.details}>
+      <View style={styles.container}>
         <TextInput
           onChangeText={text => {
             
           }}
+          style={styles.textInput}
           defaultValue=""
           multiline={true}
           underlineColorAndroid="transparent"
           maxLength={200}
-          style={styles.input}
+          style={styles.textInput}
           placeholder="请写下宝贝的故事吧~"/>
       </View>
     )
@@ -22,8 +23,14 @@ export default class Detail extends Component {
 }
 
 const styles = StyleSheet.create({
-  details: {
+  container: {
+    paddingLeft: 20,
+    paddingRight: 20,
     width: width,
-    marginBottom: 10
+    flexDirection: 'row',
+  },
+  textInput: {
+    padding: 0,
+    width: '100%'
   }
 });

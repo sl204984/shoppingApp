@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     backgroundColor: colorLigthHot,
     height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingLeft: 2,
     paddingRight: 2,
     borderRadius: 3,
   },
   labelText: {
     color: white,
-    fontSize: 12,
-    lineHeight: 12
+    fontSize: 12
   },
   shipFeeText: {
     marginTop: 5,

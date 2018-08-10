@@ -10,18 +10,27 @@ export default class HeaderTitle extends Component {
         <TextInput
           onChangeText={text => changeValue(text)}
           value={value}
+          style={styles.textInput}
           maxLength={20}
           underlineColorAndroid="transparent"
-          placeholder="标题，不超过20个字"/>
+          placeholder="标题，不超过20个字"
+        />
       </View>
     )
   }
 }
 
+const padding = 20;
 const styles = StyleSheet.create({
-  headerTitle: {
+  container: {
+    paddingLeft: padding,
+    paddingRight: padding,
     width: width,
     height: 40,
-    justifyContent: 'center'
+    flexDirection: 'row',
+  },
+  textInput: {
+    padding: 0,
+    width: width - padding * 2
   }
 });

@@ -15,14 +15,20 @@ export default class Header extends Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.back} onPress={() => {
-          navigation.goBack();
-        }}>
-          <Icon name="angle-left" size={18} />
-          点此返回
-        </Text>
-
         <View style={styles.topRow}>
+          <TouchableOpacity style={styles.textBoxBtn} onPress={() => {
+            navigation.goBack();
+          }}>
+            <Icon name="angle-left" size={18} style={styles.preIcon} />
+            <Text style={styles.textBtnText}>点此返回</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.textBoxBtn}>
+            <Text style={styles.textBtnText}>我要开店</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.sellerInfoBox}>
           <View>
             <Text style={styles.ownerText}>{ owner }的店铺</Text>
             <Text style={styles.pointText}>信用值：{ point }</Text>
@@ -33,11 +39,11 @@ export default class Header extends Component {
         <View style={styles.bottomRow}>
           <TouchableOpacity style={styles.btnBox}>
             <Icon name="search" style={styles.preIcon} size={16} />
-            <Text style={styles.searchText}>店铺内搜索</Text>
+            <Text style={styles.btnText}>店铺内搜索</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={styles.btnBox}>
-            <Text style={styles.searchText}>赞该店铺</Text>
+            <Text style={styles.btnText}>赞该店铺</Text>
           </TouchableOpacity>
 
         </View>
@@ -49,9 +55,19 @@ export default class Header extends Component {
 
 const searchBoxHeight = 32;
 const styles = StyleSheet.create({
-  back: {
-    color: white,
+  topRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
     marginBottom: 10,
+    justifyContent: 'space-between',
+  },
+  textBoxBtn: {
+    height: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  textBtnText: {
+    color: white,
     lineHeight: 20
   },
   container: {
@@ -59,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     padding: 10
   },
-  topRow: {
+  sellerInfoBox: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -100,7 +116,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     color: white
   },
-  searchText: {
+  btnText: {
     color: white,
     fontSize: 12
   },

@@ -7,8 +7,8 @@ if (__DEV__) {
   }
 } else {
   CONFIG = {
-    HOST: "http://sl204984.com/",
-    IMG_HOST: "http://sl204984.com/",
+    HOST: "http://47.99.72.101/",
+    IMG_HOST: "http://47.99.72.101/",
     HTTP_TIME_OUT: 5,
   }
 }

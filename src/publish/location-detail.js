@@ -11,6 +11,7 @@ export default class LocationDetail extends Component {
           onChangeText={text => changeValue(text)}
           value={value}
           maxLength={50}
+          style={styles.textInput}
           multiline
           underlineColorAndroid="transparent"
           placeholder="请输入详细街道地址，不超过50个字"/>
@@ -24,7 +25,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     width: width,
-    height: 40,
-    justifyContent: 'center'
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  textInput: {
+    padding: 0,
+    width: '100%'
   }
 });

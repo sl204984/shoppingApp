@@ -67,6 +67,8 @@ const delImgWidth = 20;
 
 const styles = StyleSheet.create({
   scrowView: {
+    paddingLeft: 10,
+    paddingRight: 10,
     width: width,
     height: imgWidth + imgMargin * 2
   },
