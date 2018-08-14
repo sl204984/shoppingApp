@@ -132,7 +132,6 @@ export default connect(
   (state) => ({
     data: state.homePageReducer.data,
     end: state.homePageReducer.end,
-    loginInfo: state.loginReducer.loginInfo
   }),
   dispatch => ({
     initDataList: params => dispatch(homePageActions.initDataList(params)),
