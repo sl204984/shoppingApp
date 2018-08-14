@@ -2,9 +2,9 @@ import fetchRequest from '../utils/fetch';
 
 class WebApi {
   fetchUserName = () => {
-    return fetchRequest({url: '/', method: 'POST', body: {
+    return fetchRequest({url: '/register', method: 'POST', body: {
       name: '比尔盖茨'
-    }})
+    }});
   }
 };
 

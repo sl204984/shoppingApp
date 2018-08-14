@@ -28,10 +28,10 @@ export default class Login extends Component {
   }
 
   render() {
-    const { showPwd } = this.state;
+    const { password, showPwd } = this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>有&nbsp;&nbsp;售</Text>
+        <Text style={styles.title}>U&nbsp;&nbsp;售</Text>
 
         <View style={styles.row}>
           <Text style={styles.label}>用户名</Text>
@@ -47,6 +47,7 @@ export default class Login extends Component {
         <View style={styles.row}>
           <Text style={styles.label}>密码</Text>
           <TextInput
+            value={password}
             onChangeText={text => this.setState({password: text})}
             underlineColorAndroid="transparent"
             maxLength={20}
@@ -55,7 +56,6 @@ export default class Login extends Component {
             style={styles.input}
             placeholder="请输入密码"/>
             <Icon 
-              style="icon"
               name={ showPwd ? 'eye-off' : 'eye' } 
               size={20} 
               onPress={() => this.setState({ showPwd: !showPwd })} />
