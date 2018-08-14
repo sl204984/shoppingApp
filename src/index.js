@@ -166,7 +166,7 @@ const Navigations = createStackNavigator({
     }
   }
 }, {
-  initialRouteName: 'Register',
+  initialRouteName: 'BottomNav',
   mode: 'card',
   headerMode: 'screen'
 });

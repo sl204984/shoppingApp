@@ -19,7 +19,6 @@ class HomePage extends Component {
 
   componentDidMount() {
     this._initDataList();
-    
   }
 
   render() {

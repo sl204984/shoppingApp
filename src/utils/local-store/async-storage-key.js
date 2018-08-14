@@ -7,11 +7,11 @@ const searchInputKey = {
 
 };
 
-const loginKey = {
-  loginInfo: 'loginInfo'
+const userInfoKey = {
+  userInfo: 'userInfo'
 }
 
 export default {
   ...searchInputKey,
-  ...loginKey,
+  ...userInfoKey,
 };
