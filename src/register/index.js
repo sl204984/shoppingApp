@@ -125,7 +125,6 @@ export default class Register extends Component {
       submissionDate
     });
 
-    console.log('{ res, err }', { res, err });
     if(!err) {
       
     } else {
