@@ -13,10 +13,9 @@ import {
   row
 } from '../utils/common-styles';
 import { StorageKeys, Storage } from '../utils/local-store';
+import Encryption from '../utils/encode';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import webApi from './webapi';
-
-
 const nicknameReg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
 const pwdReg = /^[0-9a-zA-Z._-]{1,}$/;
 export default class Login extends Component {
@@ -101,10 +100,9 @@ export default class Login extends Component {
     const submitDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     const { res, err } = await webApi.login({
       nickname,
-      password,
+      password: Encryption.Encode(password),
       submitDate
     });
-
 
     if(!err) {
       await Storage.save({

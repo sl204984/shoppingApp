@@ -5,6 +5,7 @@ import Toast from 'react-native-root-toast';
 import {
   darkGray, baseColor, submitTextColor, littleFont, loginContainer, longConfirmBtn, row
 } from '../utils/common-styles';
+import Encryption from '../utils/encode';
 import webApi from './webapi';
 
 const nicknameReg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
@@ -120,7 +121,7 @@ export default class Register extends Component {
     
     const { err } = await webApi.register({
       nickname,
-      password,
+      password: Encryption.Encode(password),
       mobile,
       submissionDate
     });
