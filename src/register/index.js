@@ -126,7 +126,7 @@ export default class Register extends Component {
     });
 
     if(!err) {
-      
+      this.props.navigation.navigate('Login');
     } else {
       Toast.show(err, {
         position: Toast.positions.CENTER
