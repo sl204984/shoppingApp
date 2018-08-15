@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, TextInput, StyleSheet, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
+import Toast from 'react-native-root-toast';
 import {
   titleColor, 
   fontBold, 
@@ -11,20 +12,21 @@ import {
   longConfirmBtn, 
   row
 } from '../utils/common-styles';
+import { StorageKeys, Storage } from '../utils/local-store';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import webApi from './webapi';
 
 
+const nicknameReg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+const pwdReg = /^[0-9a-zA-Z]{1,}$/;
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      nickname: '',
       password: '',
       showPwd: false
     }
-  }
-
-  componentDidMount() {
   }
 
   render() {
@@ -36,9 +38,9 @@ export default class Login extends Component {
         <View style={styles.row}>
           <Text style={styles.label}>用户名</Text>
           <TextInput
-            onChangeText={text => this.setState({userName: text})}
+            onChangeText={text => this.setState({nickname: text})}
             underlineColorAndroid="transparent"
-            defaultValue={this.state.userName}
+            defaultValue={this.state.nickname}
             maxLength={16}
             style={styles.input}
             placeholder="请输入用户名"/>
@@ -62,7 +64,7 @@ export default class Login extends Component {
         </View>
 
         <TouchableOpacity style={styles.loginBox} onPress={() => {
-          this.login();
+          this._login();
         }}>
           <Text style={styles.loginText}>登录</Text>
         </TouchableOpacity>
@@ -80,21 +82,43 @@ export default class Login extends Component {
     );
   }
 
-  login() {
-    const {userName, password} = this.state;
-    // if(userName === '王小明' && password === '123456') {
+  _login = async () => {
+    const {nickname, password} = this.state;
+      
+    if(!nicknameReg.test(nickname)) {
+      Toast.show('请输入正确格式的昵称~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(!pwdReg.test(password)) {
+      Toast.show('请输入正确格式的密码~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    const now = new Date();
+    const submitDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+    const { res, err } = await webApi.login({
+      nickname,
+      password,
+      submitDate
+    });
+
+
+    if(!err) {
+      await Storage.save({
+        key: StorageKeys.userInfo,
+        data: res || {},
+      });
       this.props.navigation.navigate('BottomNav');
-    // }
+    } else {
+      Toast.show(err, {
+        position: Toast.positions.CENTER
+      });
+    }
   }
 
-  register() {
-    Alert.alert('注册账号', '选择注册方案', [
-      {text:"方案一", onPress: () => {}},
-      {text:"方案二", onPress: () => {}},
-      {text:"方案三", onPress: () => {}},
-      {text:"方案四", onPress: () => {}}
-    ]);
-  }
 }
 
 const styles = StyleSheet.create({

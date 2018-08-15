@@ -1,11 +1,13 @@
-import fetchRequest from '../utils/fetch';
+import { FetchRequest } from '../utils/fetch';
 
-class WebApi {
-  fetchUserName = () => {
-    return fetchRequest({url: '/register', method: 'POST', body: {
-      name: '比尔盖茨'
-    }});
-  }
-};
+const login = body => {
+  return FetchRequest({
+    url: 'login', 
+    method: 'POST', 
+    body
+  });
+}
 
-export default new WebApi();
+export default {
+  login
+}
