@@ -99,13 +99,11 @@ export default class ForgetPwd extends Component {
       Alert.alert(
         '账号提示',
         `${mobile}绑定的用户名为：${res.nickname}，新的密码为：${password}`,
-        [
-          {
-            text: '确定', onPress: () => {
-              this.props.navigation.navigate('Login');
-            }
+        [{
+          text: '确定', onPress: () => {
+            this.props.navigation.navigate('Login');
           }
-        ],
+        }],
         { cancelable: false }
       );
       
