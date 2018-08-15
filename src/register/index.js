@@ -118,7 +118,7 @@ export default class Register extends Component {
     const now = new Date();
     const submissionDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     
-    const { res, err } = await webApi.register({
+    const { err } = await webApi.register({
       nickname,
       password,
       mobile,
