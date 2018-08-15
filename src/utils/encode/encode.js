@@ -1,5 +1,5 @@
 
-import createNum from './random';
+import createNum from './create-num';
 
 const Encode = function (data) {
   // 标志位长度 + 标志位 + 被加密的密码 + 时间

@@ -1,7 +1,7 @@
 /**
  * @author sl204984
 */
-import createNum from './random';
+import createNum from './create-num';
 // import Encode from './encode';
 import Decode from './decode';
 
