@@ -18,7 +18,7 @@ import webApi from './webapi';
 
 
 const nicknameReg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
-const pwdReg = /^[0-9a-zA-Z]{1,}$/;
+const pwdReg = /^[0-9a-zA-Z._-]{1,}$/;
 export default class Login extends Component {
   constructor(props) {
     super(props);
