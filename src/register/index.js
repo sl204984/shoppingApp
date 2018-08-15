@@ -121,7 +121,8 @@ export default class Register extends Component {
     
     const { err } = await webApi.register({
       nickname,
-      password: Encryption.Encode(password),
+      // password: Encryption.Encode(password),
+      password,
       mobile,
       submissionDate
     });

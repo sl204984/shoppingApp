@@ -1,7 +1,7 @@
 
-import Random from './random';
+import createNum from './random';
 
-export default function Encode(data) {
+const Encode = function (data) {
   // 标志位长度 + 标志位 + 被加密的密码 + 时间
   const _len = 3; // 每 _len 位加一下密
   const _encodeTimes = ~~(data.length / _len);
@@ -26,7 +26,7 @@ export default function Encode(data) {
   return _flagLen + _flag + _encodePwd + _now;
 }
 
-function _PartialEncode(data) {
+const _PartialEncode = function(data) {
   // 需要加密的字符串的最大长度为三位
   let _charCode = '';
   let _charCodeLen = '';
@@ -39,10 +39,12 @@ function _PartialEncode(data) {
   _charCodeLen = parseInt(_charCodeLen);
   _charCode = '' + _charCode.toString(36); // 加密后的密码
   _charCodeLen = '' + _charCodeLen.toString(36); // 长度字符串
-  const _random = Random(); // 随机数
+  const _random = createNum(); // 随机数
   const _flag = '' + _random.length.toString(36)
     + _charCodeLen.length.toString(36)
     + _charCode.length.toString(36)
     + (~~(Math.random() * 36)).toString(36); // 标志位
   return _flag + _random + _charCodeLen + _charCode;
 }
+
+export default Encode;

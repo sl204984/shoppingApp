@@ -1,4 +1,4 @@
-export default function Decode(data) {
+const Decode = function (data) {
   const _flagLen = parseInt(data[0], 36);
   const _flag = data.substr(1, _flagLen);
   const _charCode = data.substring(_flagLen + 1, data.length);
@@ -13,7 +13,7 @@ export default function Decode(data) {
   return _pwd;
 }
 
-function _PartialDecode(data) {
+const _PartialDecode = function(data) {
   // data前四位是标志位
   // 随机数是从第四位开始，长度随机
   // 标志位 + 随机数 + 长度字符串 + 加密后的密码
@@ -36,3 +36,5 @@ function _PartialDecode(data) {
   }
   return _pwd;
 }
+
+export default Decode;
