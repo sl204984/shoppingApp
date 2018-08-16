@@ -1,5 +1,5 @@
 
-import createNum from './create-num';
+import CreateNum from './create-num';
 
 const Encode = function (data) {
   // 标志位长度 + 标志位 + 被加密的密码 + 时间
@@ -39,7 +39,7 @@ const _PartialEncode = function(data) {
   _charCodeLen = parseInt(_charCodeLen);
   _charCode = '' + _charCode.toString(36); // 加密后的密码
   _charCodeLen = '' + _charCodeLen.toString(36); // 长度字符串
-  const _random = createNum(); // 随机数
+  const _random = CreateNum(); // 随机数
   const _flag = '' + _random.length.toString(36)
     + _charCodeLen.length.toString(36)
     + _charCode.length.toString(36)

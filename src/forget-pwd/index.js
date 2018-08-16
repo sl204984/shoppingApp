@@ -6,7 +6,7 @@ import {
   darkGray, baseColor, submitTextColor, littleFont,
   loginContainer, longConfirmBtn, row
 } from '../utils/common-styles';
-// import Encryption from '../utils/encode';
+import Encryption from '../utils/encode';
 import webApi from './webapi';
 
 const numReg = /^[\d]+$/;
@@ -92,8 +92,7 @@ export default class ForgetPwd extends Component {
     const submitDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     const { res, err } = await webApi.forgetPwd({
       mobile,
-      // password: Encryption.Encode(password),
-      password,
+      password: Encryption.Encode(password),
       submitDate
     });
 
