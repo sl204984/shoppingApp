@@ -18,11 +18,11 @@ export default class Messages extends React.Component {
     for(let i = 0; i < 10; i++) {
       data.push({
         key: 'index-' + i, 
-        shoppingImg: `${CONFIG.IMG_HOST}static/shopping/lipstick.jpeg`
+        shoppingImg: `${CONFIG.IMG_HOST}shopping/lipstick.jpeg`
       });
     }
 
-    const _avatar = `${CONFIG.IMG_HOST}static/avatar/lovely.jpeg`;
+    const _avatar = `${CONFIG.IMG_HOST}avatar/lovely.jpeg`;
     
     return (
       <View style={styles.container}>

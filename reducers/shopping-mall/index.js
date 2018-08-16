@@ -9,7 +9,7 @@ const initialState = {
     publisher: '大浪浪',
     desc: '一家什么都有的店铺',
     point: 100, // 信用值
-    imgList: ['static/shopping/pen.jpeg', 'static/shopping/lipstick.jpeg', 'static/shopping/fan.jpg'],
+    imgList: ['shopping/pen.jpeg', 'shopping/lipstick.jpeg', 'shopping/fan.jpg'],
     location: '江苏南京雨花台区',
     vipType: 0
   }, {
@@ -18,7 +18,7 @@ const initialState = {
     publisher: '大浪浪',
     desc: '该账户充钱了',
     point: 100, // 信用值
-    imgList: ['static/shopping/lipstick.jpeg', 'static/shopping/fan.jpg', 'static/shopping/download.jpg', 'static/shopping/book.jpg'],
+    imgList: ['shopping/lipstick.jpeg', 'shopping/fan.jpg', 'shopping/download.jpg', 'shopping/book.jpg'],
     location: '江苏南京雨花台区'
   }, {
     avatar: '',
@@ -26,7 +26,7 @@ const initialState = {
     publisher: '大浪浪',
     desc: '一家什么也没有的店铺',
     point: 100, // 信用值
-    imgList: ['static/shopping/lipstick.jpeg', 'static/shopping/book.jpg', 'static/shopping/fan.jpg', 'static/shopping/download.jpg'],
+    imgList: ['shopping/lipstick.jpeg', 'shopping/book.jpg', 'shopping/fan.jpg', 'shopping/download.jpg'],
     location: '江苏南京雨花台区'
   }, {
     avatar: '',
@@ -34,7 +34,7 @@ const initialState = {
     publisher: '大浪浪',
     desc: '该账户是vip玩家',
     point: 100, // 信用值
-    imgList: ['static/shopping/fan.jpg', 'static/shopping/download.jpg', 'static/shopping/lipstick.jpeg', 'static/shopping/book.jpg'],
+    imgList: ['shopping/fan.jpg', 'shopping/download.jpg', 'shopping/lipstick.jpeg', 'shopping/book.jpg'],
     location: '江苏南京雨花台区'
   }],
   end: false
