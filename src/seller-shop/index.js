@@ -8,7 +8,6 @@ export default class SellerShop extends Component {
   render() {
     const { navigation } = this.props;
     const _shopInfo = navigation.getParam('shopInfo');
-    console.log('shopInfo', _shopInfo);
     return (
       <View style={styles.container}>
         <Header 
