@@ -138,9 +138,7 @@ export default class PublishDemo extends Component {
         '登录提醒',
         '您尚未登录，是否现在登录？',
         [{
-          text: '取消', onPress: () => {
-            console.log('Cancel Pressed')
-          }, 
+          text: '取消', onPress: () => {}, 
           style: 'cancel'
         }, {
           text: '确定', onPress: () => {
