@@ -61,6 +61,7 @@ export default class PublishDemo extends Component {
       count,
       store,
       type,
+      location,
       locationDetail
     } = this.state;
     return (
@@ -105,7 +106,11 @@ export default class PublishDemo extends Component {
             store={store} 
             changeStore={({ store }) => this.setState({ store })}
           />
-          <Location />
+
+          <Location 
+            location={location} 
+            changeVal={val => this.setState({ location: val })}
+          />
 
           <LocationDetail 
             value={locationDetail} 
