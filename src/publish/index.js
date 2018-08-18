@@ -4,7 +4,8 @@ import {
   View, 
   StyleSheet, 
   Text, 
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import Toast from 'react-native-root-toast';
 
@@ -13,6 +14,7 @@ import {
   longConfirmBtn, 
   submitTextColor, 
 } from "../utils/common-styles";
+import { StorageKeys, Storage } from '../utils/local-store';
 
 import HeaderTitle from './header-title';
 import Detail from './detail';
@@ -24,14 +26,14 @@ import Classification from './classification';
 import Location from './location';
 import LocationDetail from './location-detail';
 
-import { uploadImages } from './api';
+import { fetchQiniuToken, uploadImages } from './api';
 
 const maxFiles = 5;
 
 export default class PublishDemo extends Component {
   state = {
     shoppingName: '',
-    userId: '',
+    userInfo: {},
     shoppingId: '',
     price: '',
     shipFee: '', // 邮费
@@ -44,9 +46,14 @@ export default class PublishDemo extends Component {
     type: 0
   }
 
+  componentDidMount() {
+    this._loadUserInfo();
+  }
+
   render() {
     const {
       shoppingName,
+      userInfo,
       desc,
       imgList,
       price,
@@ -61,9 +68,7 @@ export default class PublishDemo extends Component {
         <View style={styles.container}>
           <HeaderTitle 
             value={shoppingName}
-            changeValue={val => {
-              this.setState({ shoppingName: val });
-            }}
+            changeValue={val => this.setState({ shoppingName: val })}
           />
 
           <Detail
@@ -106,39 +111,108 @@ export default class PublishDemo extends Component {
             value={locationDetail} 
             changeValue={val => this.setState({ locationDetail: val })} />
 
-          <TouchableOpacity style={styles.loginBox} onPress={ async () => {
-            if (imgList.length === 0) {
-              Toast.show('请选择商品图片~', {
-                position: Toast.positions.CENTER
-              });
-              return;
-            } else if (imgList.length > maxFiles) {
-              Toast.show(`最多可上传${maxFiles}张图片`, {
-                position: Toast.positions.CENTER
-              });
-              return;
-            }
-            const files = imgList.map((item, index) => {
-              const imgType = item.mime && item.mime.split('/')[1];
-              return {
-                path: item.path,
-                filename: 'sl204984_' + index + '.' + (imgType || 'jpeg') // 命名规则：订单号 + 索引 + 文件类型
-              }
-            });
-            const res = await uploadImages({ files });
-          }}>
+          <TouchableOpacity style={styles.loginBox} onPress={this._upload}>
             <Text style={styles.loginText}>确定发布</Text>
           </TouchableOpacity>
+
+          {
+            !userInfo.userId ? 
+              <TouchableOpacity style={styles.mask} onPress={this._loadUserInfo} /> : 
+              null
+          }
         </View>
       </ScrollView>
     )
   }
+
+  // 将加载搜索列表放于顶层是为了防止查两边数据
+  _loadUserInfo = async () => {
+    try {
+      const res = await Storage.load({
+        key: StorageKeys.userInfo,
+        autoSync: true,
+        syncInBackground: true
+      });
+      this.setState({ userInfo: res });
+    } catch(err) {
+      Alert.alert(
+        '登录提醒',
+        '您尚未登录，是否现在登录？',
+        [{
+          text: '取消', onPress: () => {
+            console.log('Cancel Pressed')
+          }, 
+          style: 'cancel'
+        }, {
+          text: '确定', onPress: () => {
+            this.props.navigation.navigate('Login');
+          }
+        }],
+      );
+    }
+  }
+
+  _upload =  async () => {
+    const { imgList, shoppingId: _shoppingId } = this.state;
+    // 校验
+    if (imgList.length === 0) {
+      Toast.show('请选择商品图片~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    } else if (imgList.length > maxFiles) {
+      Toast.show(`最多可上传${maxFiles}张图片`, {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    // 覆盖上传
+    const sourceKeys = imgList.map((item, index) => {
+      const imgType = item.mime && item.mime.split('/')[1];
+      return index + '.' + (imgType || 'jpeg');
+    });
+    // 获取token
+    const { res: qiniuRes } = await fetchQiniuToken({
+      suffArr: sourceKeys,
+      userId: '',
+      shoppingId: _shoppingId
+    });
+    const { shoppingId, tokenArr } = qiniuRes;
+    await this.setState({ shoppingId });
+    // 上传到7牛
+    for(let i = 0; i < tokenArr.length; i++) {
+      const item = imgList[i];
+      const file = {
+        key: tokenArr[i].key,
+        token: tokenArr[i].token,
+        file: item.path,
+        'x:shopId': shoppingId
+      }
+      const { err } = await uploadImages(file);
+      if(err) {
+        Toast.show('图片上传失败，请重新上传~', {
+          position: Toast.positions.CENTER
+        });
+        return;
+      }
+    }
+  }
+
 }
 
 const styles = StyleSheet.create({
-  container: container.toJS(),
+  container: Object.assign(container.toJS(), {
+    position: 'relative'
+  }),
   loginBox: longConfirmBtn.toJS(),
   loginText: {
     color: submitTextColor
   },
+  mask: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0
+  }
 });

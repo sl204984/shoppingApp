@@ -81,9 +81,9 @@ export const UploadFile = async function ({
   name = 'files'
 }) {
   let formData = new FormData();
-  for (let key in body) {
-    formData.append(key, body[key]);
-  }
+  // for (let key in body) {
+  //   formData.append(key, body[key]);
+  // }
   if(multi) {
     // 多文件上传
     for(let item of body.files) {
@@ -99,7 +99,7 @@ export const UploadFile = async function ({
     let file = {
       uri: body.path,
       type: 'multipart/form-data',
-      name: name
+      name: name,
     };
     formData.append("file", file);
   }
@@ -143,6 +143,72 @@ export const UploadFile = async function ({
     });
   } catch(err) {
     clearTimeout(timeoutId);
+    return new Promise(resolve => {
+      resolve({
+        res: null,
+        err: err
+      });
+    });
+  }
+}
+
+/** 
+ * 使用fetch实现图片上传到七牛
+ * @param {JSON} body body的请求参数
+ * @return 返回Promise 
+ */
+const qiniuHost = 'https://upload.qiniup.com'; // 华东地区
+export const UploadQiniuFile = async function ({
+  body = {},
+}) {
+  let formData = new FormData();
+  // 单文件上传，七牛只支持单文件上传
+  const file = Object.assign({
+    type: 'multipart/form-data'
+    // name: name
+  }, body);
+  for(let key in body) {
+    formData.append(key, body[key]);
+  }
+
+  // 添加网络超时机制
+  const timeoutId = setTimeout(() => {
+    // Alert({ text: '您的网络不给力' });
+    return new Promise((resolve) => {
+      resolve({
+        res: null,
+        err: 'timeout'
+      });
+    });
+  }, CONFIG.HTTP_TIME_OUT * 1000);
+
+  try {
+    const response = await fetch(qiniuHost, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Cache-Control': 'no-cache'
+      },
+      body: formData,
+    });
+    clearTimeout(timeoutId);
+    const responseData = await response.json();
+    console.log('responseData', responseData);
+    const {
+      error
+    } = responseData;
+    const _ok = !error;
+    return new Promise(resolve => {
+      resolve({
+        // 有时会返回0的结果
+        res: _ok ? responseData : null,
+        err: _ok ? null : error,
+        ok: _ok
+      })
+    });
+  } catch(err) {
+    clearTimeout(timeoutId);
+    console.log('aaaa', err);
     return new Promise(resolve => {
       resolve({
         res: null,

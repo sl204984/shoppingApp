@@ -22,7 +22,7 @@ export default new Storage({
   // 或是在任何时候，直接对storage.sync进行赋值修改
   // 或是写到另一个文件里，这里require引入
   sync: {
-    userInfo() {},
+    // userInfo() {},
     searchIputList() {}
   }
 })
