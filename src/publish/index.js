@@ -125,7 +125,6 @@ export default class PublishDemo extends Component {
     )
   }
 
-  // 将加载搜索列表放于顶层是为了防止查两边数据
   _loadUserInfo = async () => {
     try {
       const res = await Storage.load({
