@@ -72,7 +72,7 @@ export default class Count extends Component {
     const { storeInput } = this.state;
     const _store = storeInput + num;
     if(_store.indexOf('.') > -1) return;
-    _store < 9999 ?
+    _store <= 9999 ?
       this.setState({ storeInput: _store }) :
       this.refs.toast.show('剩余数量最大值为 9,999');;
   }

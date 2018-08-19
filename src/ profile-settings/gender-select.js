@@ -10,7 +10,7 @@ export default class GenderSelect extends Component {
 
   render() {
     const { showGenderSelect, selectGender } = this.props;
-    return <Modal animationType={"slide"} transparent={true} visible={showGenderSelect}>
+    return <Modal animationType="slide" transparent={true} visible={showGenderSelect}>
       <View style={styles.modal}>
         <TouchableOpacity style={styles.selectItem} onPress={() => { selectGender('男'); }}>
           <Text>男</Text>

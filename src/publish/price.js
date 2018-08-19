@@ -135,7 +135,9 @@ export default class Price extends Component {
       this.refs.toast.show('请输入价格');
       return;
     }
-    changePrice({ price: priceInput, shipFee: shipInput });
+    const _priceInput = priceInput.endsWith('.') ? priceInput.substring(0, priceInput.length - 1) : priceInput;
+    const _shipInput = shipInput.endsWith('.') ? shipInput.substring(0, shipInput.length - 1) : shipInput;
+    changePrice({ price: _priceInput, shipFee: _shipInput });
     await this.setState({
       visible: false,
       focusedInput: 'price'

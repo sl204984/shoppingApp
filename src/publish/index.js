@@ -130,6 +130,23 @@ export default class PublishDemo extends Component {
     )
   }
 
+  _init = () => {
+    this.setState({
+      shoppingName: '',
+      userInfo: {},
+      shoppingId: '',
+      price: '',
+      shipFee: '', // 邮费
+      count: '',
+      store: '',
+      description: '',
+      imgList: [],
+      location: '',
+      locationDetail: '',
+      type: 1
+    });
+  }
+
   _loadUserInfo = async () => {
     try {
       const res = await Storage.load({
@@ -266,7 +283,8 @@ export default class PublishDemo extends Component {
       count,
       store,
       description,
-      location: location + locationDetail,
+      location,
+      locationDetail,
       shipFee
     });
     if(shoppingErr) {
@@ -281,22 +299,6 @@ export default class PublishDemo extends Component {
     }
   }
 
-  _init = () => {
-    this.setState({
-      shoppingName: '',
-      userInfo: {},
-      shoppingId: '',
-      price: '',
-      shipFee: '', // 邮费
-      count: '',
-      store: '',
-      description: '',
-      imgList: [],
-      location: '',
-      locationDetail: '',
-      type: 1
-    });
-  }
 }
 
 const styles = StyleSheet.create({
