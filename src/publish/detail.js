@@ -4,12 +4,12 @@ const { width } = Dimensions.get('window');
 
 export default class Detail extends Component {
   render() {
+    const { value, changeValue } = this.props;
     return (
       <View style={styles.container}>
         <TextInput
-          onChangeText={text => {
-            
-          }}
+          value={value}
+          onChangeText={text => changeValue(text)}
           style={styles.textInput}
           defaultValue=""
           multiline={true}

@@ -97,7 +97,7 @@ export default class PublishDemo extends Component {
             changeCount={({ count }) => this.setState({ count })} 
           />
 
-          <Classification 
+          <Classification
             value={type} 
             changeType={({ type }) => this.setState({ type })} 
           />
@@ -277,7 +277,25 @@ export default class PublishDemo extends Component {
       Toast.show('上传成功~', {
         position: Toast.positions.CENTER
       });
+      this._init();
     }
+  }
+
+  _init = () => {
+    this.setState({
+      shoppingName: '',
+      userInfo: {},
+      shoppingId: '',
+      price: '',
+      shipFee: '', // 邮费
+      count: '',
+      store: '',
+      description: '',
+      imgList: [],
+      location: '',
+      locationDetail: '',
+      type: 1
+    });
   }
 }
 
