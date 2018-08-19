@@ -240,22 +240,22 @@ export default class PublishDemo extends Component {
     const { shoppingId, tokenArr } = qiniuRes;
     await this.setState({ shoppingId });
     // 上传到7牛
-    // for(let i = 0; i < tokenArr.length; i++) {
-    //   const item = imgList[i];
-    //   const file = {
-    //     key: tokenArr[i].key,
-    //     token: tokenArr[i].token,
-    //     file: item.path,
-    //     'x:shoppingId': shoppingId
-    //   };
-    //   const { err } = await uploadImages(file);
-    //   if(err) {
-    //     Toast.show('图片上传失败，请重新上传~', {
-    //       position: Toast.positions.CENTER
-    //     });
-    //     return;
-    //   }
-    // }
+    for(let i = 0; i < tokenArr.length; i++) {
+      const item = imgList[i];
+      const file = {
+        key: tokenArr[i].key,
+        token: tokenArr[i].token,
+        file: item.path,
+        'x:shoppingId': shoppingId
+      };
+      const { err } = await uploadImages(file);
+      if(err) {
+        Toast.show('图片上传失败，请重新上传~', {
+          position: Toast.positions.CENTER
+        });
+        return;
+      }
+    }
     // 上传到用户服务器
     const { err: shoppingErr } = await uploadShoppingInfo({
       shoppingId,
