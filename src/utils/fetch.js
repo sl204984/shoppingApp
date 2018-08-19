@@ -192,22 +192,28 @@ export const UploadQiniuFile = async function ({
     });
     clearTimeout(timeoutId);
     const responseData = await response.json();
-    console.log('responseData', responseData);
+    if(__DEV__) {
+      console.log('responseData', responseData);
+    }
     const {
-      error
+      statusInfo,
+      data,
+      ok,
+      status
     } = responseData;
-    const _ok = !error;
+
+    const _ok = status === 0 && ok;
+    
     return new Promise(resolve => {
       resolve({
         // 有时会返回0的结果
-        res: _ok ? responseData : null,
-        err: _ok ? null : error,
+        res: _ok ? data : null,
+        err: _ok ? null : statusInfo,
         ok: _ok
       })
     });
   } catch(err) {
     clearTimeout(timeoutId);
-    console.log('aaaa', err);
     return new Promise(resolve => {
       resolve({
         res: null,
