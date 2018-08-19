@@ -157,7 +157,6 @@ export const UploadFile = async function ({
  * @param {JSON} body body的请求参数
  * @return 返回Promise 
  */
-const qiniuHost = 'https://upload.qiniup.com'; // 华东地区
 export const UploadQiniuFile = async function ({
   body = {},
 }) {
@@ -183,7 +182,7 @@ export const UploadQiniuFile = async function ({
   }, CONFIG.HTTP_TIME_OUT * 1000);
 
   try {
-    const response = await fetch(qiniuHost, {
+    const response = await fetch(CONFIG.qiniuHost, {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',

@@ -188,8 +188,8 @@ export default class PublishDemo extends Component {
         key: tokenArr[i].key,
         token: tokenArr[i].token,
         file: item.path,
-        'x:shopId': shoppingId
-      }
+        'x:shopingId': shoppingId
+      };
       const { err } = await uploadImages(file);
       if(err) {
         Toast.show('图片上传失败，请重新上传~', {
@@ -199,7 +199,6 @@ export default class PublishDemo extends Component {
       }
     }
   }
-
 }
 
 const styles = StyleSheet.create({
