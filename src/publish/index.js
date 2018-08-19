@@ -26,7 +26,7 @@ import Classification from './classification';
 import Location from './location';
 import LocationDetail from './location-detail';
 
-import { fetchQiniuToken, uploadImages } from './api';
+import { fetchQiniuToken, uploadImages, uploadShoppingInfo } from './api';
 
 const maxFiles = 5;
 
@@ -39,11 +39,11 @@ export default class PublishDemo extends Component {
     shipFee: '', // 邮费
     count: '',
     store: '',
-    desc: '',
+    description: '',
     imgList: [],
     location: '',
     locationDetail: '',
-    type: 0
+    type: 1
   }
 
   componentDidMount() {
@@ -54,7 +54,7 @@ export default class PublishDemo extends Component {
     const {
       shoppingName,
       userInfo,
-      desc,
+      description,
       imgList,
       price,
       shipFee,
@@ -73,9 +73,9 @@ export default class PublishDemo extends Component {
           />
 
           <Detail
-            value={desc}
+            value={description}
             changeValue={val => {
-              this.setState({ desc: val });
+              this.setState({ description: val });
             }} />
 
           <ImgsDemo 
@@ -155,8 +155,66 @@ export default class PublishDemo extends Component {
   }
 
   _upload =  async () => {
-    const { imgList, shoppingId: _shoppingId } = this.state;
+    const { 
+      imgList, 
+      shoppingId: _shoppingId, 
+      userInfo, 
+      shoppingName,
+      price,
+      type,
+      count,
+      store,
+      description,
+      location,
+      locationDetail,
+      shipFee = 0
+    } = this.state;
     // 校验
+    if(!shoppingName) {
+      Toast.show('请输入商品名称~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(!price) {
+      Toast.show('请输入商品价格~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(!type) {
+      Toast.show('请选择商品分类~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(!count) {
+      Toast.show('请输入商品数量~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(!store) {
+      Toast.show('请输入商品剩余数量~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+    if(store < count || store % count !== 0) {
+      Toast.show('商品剩余数量必须为商品数量的整数倍！', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+
+
+    if(!location || !locationDetail) {
+      Toast.show('请完善发布地点信息~', {
+        position: Toast.positions.CENTER
+      });
+      return;
+    }
+
     if (imgList.length === 0) {
       Toast.show('请选择商品图片~', {
         position: Toast.positions.CENTER
@@ -182,21 +240,43 @@ export default class PublishDemo extends Component {
     const { shoppingId, tokenArr } = qiniuRes;
     await this.setState({ shoppingId });
     // 上传到7牛
-    for(let i = 0; i < tokenArr.length; i++) {
-      const item = imgList[i];
-      const file = {
-        key: tokenArr[i].key,
-        token: tokenArr[i].token,
-        file: item.path,
-        'x:shoppingId': shoppingId
-      };
-      const { err } = await uploadImages(file);
-      if(err) {
-        Toast.show('图片上传失败，请重新上传~', {
-          position: Toast.positions.CENTER
-        });
-        return;
-      }
+    // for(let i = 0; i < tokenArr.length; i++) {
+    //   const item = imgList[i];
+    //   const file = {
+    //     key: tokenArr[i].key,
+    //     token: tokenArr[i].token,
+    //     file: item.path,
+    //     'x:shoppingId': shoppingId
+    //   };
+    //   const { err } = await uploadImages(file);
+    //   if(err) {
+    //     Toast.show('图片上传失败，请重新上传~', {
+    //       position: Toast.positions.CENTER
+    //     });
+    //     return;
+    //   }
+    // }
+    // 上传到用户服务器
+    const { err: shoppingErr } = await uploadShoppingInfo({
+      shoppingId,
+      userId: userInfo.userId,
+      shoppingName,
+      price,
+      type,
+      count,
+      store,
+      description,
+      location: location + locationDetail,
+      shipFee
+    });
+    if(shoppingErr) {
+      Toast.show(shoppingErr, {
+        position: Toast.positions.CENTER
+      });
+    } else {
+      Toast.show('上传成功~', {
+        position: Toast.positions.CENTER
+      });
     }
   }
 }

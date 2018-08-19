@@ -7,14 +7,20 @@ export const fetchQiniuToken = body => {
     body
   });
 }
+
 /**
- * 多图上传
- * @param files [path, path, path, ...]
+ * 图片上传
  */
 export const uploadImages = body => {
   return UploadQiniuFile({
-    body,
-    multi: true,
-    name: 'shopping'
+    body
   })
 };
+
+export const uploadShoppingInfo = body => {
+  return FetchRequest({
+    url: 'upload/shopping',
+    method: 'POST',
+    body
+  })
+}

@@ -47,6 +47,10 @@ export const FetchRequest = async function({
       status
     } = responseData;
 
+    if(__DEV__) {
+      console.log('responseData', responseData);
+    }
+    
     const _ok = status === 0 && ok;
     
     return new Promise(resolve => {
@@ -131,6 +135,9 @@ export const UploadFile = async function ({
       status
     } = responseData;
 
+    if(__DEV__) {
+      console.log('responseData', responseData);
+    }
     const _ok = status === 0 && ok;
     
     return new Promise(resolve => {
@@ -172,7 +179,6 @@ export const UploadQiniuFile = async function ({
 
   // 添加网络超时机制
   const timeoutId = setTimeout(() => {
-    // Alert({ text: '您的网络不给力' });
     return new Promise((resolve) => {
       resolve({
         res: null,

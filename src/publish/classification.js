@@ -38,7 +38,7 @@ export default class Classification extends Component {
           })}
         >
           <ScrollView contentContainerStyle={styles.contentContainer}>
-            {TabList.map((item, index) => (
+            {TabList.delete(0).map((item, index) => (
               <View style={styles.dialogRow} key={'tab-list-' + index}>
                 <View style={styles.tabList}>
                   <Text>{ item.get('label') }</Text>
