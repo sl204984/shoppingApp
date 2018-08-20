@@ -36,7 +36,7 @@ export default class Popup extends Component {
   render() {
     const { visible, children, onCancel, title } = this.props;
     return (
-      <BaseModal visible={visible}>
+      <BaseModal visible={visible} onRequestClose={onCancel}>
         <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.dismiss} />

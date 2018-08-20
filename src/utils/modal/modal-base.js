@@ -6,12 +6,13 @@ const { width, height } = Dimensions.get('window');
 
 export default class BaseModal extends Component {
   render() {
-    const { visible, children } = this.props;
+    const { visible, children, onRequestClose } = this.props;
     return (
       <Modal 
         visible={visible}
         animationType="slide"
         transparent
+        onRequestClose={onRequestClose}
       >
         <View style={styles.container}>
           { children }
