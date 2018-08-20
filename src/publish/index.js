@@ -273,6 +273,8 @@ export default class PublishDemo extends Component {
         return;
       }
     }
+    const now = new Date();
+
     // 上传到用户服务器
     const { err: shoppingErr } = await uploadShoppingInfo({
       shoppingId,
@@ -285,7 +287,8 @@ export default class PublishDemo extends Component {
       description,
       location,
       locationDetail,
-      shipFee
+      shipFee,
+      publishDate: `${now.getFullYear()}-${now.getMonth() + 1}=${now.getDate()}`
     });
     if(shoppingErr) {
       Toast.show(shoppingErr, {
