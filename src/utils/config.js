@@ -4,7 +4,7 @@ const HTTP_TIME_OUT = 5;
 const qiniuHost = 'https://upload.qiniup.com'; // 华东地区
 if (__DEV__) {
   CONFIG = {
-    HOST: "http://localhost:3000/",
+    HOST: "http://47.99.72.101/",
     IMG_HOST: "http://localhost:3000/static/",
     HTTP_TIME_OUT,
     version,
