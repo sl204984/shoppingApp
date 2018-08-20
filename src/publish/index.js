@@ -262,7 +262,7 @@ export default class PublishDemo extends Component {
       const file = {
         key: tokenArr[i].key,
         token: tokenArr[i].token,
-        file: item.path,
+        uri: item.path,
         'x:shoppingId': shoppingId
       };
       const { err } = await uploadImages(file);
