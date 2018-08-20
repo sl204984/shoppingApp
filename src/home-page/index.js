@@ -107,7 +107,14 @@ class HomePage extends Component {
     const { refreshing, pageSize, curTabIndex } = this.state;
     if(refreshing) return;
     this.setState({ refreshing: true });
-    await initDataList({ pageSize, pageNum: 0,  });
+    await initDataList({
+      pageSize, 
+      pageNum: 0, 
+      detail: [{
+        start: 0,
+        type: 1
+      }]
+    });
     this.setState({ refreshing: false, pageNum: 1, type: curTabIndex });
   }
 
@@ -116,7 +123,14 @@ class HomePage extends Component {
     const { loadingStatus, pageSize, pageNum, curTabIndex } = this.state;
     if(loadingStatus) return;
     this.setState({ loadingStatus: true });
-    await addDataList({ pageSize, pageNum });
+    await addDataList({ 
+      pageSize,
+      pageNum, 
+      detail: [{
+        start: 0,
+        type: 1
+      }] 
+    });
     this.setState({ loadingStatus: false, pageNum: pageNum + 1, type: curTabIndex });
   }
 
